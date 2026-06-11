@@ -1,0 +1,20 @@
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Node (only used transiently via `npx` in CI — nothing should be committed)
+node_modules/
+npm-debug.log*
+.npm/
+
+# Local scratch / build artifacts
+/tmp/
+*.tmp
+*.log
+
+# Note: index/index.json IS committed (see spec 005 §4.2). Do NOT ignore it.

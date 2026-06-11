@@ -1,0 +1,128 @@
+{
+  "apiVersion": "hub.openeverest.io/v1",
+  "extensions": [
+    {
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/my-plugin",
+              "version": "0.1.0"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "categories": [
+        "example",
+        "template"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0"
+      },
+      "description": "A working \"hello world\" OpenEverest plugin: registers a sidebar entry,\na dedicated route, a cluster-detail tab, and a backend API endpoint.\nUse it as a starting point when building your own generic plugin.\n",
+      "displayName": "Generic Plugin Template",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/generic-plugin-template",
+      "icon": "",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "my-plugin"
+        }
+      },
+      "keywords": [
+        "hello-world",
+        "starter",
+        "tutorial"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "maintainers@openeverest.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "name": "generic-plugin-template",
+      "plugin": {
+        "contributes": {
+          "backend": true,
+          "cli": false,
+          "ui": true
+        },
+        "extensionPoints": [
+          "route",
+          "sidebarItem",
+          "clusterDetailTab"
+        ]
+      },
+      "provider": null,
+      "sourceRepo": "https://github.com/openeverest/generic-plugin-template",
+      "type": "plugin",
+      "verified": false
+    },
+    {
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/provider-percona-server-mongodb",
+              "version": "0.7.2"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "categories": [
+        "database",
+        "mongodb"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0"
+      },
+      "description": "Production-ready MongoDB clusters powered by the Percona Operator.\nSupports replica sets and sharded topologies.\n",
+      "displayName": "Percona Server for MongoDB",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/provider-percona-server-mongodb",
+      "icon": "",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "provider-percona-server-mongodb"
+        }
+      },
+      "keywords": [
+        "nosql",
+        "document-store",
+        "percona"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "maintainers@openeverest.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "name": "percona-server-mongodb",
+      "plugin": null,
+      "provider": {
+        "providerName": "percona-server-mongodb",
+        "supportedEngines": [
+          "mongodb"
+        ]
+      },
+      "sourceRepo": "https://github.com/openeverest/provider-percona-server-mongodb",
+      "type": "provider",
+      "verified": false
+    }
+  ],
+  "kind": "ExtensionIndex",
+  "metadata": {
+    "catalogId": "openeverest-official",
+    "generatedAt": "2026-06-11T15:37:14Z",
+    "schemaVersion": "v1",
+    "totalExtensions": 2
+  }
+}

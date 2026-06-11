@@ -1,0 +1,73 @@
+name: validate
+
+on:
+  pull_request:
+    paths:
+      - 'extensions/**'
+      - 'schemas/**'
+      - '.github/scripts/**'
+      - '.github/workflows/validate.yaml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Schema + lint + index dry-run
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq \
+            https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+          yq --version
+
+      - name: Install ajv-cli + ajv-formats
+        # Co-install in the same npx temp dir so ajv-cli can resolve the
+        # ajv-formats plugin (-c ajv-formats below).
+        run: npm install --no-save ajv-cli@5 ajv-formats@3
+
+      - name: Validate every formula.yaml against the schema
+        # ajv-cli reads YAML files natively when passed via -d.
+        run: |
+          set -euo pipefail
+          rc=0
+          while IFS= read -r f; do
+            echo "::group::$f"
+            if ! npx --no-install ajv validate \
+                  --spec=draft2020 \
+                  -c ajv-formats \
+                  -s schemas/formula-v1.json \
+                  -d "$f"; then
+              rc=1
+            fi
+            echo "::endgroup::"
+          done < <(find extensions -mindepth 2 -name formula.yaml 2>/dev/null | sort)
+          exit "$rc"
+
+      - name: Lint extension directory structure
+        run: bash .github/scripts/validate-extensions.sh
+
+      - name: Install jq
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq jq
+
+      - name: Dry-run the index generator
+        # PRs don't need to ship a regenerated index/index.json — the
+        # build-index workflow regenerates and commits it on push to main.
+        # This step just confirms the generator runs end-to-end against the
+        # PR's formulas and produces a well-formed document with the
+        # expected entry count.
+        run: |
+          set -euo pipefail
+          bash .github/scripts/build-index.sh - > /tmp/index.generated.json
+          generated=$(jq '.extensions | length' /tmp/index.generated.json)
+          expected=$(find extensions/providers extensions/plugins \
+            -mindepth 2 -maxdepth 2 -name formula.yaml 2>/dev/null | wc -l | tr -d ' ')
+          if [[ "$generated" != "$expected" ]]; then
+            echo "::error::Generator produced $generated entries but found $expected formula.yaml files."
+            exit 1
+          fi
+          echo "Generator produced a valid index with $generated extension entries."

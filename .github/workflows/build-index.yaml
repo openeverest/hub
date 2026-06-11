@@ -1,0 +1,53 @@
+name: build-index
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'extensions/**'
+      - 'schemas/**'
+      - '.github/scripts/build-index.sh'
+      - '.github/workflows/build-index.yaml'
+
+  # Allow manual runs (useful for forcing a regeneration).
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-index-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-commit:
+    name: Regenerate index/index.json
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Need full history so build-index.sh can read the latest commit
+          # timestamp via `git log`.
+          fetch-depth: 0
+
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq \
+            https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+          yq --version
+
+      - name: Install jq
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq jq
+
+      - name: Generate index/index.json
+        run: bash .github/scripts/build-index.sh
+
+      - name: Commit if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          file_pattern: index/index.json
+          commit_message: |
+            chore(index): regenerate index.json [skip ci]
+          commit_user_name: openeverest-hub-bot
+          commit_user_email: hub-bot@openeverest.io

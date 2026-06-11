@@ -1,0 +1,109 @@
+# yaml-language-server: $schema=../../schemas/formula-v1.json
+#
+# OpenEverest Extension Hub — formula template.
+#
+# 1. Copy this directory:
+#       cp -R extensions/_template extensions/<providers|plugins>/<your-slug>
+# 2. Edit the formula below.
+# 3. Replace this comment block with a one-line description of your extension.
+# 4. Add a README.md alongside this file (rendered on the future website).
+# 5. Optionally add a logo.svg (omit it and the icon field if you don't have one).
+# 6. Open a PR; the validation workflow will lint the formula against
+#    schemas/formula-v1.json and the build-index workflow will pick it up on merge.
+#
+# Full schema:  schemas/formula-v1.json
+# Spec:         https://github.com/openeverest/specs/blob/main/specs/005-extension-hub.md
+
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+
+metadata:
+  # Globally unique slug. Lowercase alphanumeric + hyphens. MUST match the
+  # parent directory name.
+  name: your-extension-slug
+
+  # `provider` for a database operator wrapper; `plugin` for a generic
+  # UI/CLI/backend extension. Pick exactly one of `spec.provider` or
+  # `spec.plugin` below to match.
+  type: provider  # or: plugin
+
+  displayName: "Your Extension"
+  description: |
+    One or two sentences describing what this extension does and who it's for.
+    Max 500 characters.
+
+  categories:
+    - database          # examples; replace with your own
+  keywords:
+    - example
+  homepage: https://github.com/your-org/your-extension
+  sourceRepo: https://github.com/your-org/your-extension
+  license: Apache-2.0   # SPDX identifier
+  maintainers:
+    - name: "Your Name or Team"
+      email: "maintainers@example.com"
+      github: "your-github-handle-or-org"
+  # Optional: relative path to a logo file in this directory.
+  # icon: ./logo.svg
+
+spec:
+  # --- Type-specific block (exactly ONE of `provider` or `plugin`) ---
+
+  provider:
+    # Must match the Provider CR .metadata.name deployed by this chart.
+    providerName: your-provider-name
+    supportedEngines:
+      - postgresql      # or: mysql, mongodb, ...
+
+  # plugin:
+  #   contributes:
+  #     ui: false
+  #     backend: true
+  #     cli: false
+  #   extensionPoints:
+  #     - route
+  #     - sidebarItem
+  #     - clusterDetailTab
+
+  # --- Compatibility constraints (required) ---
+  compatibility:
+    openeverest: ">=2.0.0"
+    # kubernetes: ">=1.27"   # optional
+
+  # --- Artifact references ---
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/your-org/charts/your-chart
+          version: "0.1.0"
+          # digest: "sha256:..."   # optional in Phase 1, required from Phase 2
+        # edge:
+        #   ref: oci://ghcr.io/your-org/charts/your-chart
+        #   version: "0.2.0-rc1"
+
+    # frontend:                     # only if your plugin ships a SEPARATE OCI
+    #   defaultChannel: stable      # frontend bundle (not the case for plugins
+    #   channels:                   # that serve main.js from their own backend)
+    #     stable:
+    #       ref: oci://ghcr.io/your-org/plugins/your-plugin-ui
+    #       version: "0.1.0"
+
+  # --- Supply-chain verification (optional in v1, format-ready for Phase 5) ---
+  # verification:
+  #   cosign:
+  #     issuer: https://token.actions.githubusercontent.com
+  #     identityRegexp: "^https://github.com/your-org/.*"
+  #   sbom: oci://ghcr.io/your-org/sbom/your-chart@sha256:...
+  #   slsaProvenance: oci://ghcr.io/your-org/provenance/your-chart@sha256:...
+
+  # --- Install configuration (required) ---
+  install:
+    helm:
+      releaseName: your-release-name
+      # The live ecosystem uses `everest-system` for both providers and
+      # plugins. See docs/PUBLISHING.md for the naming convention.
+      namespace: everest-system
+      # defaultValues: {}
+      # valuesSchema: oci://ghcr.io/your-org/...values-schema@sha256:...

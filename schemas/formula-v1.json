@@ -1,0 +1,309 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/openeverest/hub/main/schemas/formula-v1.json",
+  "title": "OpenEverest Extension Hub Formula (v1)",
+  "description": "Schema for a single extensions/<type>/<name>/formula.yaml file. Phase-2+ fields (channels.*.digest, verification, artifacts.frontend, install.helm.valuesSchema) are declared but optional so Phase-1 formulas validate. See https://github.com/openeverest/specs/blob/main/specs/005-extension-hub.md",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["apiVersion", "kind", "metadata", "spec"],
+  "properties": {
+    "apiVersion": { "const": "hub.openeverest.io/v1" },
+    "kind": { "const": "Extension" },
+    "metadata": { "$ref": "#/$defs/metadata" },
+    "spec": { "$ref": "#/$defs/spec" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "type": "object",
+        "required": ["metadata"],
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "properties": { "type": { "const": "provider" } }
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "spec": {
+            "type": "object",
+            "required": ["provider"],
+            "not": { "type": "object", "required": ["plugin"] }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "required": ["metadata"],
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "properties": { "type": { "const": "plugin" } }
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "spec": {
+            "type": "object",
+            "required": ["plugin"],
+            "not": { "type": "object", "required": ["provider"] }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "dns1123Label": {
+      "type": "string",
+      "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+      "minLength": 1,
+      "maxLength": 63
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "type", "displayName", "description", "license", "maintainers"],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/dns1123Label",
+          "description": "Globally unique slug. Must match the directory name (extensions/<type>/<name>/)."
+        },
+        "type": {
+          "enum": ["provider", "plugin"]
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "categories": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "keywords": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "homepage": {
+          "type": "string",
+          "format": "uri"
+        },
+        "sourceRepo": {
+          "type": "string",
+          "format": "uri"
+        },
+        "license": {
+          "type": "string",
+          "minLength": 1,
+          "description": "SPDX identifier (e.g., Apache-2.0, MIT, BSD-3-Clause)."
+        },
+        "maintainers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["github"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "email": { "type": "string", "format": "email" },
+              "github": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "icon": {
+          "type": "string",
+          "description": "Relative path to a logo file in the same directory (typically ./logo.svg)."
+        },
+        "annotations": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["compatibility", "artifacts", "install"],
+      "properties": {
+        "provider": { "$ref": "#/$defs/specProvider" },
+        "plugin": { "$ref": "#/$defs/specPlugin" },
+        "compatibility": { "$ref": "#/$defs/compatibility" },
+        "artifacts": { "$ref": "#/$defs/artifacts" },
+        "verification": { "$ref": "#/$defs/verification" },
+        "install": { "$ref": "#/$defs/install" }
+      },
+      "oneOf": [
+        { "required": ["provider"] },
+        { "required": ["plugin"] }
+      ]
+    },
+    "specProvider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["providerName", "supportedEngines"],
+      "properties": {
+        "providerName": {
+          "$ref": "#/$defs/dns1123Label",
+          "description": "Must match the Provider CR .metadata.name deployed by the chart."
+        },
+        "supportedEngines": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "specPlugin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contributes"],
+      "properties": {
+        "contributes": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "ui": { "type": "boolean", "default": false },
+            "cli": { "type": "boolean", "default": false },
+            "backend": { "type": "boolean", "default": false }
+          },
+          "anyOf": [
+            { "properties": { "ui": { "const": true } }, "required": ["ui"] },
+            { "properties": { "cli": { "const": true } }, "required": ["cli"] },
+            { "properties": { "backend": { "const": true } }, "required": ["backend"] }
+          ]
+        },
+        "extensionPoints": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["openeverest"],
+      "properties": {
+        "openeverest": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Semver range of compatible OpenEverest core versions."
+        },
+        "kubernetes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "chart": { "$ref": "#/$defs/artifact" },
+        "frontend": { "$ref": "#/$defs/artifact" }
+      },
+      "anyOf": [
+        { "required": ["chart"] },
+        { "required": ["frontend"] }
+      ]
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["defaultChannel", "channels"],
+      "properties": {
+        "defaultChannel": { "type": "string", "minLength": 1 },
+        "channels": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "$ref": "#/$defs/channel" }
+        }
+      }
+    },
+    "channel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "version"],
+      "properties": {
+        "ref": {
+          "type": "string",
+          "pattern": "^oci://"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "Optional in Phase 1; required from Phase 2."
+        },
+        "integrity": {
+          "type": "string",
+          "description": "Subresource integrity hash for browser verification (frontend bundles)."
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cosign": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "issuer": { "type": "string", "format": "uri" },
+            "identityRegexp": { "type": "string", "minLength": 1 }
+          }
+        },
+        "sbom": { "type": "string", "minLength": 1 },
+        "slsaProvenance": { "type": "string", "minLength": 1 }
+      }
+    },
+    "install": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["helm"],
+      "properties": {
+        "helm": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["releaseName", "namespace"],
+          "properties": {
+            "releaseName": {
+              "type": "string",
+              "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+              "minLength": 1,
+              "maxLength": 53
+            },
+            "namespace": {
+              "$ref": "#/$defs/dns1123Label"
+            },
+            "valuesSchema": {
+              "type": "string",
+              "description": "Optional pointer to a values.schema.json (Phase 4+)."
+            },
+            "defaultValues": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  }
+}

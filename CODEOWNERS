@@ -1,0 +1,12 @@
+# Default ownership — every change requires review from the hub maintainers.
+*                       @openeverest/hub-maintainers
+
+# Schema and tooling — stricter review (changes affect every formula).
+/schemas/                @openeverest/hub-maintainers
+/.github/                @openeverest/hub-maintainers
+/docs/                   @openeverest/hub-maintainers
+/index/                  @openeverest/hub-maintainers
+
+# Extension submissions are reviewed by the hub maintainers for metadata
+# accuracy and naming, not for code (the formula is a pointer, not code).
+/extensions/             @openeverest/hub-maintainers

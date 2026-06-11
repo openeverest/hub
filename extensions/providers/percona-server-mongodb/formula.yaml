@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=../../../schemas/formula-v1.json
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+
+metadata:
+  name: percona-server-mongodb
+  type: provider
+  displayName: "Percona Server for MongoDB"
+  description: |
+    Production-ready MongoDB clusters powered by the Percona Operator.
+    Supports replica sets and sharded topologies.
+  categories:
+    - database
+    - mongodb
+  keywords:
+    - nosql
+    - document-store
+    - percona
+  homepage: https://github.com/openeverest/provider-percona-server-mongodb
+  sourceRepo: https://github.com/openeverest/provider-percona-server-mongodb
+  license: Apache-2.0
+  maintainers:
+    - name: "OpenEverest Team"
+      email: "maintainers@openeverest.io"
+      github: "openeverest"
+
+spec:
+  provider:
+    providerName: percona-server-mongodb
+    supportedEngines:
+      - mongodb
+
+  compatibility:
+    openeverest: ">=2.0.0"
+
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/openeverest/charts/provider-percona-server-mongodb
+          version: "0.7.2"
+
+  install:
+    helm:
+      releaseName: provider-percona-server-mongodb
+      namespace: everest-system
