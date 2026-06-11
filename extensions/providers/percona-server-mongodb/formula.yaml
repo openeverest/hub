@@ -21,7 +21,7 @@ metadata:
   license: Apache-2.0
   maintainers:
     - name: "OpenEverest Team"
-      email: "maintainers@openeverest.io"
+      email: "cncf-openeverest-maintainers@lists.cncf.io"
       github: "openeverest"
 
 spec:
