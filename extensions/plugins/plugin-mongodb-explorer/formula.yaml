@@ -22,6 +22,7 @@ metadata:
   homepage: https://github.com/openeverest/plugin-mongodb-explorer
   sourceRepo: https://github.com/openeverest/plugin-mongodb-explorer
   license: Apache-2.0
+  maturity: alpha
   maintainers:
     - name: "OpenEverest Team"
       email: "cncf-openeverest-maintainers@lists.cncf.io"

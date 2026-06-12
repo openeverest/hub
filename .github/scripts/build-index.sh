@@ -35,6 +35,8 @@ mapfile -t formulas < <(
 )
 
 # Convert each formula to a single-line JSON object describing the index entry.
+# Per spec §4.4, `maturity` is always emitted (defaulting to "alpha" when the
+# formula omits it) and `capabilities` is emitted verbatim only when non-empty.
 entries=()
 for f in "${formulas[@]}"; do
   entry=$(yq -o=json -I=0 '
@@ -49,16 +51,18 @@ for f in "${formulas[@]}"; do
       "sourceRepo":   (.metadata.sourceRepo // ""),
       "license":      .metadata.license,
       "icon":         (.metadata.icon // ""),
+      "maturity":     (.metadata.maturity // "alpha"),
       "maintainers":  (.metadata.maintainers // []),
       "verified":     false,
       "health":       "unknown",
       "compatibility": .spec.compatibility,
+      "capabilities": (.spec.capabilities // {}),
       "provider":     (.spec.provider // null),
       "plugin":       (.spec.plugin // null),
       "artifacts":    .spec.artifacts,
       "install":      .spec.install
     }
-  ' "$f")
+  ' "$f" | jq -c 'if (.capabilities | length) == 0 then del(.capabilities) else . end')
   entries+=("$entry")
 done
 

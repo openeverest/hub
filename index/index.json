@@ -44,6 +44,7 @@
           "name": "OpenEverest Team"
         }
       ],
+      "maturity": "alpha",
       "name": "generic-plugin-template",
       "plugin": {
         "contributes": {
@@ -73,6 +74,17 @@
           },
           "defaultChannel": "stable"
         }
+      },
+      "capabilities": {
+        "backups": true,
+        "ha": true,
+        "mongodb.versions": [
+          "6",
+          "7",
+          "8"
+        ],
+        "monitoring": true,
+        "restores": true
       },
       "categories": [
         "database",
@@ -105,6 +117,7 @@
           "name": "OpenEverest Team"
         }
       ],
+      "maturity": "alpha",
       "name": "percona-server-mongodb",
       "plugin": null,
       "provider": {
@@ -162,6 +175,7 @@
           "name": "OpenEverest Team"
         }
       ],
+      "maturity": "alpha",
       "name": "plugin-hub",
       "plugin": {
         "contributes": {
@@ -224,6 +238,7 @@
           "name": "OpenEverest Team"
         }
       ],
+      "maturity": "alpha",
       "name": "plugin-mongodb-explorer",
       "plugin": {
         "contributes": {
@@ -244,7 +259,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-06-12T13:41:18+03:00",
+    "generatedAt": "2026-06-12T15:56:47+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 4
   }

@@ -39,6 +39,10 @@ metadata:
   homepage: https://github.com/your-org/your-extension
   sourceRepo: https://github.com/your-org/your-extension
   license: Apache-2.0   # SPDX identifier
+  # Author-declared lifecycle stage. Defaults to `alpha` when omitted.
+  # One of: alpha | beta | stable | deprecated. Independent of channels
+  # (release cadence) and of operational health.
+  # maturity: alpha
   maintainers:
     - name: "Your Name or Team"
       email: "maintainers@example.com"
@@ -69,6 +73,17 @@ spec:
   compatibility:
     openeverest: ">=2.0.0"
     # kubernetes: ">=1.27"   # optional
+
+  # --- Capability matrix (optional, free-form annotations) ---
+  # Advertises what this provider/plugin supports. Values may be scalar
+  # (string/bool/number) or arrays of strings. Keys are free-form;
+  # dot-namespaced keys are a convention for grouping, not enforced.
+  # See docs/CAPABILITIES.md (when published) for the recommended vocabulary.
+  # capabilities:
+  #   ha: true
+  #   backups: true
+  #   restores: true
+  #   monitoring: true
 
   # --- Artifact references ---
   artifacts:

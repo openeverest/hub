@@ -19,6 +19,7 @@ metadata:
   homepage: https://github.com/openeverest/provider-percona-server-mongodb
   sourceRepo: https://github.com/openeverest/provider-percona-server-mongodb
   license: Apache-2.0
+  maturity: alpha
   maintainers:
     - name: "OpenEverest Team"
       email: "cncf-openeverest-maintainers@lists.cncf.io"
@@ -32,6 +33,15 @@ spec:
 
   compatibility:
     openeverest: ">=2.0.0"
+
+  capabilities:
+    ha: true
+    backups: true
+    pitr: true
+    restores: true
+    monitoring: true
+    sharding: true
+    mongodb.versions: ["6", "7", "8"]
 
   artifacts:
     chart:

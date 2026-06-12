@@ -20,6 +20,7 @@ metadata:
   homepage: https://github.com/openeverest/generic-plugin-template
   sourceRepo: https://github.com/openeverest/generic-plugin-template
   license: Apache-2.0
+  maturity: alpha
   maintainers:
     - name: "OpenEverest Team"
       email: "cncf-openeverest-maintainers@lists.cncf.io"
