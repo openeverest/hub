@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=../../../schemas/formula-v1.json
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+
+metadata:
+  name: plugin-mongodb-explorer
+  type: plugin
+  displayName: "MongoDB Explorer"
+  description: |
+    Adds a MongoDB Explorer tab to PSMDB cluster detail pages. Browse
+    databases and collections, run find queries with filter, projection,
+    limit, and sort, and view results as a table or raw JSON.
+  categories:
+    - database
+    - mongodb
+  keywords:
+    - mongodb
+    - query
+    - explorer
+    - nosql
+    - psmdb
+  homepage: https://github.com/openeverest/plugin-mongodb-explorer
+  sourceRepo: https://github.com/openeverest/plugin-mongodb-explorer
+  license: Apache-2.0
+  maintainers:
+    - name: "OpenEverest Team"
+      email: "cncf-openeverest-maintainers@lists.cncf.io"
+      github: "openeverest"
+
+spec:
+  plugin:
+    contributes:
+      ui: true
+      backend: true
+      cli: false
+    extensionPoints:
+      - clusterDetailTab
+
+  compatibility:
+    openeverest: ">=2.0.0"
+
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/openeverest/charts/plugin-mongodb-explorer
+          version: "0.1.14"
+
+  install:
+    helm:
+      releaseName: mongo-explorer
+      namespace: everest-system

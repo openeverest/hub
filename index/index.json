@@ -116,13 +116,74 @@
       "sourceRepo": "https://github.com/openeverest/provider-percona-server-mongodb",
       "type": "provider",
       "verified": false
+    },
+    {
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/plugin-mongodb-explorer",
+              "version": "0.1.14"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "categories": [
+        "database",
+        "mongodb"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0"
+      },
+      "description": "Adds a MongoDB Explorer tab to PSMDB cluster detail pages. Browse\ndatabases and collections, run find queries with filter, projection,\nlimit, and sort, and view results as a table or raw JSON.\n",
+      "displayName": "MongoDB Explorer",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/plugin-mongodb-explorer",
+      "icon": "",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "mongo-explorer"
+        }
+      },
+      "keywords": [
+        "mongodb",
+        "query",
+        "explorer",
+        "nosql",
+        "psmdb"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "name": "plugin-mongodb-explorer",
+      "plugin": {
+        "contributes": {
+          "backend": true,
+          "cli": false,
+          "ui": true
+        },
+        "extensionPoints": [
+          "clusterDetailTab"
+        ]
+      },
+      "provider": null,
+      "sourceRepo": "https://github.com/openeverest/plugin-mongodb-explorer",
+      "type": "plugin",
+      "verified": false
     }
   ],
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-06-11T22:04:03+03:00",
+    "generatedAt": "2026-06-11T22:14:32+03:00",
     "schemaVersion": "v1",
-    "totalExtensions": 2
+    "totalExtensions": 3
   }
 }
