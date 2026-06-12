@@ -84,7 +84,9 @@
           "8"
         ],
         "monitoring": true,
-        "restores": true
+        "pitr": true,
+        "restores": true,
+        "sharding": true
       },
       "categories": [
         "database",
@@ -259,7 +261,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-06-12T15:56:47+03:00",
+    "generatedAt": "2026-06-12T18:18:07+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 4
   }
