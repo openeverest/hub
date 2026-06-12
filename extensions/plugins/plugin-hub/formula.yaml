@@ -48,7 +48,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/plugin-hub
-          version: "0.1.2"
+          version: "0.1.4"
 
   install:
     helm:
