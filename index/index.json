@@ -122,6 +122,68 @@
         "chart": {
           "channels": {
             "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/plugin-hub",
+              "version": "0.1.2"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "categories": [
+        "hub",
+        "extensions",
+        "catalog"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0"
+      },
+      "description": "Surfaces every plugin and provider published in the official OpenEverest\ncatalog and shows which ones are installed on your cluster. Searchable,\nfilterable table with install status, channel version, categories, and a\nper-entry detail drawer with a copy-pasteable helm install command.\n",
+      "displayName": "Plugin Hub",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/plugin-hub",
+      "icon": "",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "plugin-hub"
+        }
+      },
+      "keywords": [
+        "hub",
+        "catalog",
+        "extensions",
+        "browser"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "name": "plugin-hub",
+      "plugin": {
+        "contributes": {
+          "backend": true,
+          "cli": false,
+          "ui": true
+        },
+        "extensionPoints": [
+          "route",
+          "sidebarItem"
+        ]
+      },
+      "provider": null,
+      "sourceRepo": "https://github.com/openeverest/plugin-hub",
+      "type": "plugin",
+      "verified": false
+    },
+    {
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-mongodb-explorer",
               "version": "0.1.14"
             }
@@ -182,8 +244,8 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-06-11T22:14:32+03:00",
+    "generatedAt": "2026-06-12T13:41:18+03:00",
     "schemaVersion": "v1",
-    "totalExtensions": 3
+    "totalExtensions": 4
   }
 }

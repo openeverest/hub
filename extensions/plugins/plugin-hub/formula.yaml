@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=../../../schemas/formula-v1.json
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+
+metadata:
+  name: plugin-hub
+  type: plugin
+  displayName: "Plugin Hub"
+  description: |
+    Surfaces every plugin and provider published in the official OpenEverest
+    catalog and shows which ones are installed on your cluster. Searchable,
+    filterable table with install status, channel version, categories, and a
+    per-entry detail drawer with a copy-pasteable helm install command.
+  categories:
+    - hub
+    - extensions
+    - catalog
+  keywords:
+    - hub
+    - catalog
+    - extensions
+    - browser
+  homepage: https://github.com/openeverest/plugin-hub
+  sourceRepo: https://github.com/openeverest/plugin-hub
+  license: Apache-2.0
+  maintainers:
+    - name: "OpenEverest Team"
+      email: "cncf-openeverest-maintainers@lists.cncf.io"
+      github: "openeverest"
+
+spec:
+  plugin:
+    contributes:
+      ui: true
+      backend: true
+      cli: false
+    extensionPoints:
+      - route
+      - sidebarItem
+
+  compatibility:
+    openeverest: ">=2.0.0"
+
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/openeverest/charts/plugin-hub
+          version: "0.1.2"
+
+  install:
+    helm:
+      releaseName: plugin-hub
+      namespace: everest-system
