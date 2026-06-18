@@ -137,6 +137,75 @@
         "chart": {
           "channels": {
             "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/provider-percona-xtradb-cluster",
+              "version": "0.1.0"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "capabilities": {
+        "backups": true,
+        "ha": true,
+        "monitoring": true,
+        "mysql.versions": [
+          "8.0",
+          "8.4"
+        ],
+        "pitr": true,
+        "restores": true
+      },
+      "categories": [
+        "database",
+        "mysql"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0"
+      },
+      "description": "Highly available MySQL clusters powered by the Percona Operator for MySQL\nbased on Percona XtraDB Cluster (PXC).\n",
+      "displayName": "Percona XtraDB Cluster",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/provider-percona-xtradb-cluster",
+      "icon": "",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "provider-percona-xtradb-cluster"
+        }
+      },
+      "keywords": [
+        "mysql",
+        "percona",
+        "xtradb",
+        "pxc",
+        "galera"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "percona-xtradb-cluster",
+      "plugin": null,
+      "provider": {
+        "providerName": "percona-xtradb-cluster",
+        "supportedEngines": [
+          "mysql"
+        ]
+      },
+      "sourceRepo": "https://github.com/openeverest/provider-percona-xtradb-cluster",
+      "type": "provider",
+      "verified": false
+    },
+    {
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-hub",
               "version": "0.1.5"
             }
@@ -261,8 +330,8 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-06-18T16:11:59+03:00",
+    "generatedAt": "2026-06-18T16:18:16+03:00",
     "schemaVersion": "v1",
-    "totalExtensions": 4
+    "totalExtensions": 5
   }
 }
