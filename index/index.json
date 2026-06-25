@@ -207,7 +207,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-hub",
-              "version": "0.1.5"
+              "version": "0.1.7"
             }
           },
           "defaultChannel": "stable"
@@ -225,7 +225,7 @@
       "displayName": "Plugin Hub",
       "health": "unknown",
       "homepage": "https://github.com/openeverest/plugin-hub",
-      "icon": "",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/plugins/plugin-hub/hub-icon.png",
       "install": {
         "helm": {
           "namespace": "everest-system",
@@ -330,7 +330,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-06-25T17:06:46+03:00",
+    "generatedAt": "2026-06-25T21:51:50+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 5
   }
