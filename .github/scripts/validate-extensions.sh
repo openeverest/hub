@@ -5,7 +5,8 @@
 #   - <name> (directory) == metadata.name (formula)
 #   - <name> appears in extensions/<type>/, where <type> matches metadata.type + 's'
 #   - README.md is non-empty
-#   - Only formula.yaml, README.md, logo.svg are allowed in an extension dir
+#   - Only formula.yaml, README.md, and image files (svg/png/jpg/jpeg/webp/gif)
+#     are allowed in an extension dir
 #
 # JSON Schema validation of each formula.yaml is run separately (see
 # .github/workflows/validate.yaml).
@@ -22,7 +23,8 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 EXT_DIR="${ROOT_DIR}/extensions"
 
 ALLOWED_TOP_LEVEL=(providers plugins _template _deprecated)
-ALLOWED_FILES=(formula.yaml README.md logo.svg)
+ALLOWED_FILES=(formula.yaml README.md)
+ALLOWED_IMAGE_EXTS=(svg png jpg jpeg webp gif)
 
 failures=0
 fail() {
@@ -81,12 +83,18 @@ for type_dir in providers plugins; do
       fail "$rel_dir/README.md is empty"
     fi
 
-    # 2b. Only allowed files
+    # 2b. Only allowed files (formula.yaml, README.md, or image files)
     while IFS= read -r entry; do
       base=$(basename "$entry")
-      if ! contains "$base" "${ALLOWED_FILES[@]}"; then
-        fail "$rel_dir/$base is not an allowed file (allowed: ${ALLOWED_FILES[*]})"
+      if contains "$base" "${ALLOWED_FILES[@]}"; then
+        continue
       fi
+      ext="${base##*.}"
+      ext="${ext,,}"  # lowercase
+      if [[ "$base" == *.* ]] && contains "$ext" "${ALLOWED_IMAGE_EXTS[@]}"; then
+        continue
+      fi
+      fail "$rel_dir/$base is not an allowed file (allowed: ${ALLOWED_FILES[*]}, or image files: ${ALLOWED_IMAGE_EXTS[*]})"
     done < <(find "$ext_dir" -mindepth 1 -maxdepth 1 -type f)
 
     # 2c. metadata.name matches directory name

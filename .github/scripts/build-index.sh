@@ -19,6 +19,11 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 EXT_DIR="${ROOT_DIR}/extensions"
 OUT_PATH="${1:-${ROOT_DIR}/index/index.json}"
 
+# Base URL used to expand relative `metadata.icon` paths into fully-qualified
+# URLs in the generated index. Override via env var when building against a
+# fork or a non-main ref.
+HUB_RAW_BASE_URL="${HUB_RAW_BASE_URL:-https://raw.githubusercontent.com/openeverest/hub/main}"
+
 # Use the latest commit timestamp (RFC3339) so re-running build doesn't churn
 # the file when nothing has changed. Falls back to "now" outside git.
 if generated_at=$(git -C "$ROOT_DIR" log -1 --pretty=%cI 2>/dev/null) && [[ -n "$generated_at" ]]; then
@@ -39,6 +44,8 @@ mapfile -t formulas < <(
 # formula omits it) and `capabilities` is emitted verbatim only when non-empty.
 entries=()
 for f in "${formulas[@]}"; do
+  rel_path="${f#${ROOT_DIR}/}"           # extensions/<type>/<slug>/formula.yaml
+  rel_dir="${rel_path%/formula.yaml}"    # extensions/<type>/<slug>
   entry=$(yq -o=json -I=0 '
     {
       "name":         .metadata.name,
@@ -62,7 +69,15 @@ for f in "${formulas[@]}"; do
       "artifacts":    .spec.artifacts,
       "install":      .spec.install
     }
-  ' "$f" | jq -c 'if (.capabilities | length) == 0 then del(.capabilities) else . end')
+  ' "$f" | jq -c \
+    --arg base "$HUB_RAW_BASE_URL" \
+    --arg dir "$rel_dir" '
+      if (.icon == "" or .icon == null) then .icon = ""
+      elif (.icon | test("^https?://")) then .
+      else .icon = ($base + "/" + $dir + "/" + (.icon | sub("^\\./"; "")))
+      end
+      | if (.capabilities | length) == 0 then del(.capabilities) else . end
+    ')
   entries+=("$entry")
 done
 

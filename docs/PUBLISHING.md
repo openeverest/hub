@@ -74,7 +74,7 @@ See [`schemas/formula-v1.json`](../schemas/formula-v1.json) for the full schema.
 | `metadata.maturity` | optional | Author-declared lifecycle stage: `alpha` \| `beta` \| `stable` \| `deprecated`. Defaults to `alpha` when omitted. Independent of channels (release cadence) and of operational health. |
 | `metadata.maintainers` | yes | At least one entry; `github` handle is required. |
 | `metadata.sourceRepo` | recommended | Public source repository URL. |
-| `metadata.icon` | optional | Relative path to a logo file in this directory (typically `./logo.svg`). |
+| `metadata.icon` | optional | Relative path to a logo file in this directory (e.g., `./logo.svg` or `./icon.png`). The build-index workflow expands this to a fully-qualified `raw.githubusercontent.com` URL in `index.json`. |
 | `spec.provider` / `spec.plugin` | yes | Exactly one, matching `metadata.type`. |
 | `spec.compatibility.openeverest` | yes | Semver range of compatible OpenEverest core versions, e.g., `">=2.0.0"`. |
 | `spec.capabilities` | optional | Free-form map advertising provider/plugin features. Values are scalar (string/bool/number) or arrays of strings. Dot-namespaced keys (e.g., `mongodb.versions`) are a convention for grouping, not enforced. Emitted verbatim in the index when non-empty. |
