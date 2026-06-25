@@ -24,7 +24,7 @@
       "displayName": "Generic Plugin Template",
       "health": "unknown",
       "homepage": "https://github.com/openeverest/generic-plugin-template",
-      "icon": "",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/plugins/generic-plugin-template/puzzle-piece.png",
       "install": {
         "helm": {
           "namespace": "everest-system",
@@ -96,7 +96,7 @@
         "openeverest": ">=2.0.0"
       },
       "description": "Production-ready MongoDB clusters powered by the Percona Operator.\nSupports replica sets and sharded topologies.\n",
-      "displayName": "Percona Server for MongoDB",
+      "displayName": "MongoDB (Percona)",
       "health": "unknown",
       "homepage": "https://github.com/openeverest/provider-percona-server-mongodb",
       "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/providers/percona-server-mongodb/mongodb_icon.png",
@@ -163,7 +163,7 @@
         "openeverest": ">=2.0.0"
       },
       "description": "Highly available MySQL clusters powered by the Percona Operator for MySQL\nbased on Percona XtraDB Cluster (PXC).\n",
-      "displayName": "Percona XtraDB Cluster",
+      "displayName": "MySQL (Percona XtraDB Cluster)",
       "health": "unknown",
       "homepage": "https://github.com/openeverest/provider-percona-xtradb-cluster",
       "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/providers/percona-xtradb-cluster/mysql_icon.png",
@@ -287,7 +287,7 @@
       "displayName": "MongoDB Explorer",
       "health": "unknown",
       "homepage": "https://github.com/openeverest/plugin-mongodb-explorer",
-      "icon": "",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/plugins/plugin-mongodb-explorer/explore.png",
       "install": {
         "helm": {
           "namespace": "everest-system",
@@ -330,7 +330,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-06-25T21:51:50+03:00",
+    "generatedAt": "2026-06-25T22:25:39+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 5
   }
