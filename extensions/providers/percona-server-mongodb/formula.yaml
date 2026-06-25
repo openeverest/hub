@@ -5,7 +5,7 @@ kind: Extension
 metadata:
   name: percona-server-mongodb
   type: provider
-  displayName: "Percona Server for MongoDB"
+  displayName: "MongoDB (Percona)"
   icon: ./mongodb_icon.png
   description: |
     Production-ready MongoDB clusters powered by the Percona Operator.

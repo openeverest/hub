@@ -7,7 +7,8 @@
 # 2. Edit the formula below.
 # 3. Replace this comment block with a one-line description of your extension.
 # 4. Add a README.md alongside this file (rendered on the future website).
-# 5. Optionally add a logo.svg (omit it and the icon field if you don't have one).
+# 5. Add a logo file (svg/png/jpg/jpeg/webp/gif) alongside this file and
+#    reference it from metadata.icon. Required.
 # 6. Open a PR; the validation workflow will lint the formula against
 #    schemas/formula-v1.json and the build-index workflow will pick it up on merge.
 #
@@ -47,8 +48,10 @@ metadata:
     - name: "Your Name or Team"
       email: "maintainers@example.com"
       github: "your-github-handle-or-org"
-  # Optional: relative path to a logo file in this directory.
-  # icon: ./logo.svg
+  # Required: relative path to a logo file in this directory. Must be one of
+  # svg, png, jpg, jpeg, webp, gif. Expanded to a fully-qualified URL in the
+  # generated index.json.
+  icon: ./logo.svg
 
 spec:
   # --- Type-specific block (exactly ONE of `provider` or `plugin`) ---

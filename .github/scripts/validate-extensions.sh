@@ -7,6 +7,8 @@
 #   - README.md is non-empty
 #   - Only formula.yaml, README.md, and image files (svg/png/jpg/jpeg/webp/gif)
 #     are allowed in an extension dir
+#   - metadata.icon is set, references a relative file in the extension dir,
+#     the file exists, and has an allowed image extension
 #
 # JSON Schema validation of each formula.yaml is run separately (see
 # .github/workflows/validate.yaml).
@@ -114,6 +116,33 @@ for type_dir in providers plugins; do
       fail "$rel_dir/formula.yaml: metadata.type '$meta_type' must be '$expected_type' (under extensions/$type_dir/)"
     else
       ok "$rel_dir: type matches parent directory"
+    fi
+
+    # 2e. metadata.icon is set, points to a local file in the extension dir,
+    # the file exists, and has an allowed image extension.
+    meta_icon=$(yq -r '.metadata.icon // ""' "$formula")
+    if [[ -z "$meta_icon" ]]; then
+      fail "$rel_dir/formula.yaml: metadata.icon is required (relative path to a logo file in this directory, e.g., ./logo.svg)"
+    elif [[ "$meta_icon" =~ ^https?:// ]]; then
+      fail "$rel_dir/formula.yaml: metadata.icon must be a relative path to a file in this directory, not a URL ('$meta_icon')"
+    else
+      icon_rel="${meta_icon#./}"
+      if [[ "$icon_rel" == /* || "$icon_rel" == *..* ]]; then
+        fail "$rel_dir/formula.yaml: metadata.icon '$meta_icon' must be a relative path within this directory"
+      else
+        icon_file="$ext_dir/$icon_rel"
+        if [[ ! -f "$icon_file" ]]; then
+          fail "$rel_dir/formula.yaml: metadata.icon points to '$meta_icon' but $rel_dir/$icon_rel does not exist"
+        else
+          icon_ext="${icon_rel##*.}"
+          icon_ext="${icon_ext,,}"
+          if [[ "$icon_rel" != *.* ]] || ! contains "$icon_ext" "${ALLOWED_IMAGE_EXTS[@]}"; then
+            fail "$rel_dir/formula.yaml: metadata.icon '$meta_icon' must use one of: ${ALLOWED_IMAGE_EXTS[*]}"
+          else
+            ok "$rel_dir: icon present ($icon_rel)"
+          fi
+        fi
+      fi
     fi
   done
 done

@@ -6,6 +6,7 @@ metadata:
   name: plugin-mongodb-explorer
   type: plugin
   displayName: "MongoDB Explorer"
+  icon: ./explore.png
   description: |
     Adds a MongoDB Explorer tab to PSMDB cluster detail pages. Browse
     databases and collections, run find queries with filter, projection,

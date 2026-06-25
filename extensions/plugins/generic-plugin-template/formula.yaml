@@ -6,6 +6,7 @@ metadata:
   name: generic-plugin-template
   type: plugin
   displayName: "Generic Plugin Template"
+  icon: ./puzzle-piece.png
   description: |
     A working "hello world" OpenEverest plugin: registers a sidebar entry,
     a dedicated route, a cluster-detail tab, and a backend API endpoint.
