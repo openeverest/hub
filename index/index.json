@@ -99,7 +99,7 @@
       "displayName": "Percona Server for MongoDB",
       "health": "unknown",
       "homepage": "https://github.com/openeverest/provider-percona-server-mongodb",
-      "icon": "",
+      "icon": "./mongodb_icon.png",
       "install": {
         "helm": {
           "namespace": "everest-system",
@@ -166,7 +166,7 @@
       "displayName": "Percona XtraDB Cluster",
       "health": "unknown",
       "homepage": "https://github.com/openeverest/provider-percona-xtradb-cluster",
-      "icon": "",
+      "icon": "./mysql_icon.png",
       "install": {
         "helm": {
           "namespace": "everest-system",
@@ -330,7 +330,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-06-18T16:18:16+03:00",
+    "generatedAt": "2026-06-25T16:57:06+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 5
   }
