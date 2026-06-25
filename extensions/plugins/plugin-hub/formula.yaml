@@ -6,6 +6,7 @@ metadata:
   name: plugin-hub
   type: plugin
   displayName: "Plugin Hub"
+  icon: ./hub-icon.png
   description: |
     Surfaces every plugin and provider published in the official OpenEverest
     catalog and shows which ones are installed on your cluster. Searchable,
@@ -48,7 +49,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/plugin-hub
-          version: "0.1.5"
+          version: "0.1.7"
 
   install:
     helm:
