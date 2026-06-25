@@ -6,6 +6,7 @@ metadata:
   name: percona-xtradb-cluster
   type: provider
   displayName: "Percona XtraDB Cluster"
+  icon: ./mysql_icon.png
   description: |
     Highly available MySQL clusters powered by the Percona Operator for MySQL
     based on Percona XtraDB Cluster (PXC).
