@@ -5,7 +5,7 @@ kind: Extension
 metadata:
   name: percona-xtradb-cluster
   type: provider
-  displayName: "MySQL (Percona XtraDB Cluster)"
+  displayName: "MySQL"
   icon: ./mysql_icon.png
   description: |
     Highly available MySQL clusters powered by the Percona Operator for MySQL
