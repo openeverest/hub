@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=../../../schemas/formula-v1.json
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+
+metadata:
+  name: altinity-clickhouse
+  type: provider
+  displayName: "ClickHouse"
+  icon: ./clickhouse_icon.svg
+  description: |
+    ClickHouse clusters powered by the Altinity Kubernetes Operator for
+    ClickHouse. Supports standalone and replicated topologies with a bundled
+    ClickHouse Keeper quorum.
+  categories:
+    - database
+    - clickhouse
+  keywords:
+    - clickhouse
+    - altinity
+    - olap
+    - analytics
+    - columnar
+  homepage: https://github.com/openeverest/provider-altinity-clickhouse
+  sourceRepo: https://github.com/openeverest/provider-altinity-clickhouse
+  license: Apache-2.0
+  maturity: alpha
+  maintainers:
+    - name: "OpenEverest Team"
+      email: "cncf-openeverest-maintainers@lists.cncf.io"
+      github: "openeverest"
+
+spec:
+  provider:
+    providerName: provider-altinity-clickhouse
+    supportedEngines:
+      - clickhouse
+
+  compatibility:
+    openeverest: ">=2.0.0"
+
+  capabilities:
+    ha: true
+    monitoring: true
+    topologies: ["standalone", "replicated"]
+    clickhouse.versions: ["24.8", "25.3", "25.5"]
+
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/openeverest/charts/provider-altinity-clickhouse
+          version: "0.1.0"
+
+  install:
+    helm:
+      releaseName: provider-altinity-clickhouse
+      namespace: everest-system
