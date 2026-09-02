@@ -47,7 +47,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/plugin-mongodb-explorer
-          version: "0.1.14"
+          version: "0.1.15"
 
   install:
     helm:
