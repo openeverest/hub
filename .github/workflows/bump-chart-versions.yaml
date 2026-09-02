@@ -94,15 +94,13 @@ jobs:
             branch="bot/bump-${name}-${channel}-${latest}"
             title="chore(${name}): bump ${channel} chart ${current} -> ${latest}"
 
-            # Skip if a PR for this exact bump already exists (open or merged),
-            # or if the branch is already present on the remote.
+            # Skip only when a PR for this exact bump already exists (open,
+            # closed, or merged). A leftover branch with no PR -- e.g. from an
+            # earlier run that pushed the branch but failed at pr create -- is
+            # NOT a reason to skip; we refresh it below and open the PR.
             if gh pr list --state all --head "$branch" --json number \
                  --jq 'length' | grep -qv '^0$'; then
               echo "skip   $name: PR for $branch already exists"
-              continue
-            fi
-            if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
-              echo "skip   $name: branch $branch already on remote"
               continue
             fi
 
@@ -129,8 +127,10 @@ jobs:
             fi
 
             git add "$path"
-            git commit -m "$title"
-            git push --set-upstream origin "$branch"
+            git commit --signoff -m "$title"
+            # --force so a stale branch left by a previous failed run is
+            # overwritten with the freshly rebuilt commit.
+            git push --force --set-upstream origin "$branch"
 
             body=$(printf '%s\n' \
               "Automated chart version bump detected by the \`bump-chart-versions\` workflow." \
