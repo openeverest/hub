@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=../../../schemas/formula-v1.json
 apiVersion: hub.openeverest.io/v1
 kind: Extension
-
 metadata:
   name: cassandra
   type: provider
@@ -28,17 +27,14 @@ metadata:
     - name: "OpenEverest Team"
       email: "cncf-openeverest-maintainers@lists.cncf.io"
       github: "openeverest"
-
 spec:
   provider:
     providerName: provider-cassandra
     supportedEngines:
       - cassandra
-
   compatibility:
     openeverest: ">=2.0.0"
     kubernetes: ">=1.30 <1.35"
-
   capabilities:
     ha: true
     scaling.horizontal: true
@@ -52,15 +48,13 @@ spec:
     monitoring: false
     topologies: ["singleDatacenter"]
     cassandra.versions: ["4.1", "5.0"]
-
   artifacts:
     chart:
       defaultChannel: stable
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/provider-cassandra
-          version: "0.1.1"
-
+          version: "0.1.2"
   install:
     helm:
       releaseName: provider-cassandra
