@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=../../../schemas/formula-v1.json
 apiVersion: hub.openeverest.io/v1
 kind: Extension
-
 metadata:
   name: valkey
   type: provider
@@ -26,30 +25,25 @@ metadata:
     - name: "OpenEverest Team"
       email: "cncf-openeverest-maintainers@lists.cncf.io"
       github: "openeverest"
-
 spec:
   provider:
     providerName: valkey
     supportedEngines:
       - valkey
-
   compatibility:
     openeverest: ">=2.0.0"
-
   capabilities:
     ha: true
     sharding: true
     backups: false
     monitoring: false
-
   artifacts:
     chart:
       defaultChannel: stable
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/provider-valkey
-          version: "0.1.3"
-
+          version: "0.1.4"
   install:
     helm:
       releaseName: provider-valkey
