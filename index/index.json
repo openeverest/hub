@@ -194,7 +194,14 @@
         "helm": {
           "namespace": "everest-system",
           "releaseName": "provider-cloudnative-pg"
-        }
+        },
+        "prerequisites": [
+          {
+            "description": "Required by this provider.",
+            "installUrl": "https://cert-manager.io/docs/installation/helm/",
+            "name": "cert-manager"
+          }
+        ]
       },
       "keywords": [
         "postgresql",
@@ -816,7 +823,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-08-26T13:14:53+03:00",
+    "generatedAt": "2026-09-02T16:02:57+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 12
   }
