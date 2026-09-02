@@ -53,6 +53,10 @@ spec:
           version: "0.2.2"
 
   install:
+    prerequisites:
+      - name: cert-manager
+        description: "Required by this provider."
+        installUrl: https://cert-manager.io/docs/installation/helm/
     helm:
       releaseName: provider-cloudnative-pg
       namespace: everest-system

@@ -85,6 +85,7 @@ See [`schemas/formula-v1.json`](../schemas/formula-v1.json) for the full schema.
 | `spec.artifacts.*.channels.*.digest` | optional in Phase 1, required from Phase 2 | SHA-256 OCI manifest digest. |
 | `spec.install.helm.releaseName` | yes | Helm release name. Independent from `metadata.name` (chart authors often have their own conventions). |
 | `spec.install.helm.namespace` | yes | See [namespace convention](#namespace-convention) below. |
+| `spec.install.prerequisites` | optional | List of companion charts that must be installed before this extension. See [install prerequisites](#install-prerequisites). |
 | `spec.verification` | optional | Reserved for cosign / SBOM / SLSA metadata (Phase 5). |
 
 ## Namespace convention
@@ -98,6 +99,23 @@ and the core OpenEverest docs both use it).
 > providers. The live ecosystem standardised on `everest-system` instead.
 > Both seed formulas in this repo use `everest-system`; the schema is
 > intentionally unopinionated and accepts any valid DNS-1123 label.
+
+## Install prerequisites
+
+If your extension requires a companion chart to be installed before it declare it under `spec.install.prerequisites[]`.
+The hub displays these to the user with install instructions before they
+proceed with the main extension install.
+
+| Field | Required | Notes |
+|---|---|---|
+| `name` | yes | Display name of the prerequisite. |
+| `description` | optional | Why this prerequisite is needed. |
+| `installUrl` | optional | Link to official installation docs. |
+| `helm.oci` | yes (if `helm` is set) | OCI chart reference (`oci://...`). |
+| `helm.namespace` | yes (if `helm` is set) | Namespace to install the prerequisite into. |
+| `helm.version` | optional | Pinned chart version. |
+| `helm.createNamespace` | optional | Creates the namespace if it does not exist. |
+| `helm.defaultValues` | optional | Key-value pairs passed as `--set` flags during install. |
 
 ## Channels
 

@@ -353,6 +353,64 @@
       "additionalProperties": false,
       "required": ["helm"],
       "properties": {
+        "prerequisites": {
+          "type": "array",
+          "description": "Companion charts or tools that must be installed before this extension's Helm chart.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "description": "name of the prerequisite."
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Why this prerequisite is needed by the extension."
+              },
+              "installUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "Link to the official installation documentation for this prerequisite."
+              },
+              "helm": {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "Helm coordinates used to generate the install command for this prerequisite.",
+                "required": ["oci", "namespace"],
+                "properties": {
+                  "oci": {
+                    "type": "string",
+                    "pattern": "^oci://",
+                    "description": "OCI chart reference."
+                  },
+                  "version": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "chart version."
+                  },
+                  "namespace": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Kubernetes namespace to install."
+                  },
+                  "createNamespace": {
+                    "type": "boolean",
+                    "description": "Creates the namespace if it does not exist."
+                  },
+                  "defaultValues": {
+                    "type": "object",
+                    "description": "Key-value pairs passed as --set flags during helm install.",
+                    "additionalProperties": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
         "helm": {
           "type": "object",
           "additionalProperties": false,
