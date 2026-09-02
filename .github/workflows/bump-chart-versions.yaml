@@ -109,8 +109,18 @@ jobs:
             # Build each PR from a clean base so bumps stay isolated.
             git checkout -B "$branch" "origin/${base_branch}"
 
-            channel="$channel" latest="$latest" \
-              yq -i '.spec.artifacts.chart.channels.[strenv(channel)].version = strenv(latest)' "$path"
+            # Rewrite only the version line belonging to this channel's ref,
+            # leaving comments and blank lines untouched (yq -i would reflow
+            # the whole document). `armed` targets the version line that
+            # immediately follows the matching ref line.
+            ref=$(jq -r '.ref' <<< "$update")
+            ref="$ref" current="$current" latest="$latest" \
+              awk '
+                BEGIN { r=ENVIRON["ref"]; c=ENVIRON["current"]; n=ENVIRON["latest"] }
+                armed && index($0, "version:") && index($0, c) { sub(c, n); armed=0 }
+                index($0, r) { armed=1 }
+                { print }
+              ' "$path" > "$path.tmp" && mv "$path.tmp" "$path"
 
             if git diff --quiet -- "$path"; then
               echo "skip   $name: no change written to $path"
