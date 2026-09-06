@@ -762,7 +762,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-valkey",
-              "version": "0.1.4"
+              "version": "0.1.5"
             }
           },
           "defaultChannel": "stable"
@@ -823,7 +823,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-09-02T19:11:15+03:00",
+    "generatedAt": "2026-09-06T16:41:14+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 12
   }
