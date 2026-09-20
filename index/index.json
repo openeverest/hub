@@ -699,7 +699,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-mongodb-explorer",
-              "version": "0.1.15"
+              "version": "0.1.16"
             }
           },
           "defaultChannel": "stable"
@@ -823,7 +823,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-09-20T15:56:51+03:00",
+    "generatedAt": "2026-09-20T16:05:21+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 12
   }
