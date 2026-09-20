@@ -59,6 +59,10 @@ spec:
           version: "0.1.2"
 
   install:
+    prerequisites:
+      - name: cert-manager
+        description: "The KServe controllers run admission webhooks whose certificates cert-manager issues; its CRDs must be present. The chart bundles cert-manager by default — install with cert-manager.enabled=false when the cluster already provides it."
+        installUrl: https://cert-manager.io/docs/installation/helm/
     helm:
       releaseName: provider-kserve
       namespace: everest-system
