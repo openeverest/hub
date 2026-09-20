@@ -565,7 +565,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-xtradb-cluster",
-              "version": "0.1.0"
+              "version": "0.2.0"
             }
           },
           "defaultChannel": "stable"
@@ -823,7 +823,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-09-20T16:05:21+03:00",
+    "generatedAt": "2026-09-20T16:14:45+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 12
   }
