@@ -237,7 +237,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/my-plugin",
-              "version": "0.1.0"
+              "version": "0.1.1"
             }
           },
           "defaultChannel": "stable"
@@ -291,6 +291,95 @@
       "provider": null,
       "sourceRepo": "https://github.com/openeverest/generic-plugin-template",
       "type": "plugin",
+      "verified": false
+    },
+    {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/provider-kserve",
+              "version": "0.1.2"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "capabilities": {
+        "autoscaling": true,
+        "gpu": true,
+        "kserve.versions": [
+          "0.20"
+        ],
+        "modelSources": [
+          "hf",
+          "s3",
+          "gs",
+          "pvc",
+          "oci"
+        ],
+        "monitoring": true,
+        "tls": true,
+        "topologies": [
+          "llm",
+          "predictor"
+        ]
+      },
+      "categories": [
+        "ai",
+        "machine-learning",
+        "model-serving"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0"
+      },
+      "description": "Serve machine-learning and LLM models on Kubernetes with KServe. Supports\ngenerative LLM serving (vLLM) and predictive model serving, with GPU\nscheduling, autoscaling, and a curated model catalog.\n",
+      "displayName": "KServe",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/provider-kserve",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/providers/kserve/kserve-logo.png",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "provider-kserve"
+        },
+        "prerequisites": [
+          {
+            "description": "The KServe controllers run admission webhooks whose certificates cert-manager issues; its CRDs must be present. The chart bundles cert-manager by default — install with cert-manager.enabled=false when the cluster already provides it.",
+            "installUrl": "https://cert-manager.io/docs/installation/helm/",
+            "name": "cert-manager"
+          }
+        ]
+      },
+      "keywords": [
+        "kserve",
+        "vllm",
+        "llm",
+        "inference",
+        "model-serving",
+        "gpu"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "kserve",
+      "plugin": null,
+      "provider": {
+        "providerName": "provider-kserve",
+        "supportedEngines": [
+          "vllm",
+          "modelServer"
+        ]
+      },
+      "sourceRepo": "https://github.com/openeverest/provider-kserve",
+      "type": "provider",
       "verified": false
     },
     {
@@ -565,7 +654,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-xtradb-cluster",
-              "version": "0.1.0"
+              "version": "0.2.0"
             }
           },
           "defaultChannel": "stable"
@@ -699,7 +788,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-mongodb-explorer",
-              "version": "0.1.15"
+              "version": "0.1.16"
             }
           },
           "defaultChannel": "stable"
@@ -823,8 +912,8 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-09-17T16:53:06+03:00",
+    "generatedAt": "2026-09-20T16:18:47+03:00",
     "schemaVersion": "v1",
-    "totalExtensions": 12
+    "totalExtensions": 13
   }
 }
