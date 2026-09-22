@@ -56,7 +56,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/provider-kserve
-          version: "0.1.2"
+          version: "0.1.3"
 
   install:
     prerequisites:
