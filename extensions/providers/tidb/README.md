@@ -27,6 +27,6 @@ helm install provider-tidb \
   --create-namespace
 ```
 
-TiDB Operator v2 ships as a bundled Helm subchart and its CRDs are shipped in the
-chart, so both are installed automatically with the provider — no separate install
-step is required.
+TiDB Operator v2 ships as a bundled Helm subchart, and the operator CRDs are installed by a
+pre-install hook that pulls the pinned manifest from the network — both are set up automatically
+with the provider, so no separate install step is required (the CRD hook needs cluster egress).
