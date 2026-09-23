@@ -850,6 +850,79 @@
         "chart": {
           "channels": {
             "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/provider-tidb",
+              "version": "0.1.0"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "capabilities": {
+        "ha": true,
+        "scaling.horizontal": true,
+        "scaling.vertical": true,
+        "storage": true,
+        "tidb.versions": [
+          "8.5",
+          "7.5"
+        ],
+        "topologies": [
+          "cluster"
+        ]
+      },
+      "categories": [
+        "database",
+        "mysql"
+      ],
+      "compatibility": {
+        "kubernetes": ">=1.30",
+        "openeverest": ">=2.0.0"
+      },
+      "description": "Distributed, MySQL-compatible NewSQL database with HTAP capabilities,\npowered by TiDB Operator v2. Provisions a PD + TiKV + TiDB cluster.\n",
+      "displayName": "TiDB",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/provider-tidb",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/providers/tidb/tidb-logo.png",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "provider-tidb"
+        }
+      },
+      "keywords": [
+        "newsql",
+        "htap",
+        "distributed-sql",
+        "mysql-compatible",
+        "pingcap"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "tidb",
+      "plugin": null,
+      "provider": {
+        "providerName": "tidb",
+        "supportedEngines": [
+          "tidb"
+        ]
+      },
+      "sourceRepo": "https://github.com/openeverest/provider-tidb",
+      "type": "provider",
+      "verified": false
+    },
+    {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-valkey",
               "version": "0.1.6"
             }
@@ -912,8 +985,8 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-09-20T16:33:46+03:00",
+    "generatedAt": "2026-09-23T18:01:24+03:00",
     "schemaVersion": "v1",
-    "totalExtensions": 13
+    "totalExtensions": 14
   }
 }
