@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=../../../schemas/formula-v1.json
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+
+metadata:
+  name: tidb
+  type: provider
+  displayName: "TiDB"
+  icon: ./tidb-logo.png
+  description: |
+    Distributed, MySQL-compatible NewSQL database with HTAP capabilities,
+    powered by TiDB Operator v2. Provisions a PD + TiKV + TiDB cluster.
+  categories:
+    - database
+    - mysql
+  keywords:
+    - newsql
+    - htap
+    - distributed-sql
+    - mysql-compatible
+    - pingcap
+  homepage: https://github.com/openeverest/provider-tidb
+  sourceRepo: https://github.com/openeverest/provider-tidb
+  license: Apache-2.0
+  maturity: alpha
+  maintainers:
+    - name: "OpenEverest Team"
+      email: "cncf-openeverest-maintainers@lists.cncf.io"
+      github: "openeverest"
+
+spec:
+  provider:
+    providerName: tidb
+    supportedEngines:
+      - tidb
+
+  compatibility:
+    openeverest: ">=2.0.0"
+    kubernetes: ">=1.30"
+
+  capabilities:
+    ha: true
+    scaling.horizontal: true
+    scaling.vertical: true
+    storage: true
+    topologies: ["cluster"]
+    tidb.versions: ["8.5", "7.5"]
+
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/openeverest/charts/provider-tidb
+          version: "0.1.0"
+
+  install:
+    helm:
+      releaseName: provider-tidb
+      namespace: everest-system
