@@ -729,6 +729,72 @@
         "chart": {
           "channels": {
             "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/plugin-bench",
+              "version": "0.1.0"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "categories": [
+        "database",
+        "benchmark",
+        "performance"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0"
+      },
+      "description": "Benchmark the performance of OpenEverest database clusters. Start a run\nfrom the cluster detail page; each run executes in a temporary Kubernetes\nJob and reports throughput and latency. PostgreSQL is supported today,\nwith more database engines planned.\n",
+      "displayName": "Performance Benchmark",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/plugin-bench",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/plugins/plugin-bench/icon.png",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "plugin-bench"
+        }
+      },
+      "keywords": [
+        "benchmark",
+        "performance",
+        "load-testing",
+        "postgresql",
+        "pgbench"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "plugin-bench",
+      "plugin": {
+        "contributes": {
+          "backend": true,
+          "cli": false,
+          "ui": true
+        },
+        "extensionPoints": [
+          "route",
+          "sidebarItem",
+          "clusterDetailTab"
+        ]
+      },
+      "provider": null,
+      "sourceRepo": "https://github.com/openeverest/plugin-bench",
+      "type": "plugin",
+      "verified": false
+    },
+    {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-hub",
               "version": "0.1.15"
             }
@@ -784,6 +850,69 @@
       },
       "provider": null,
       "sourceRepo": "https://github.com/openeverest/plugin-hub",
+      "type": "plugin",
+      "verified": false
+    },
+    {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/plugin-inspector",
+              "version": "0.1.0"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "categories": [
+        "observability",
+        "troubleshooting"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0"
+      },
+      "description": "Adds an Inspector tab to database cluster detail pages. See the pods behind\nan instance as a diagram or table, stream container logs, and describe a\npod with its containers, conditions and events. Works with any provider.\n",
+      "displayName": "Inspector",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/plugin-inspector",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/plugins/plugin-inspector/inspector-icon.svg",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "plugin-inspector"
+        }
+      },
+      "keywords": [
+        "pods",
+        "logs",
+        "events",
+        "describe",
+        "kubernetes"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "plugin-inspector",
+      "plugin": {
+        "contributes": {
+          "backend": true,
+          "cli": false,
+          "ui": true
+        },
+        "extensionPoints": [
+          "clusterDetailTab"
+        ]
+      },
+      "provider": null,
+      "sourceRepo": "https://github.com/openeverest/plugin-inspector",
       "type": "plugin",
       "verified": false
     },
@@ -1067,8 +1196,8 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-10-07T11:57:42+03:00",
+    "generatedAt": "2026-10-07T18:49:35+03:00",
     "schemaVersion": "v1",
-    "totalExtensions": 15
+    "totalExtensions": 17
   }
 }
