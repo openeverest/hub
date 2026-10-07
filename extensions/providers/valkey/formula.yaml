@@ -31,7 +31,7 @@ spec:
     supportedEngines:
       - valkey
   compatibility:
-    openeverest: ">=2.0.0"
+    openeverest: ">=2.0.0-dev.4"
   capabilities:
     ha: true
     sharding: true
