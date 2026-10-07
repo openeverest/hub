@@ -8,7 +8,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-altinity-clickhouse",
-              "version": "0.1.1"
+              "version": "0.1.2"
             }
           },
           "defaultChannel": "stable"
@@ -32,7 +32,7 @@
         "clickhouse"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "ClickHouse clusters powered by the Altinity Kubernetes Operator for\nClickHouse. Supports standalone and replicated topologies with a bundled\nClickHouse Keeper quorum.\n",
       "displayName": "ClickHouse",
@@ -80,7 +80,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-cassandra",
-              "version": "0.1.2"
+              "version": "0.1.3"
             }
           },
           "defaultChannel": "stable"
@@ -110,7 +110,7 @@
       ],
       "compatibility": {
         "kubernetes": ">=1.30 <1.35",
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "Apache Cassandra on Kubernetes, backed by the k8ssandra-operator.\nEarly-stage (pre-alpha): single-datacenter provisioning, scaling,\nversion upgrades, and on-demand backup/restore via Medusa. Scheduled\nbackups, PITR, and monitoring are not yet supported.\n",
       "displayName": "Apache Cassandra",
@@ -243,7 +243,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/my-plugin",
-              "version": "0.1.1"
+              "version": "0.1.2"
             }
           },
           "defaultChannel": "stable"
@@ -254,7 +254,7 @@
         "template"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "A working \"hello world\" OpenEverest plugin: registers a sidebar entry,\na dedicated route, a cluster-detail tab, and a backend API endpoint.\nUse it as a starting point when building your own generic plugin.\n",
       "displayName": "Generic Plugin Template",
@@ -306,7 +306,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-kserve",
-              "version": "0.2.2"
+              "version": "0.2.3"
             }
           },
           "defaultChannel": "stable"
@@ -338,7 +338,7 @@
         "model-serving"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "Serve machine-learning and LLM models on Kubernetes with KServe. Supports\ngenerative LLM serving (vLLM) and predictive model serving, with GPU\nscheduling, autoscaling, and a curated model catalog.\n",
       "displayName": "KServe",
@@ -395,7 +395,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-mariadb",
-              "version": "0.1.6"
+              "version": "0.1.7"
             }
           },
           "defaultChannel": "stable"
@@ -419,7 +419,7 @@
       ],
       "compatibility": {
         "kubernetes": ">=1.30 <1.35",
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "MariaDB on Kubernetes, backed by the mariadb-operator. Runs standalone\ninstances with provisioning, horizontal and vertical scaling, version\nupgrades, custom my.cnf configuration, and optional Prometheus monitoring.\n",
       "displayName": "MariaDB",
@@ -475,7 +475,7 @@
         "mssql"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "Microsoft SQL Server on Kubernetes, provided by Solanica. Runs standalone\ninstances and Always On availability groups with automated backups and\nrestores. Commercial, gated extension — contact Solanica for access.\n",
       "displayName": "Microsoft SQL Server",
@@ -522,7 +522,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-postgresql",
-              "version": "0.3.0"
+              "version": "0.4.0"
             }
           },
           "defaultChannel": "stable"
@@ -543,7 +543,7 @@
         "postgresql"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "Production-ready PostgreSQL clusters powered by the Percona Operator for PostgreSQL.",
       "displayName": "PostgreSQL",
@@ -590,7 +590,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-server-mongodb",
-              "version": "0.3.0"
+              "version": "0.4.0"
             }
           },
           "defaultChannel": "stable"
@@ -614,7 +614,7 @@
         "mongodb"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "Production-ready MongoDB clusters powered by the Percona Operator.\nSupports replica sets and sharded topologies.\n",
       "displayName": "MongoDB",
@@ -660,7 +660,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-xtradb-cluster",
-              "version": "0.2.0"
+              "version": "0.3.0"
             }
           },
           "defaultChannel": "stable"
@@ -682,7 +682,7 @@
         "mysql"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "Highly available MySQL clusters powered by the Percona Operator for MySQL\nbased on Percona XtraDB Cluster (PXC).\n",
       "displayName": "MySQL",
@@ -742,7 +742,7 @@
         "performance"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "Benchmark the performance of OpenEverest database clusters. Start a run\nfrom the cluster detail page; each run executes in a temporary Kubernetes\nJob and reports throughput and latency. PostgreSQL is supported today,\nwith more database engines planned.\n",
       "displayName": "Performance Benchmark",
@@ -796,7 +796,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-hub",
-              "version": "0.1.15"
+              "version": "0.1.16"
             }
           },
           "defaultChannel": "stable"
@@ -808,7 +808,7 @@
         "catalog"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "Surfaces every plugin and provider published in the official OpenEverest\ncatalog and shows which ones are installed on your cluster. Searchable,\nfilterable table with install status, channel version, categories, and a\nper-entry detail drawer with a copy-pasteable helm install command.\n",
       "displayName": "Plugin Hub",
@@ -871,7 +871,7 @@
         "troubleshooting"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "Adds an Inspector tab to database cluster detail pages. See the pods behind\nan instance as a diagram or table, stream container logs, and describe a\npod with its containers, conditions and events. Works with any provider.\n",
       "displayName": "Inspector",
@@ -923,7 +923,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-mongodb-explorer",
-              "version": "0.1.17"
+              "version": "0.1.18"
             }
           },
           "defaultChannel": "stable"
@@ -934,7 +934,7 @@
         "mongodb"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "Adds a MongoDB Explorer tab to PSMDB cluster detail pages. Browse\ndatabases and collections, run find queries with filter, projection,\nlimit, and sort, and view results as a table or raw JSON.\n",
       "displayName": "MongoDB Explorer",
@@ -986,7 +986,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-seaweedfs",
-              "version": "0.1.1"
+              "version": "0.1.2"
             }
           },
           "defaultChannel": "stable"
@@ -1015,7 +1015,7 @@
       ],
       "compatibility": {
         "kubernetes": ">=1.30 <1.35",
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "Distributed object storage with an S3-compatible gateway on Kubernetes,\nbacked by the seaweedfs-operator. Provisions master, volume, filer, and\nS3 components. Early-stage (MVP): not for production use.\n",
       "displayName": "SeaweedFS",
@@ -1062,7 +1062,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-tidb",
-              "version": "0.1.4"
+              "version": "0.1.5"
             }
           },
           "defaultChannel": "stable"
@@ -1087,7 +1087,7 @@
       ],
       "compatibility": {
         "kubernetes": ">=1.30",
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "Distributed, MySQL-compatible NewSQL database with HTAP capabilities,\npowered by TiDB Operator v2. Provisions a PD + TiKV + TiDB cluster.\n",
       "displayName": "TiDB",
@@ -1135,7 +1135,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-valkey",
-              "version": "0.1.6"
+              "version": "0.1.7"
             }
           },
           "defaultChannel": "stable"
@@ -1152,7 +1152,7 @@
         "valkey"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0"
+        "openeverest": ">=2.0.0-dev.4"
       },
       "description": "Valkey clusters powered by the Valkey Kubernetes Operator.\nSupports replication and sharded cluster topologies. Very early stage.\n",
       "displayName": "Valkey",
@@ -1196,7 +1196,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-10-07T18:49:35+03:00",
+    "generatedAt": "2026-10-07T18:58:32+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 17
   }
