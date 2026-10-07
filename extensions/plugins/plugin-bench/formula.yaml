@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=../../../schemas/formula-v1.json
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+
+metadata:
+  name: plugin-bench
+  type: plugin
+  displayName: "Performance Benchmark"
+  icon: ./icon.png
+  description: |
+    Benchmark the performance of OpenEverest database clusters. Start a run
+    from the cluster detail page; each run executes in a temporary Kubernetes
+    Job and reports throughput and latency. PostgreSQL is supported today,
+    with more database engines planned.
+  categories:
+    - database
+    - benchmark
+    - performance
+  keywords:
+    - benchmark
+    - performance
+    - load-testing
+    - postgresql
+    - pgbench
+  homepage: https://github.com/openeverest/plugin-bench
+  sourceRepo: https://github.com/openeverest/plugin-bench
+  license: Apache-2.0
+  maturity: alpha
+  maintainers:
+    - name: "OpenEverest Team"
+      email: "cncf-openeverest-maintainers@lists.cncf.io"
+      github: "openeverest"
+
+spec:
+  plugin:
+    contributes:
+      ui: true
+      backend: true
+      cli: false
+    extensionPoints:
+      - route
+      - sidebarItem
+      - clusterDetailTab
+
+  compatibility:
+    openeverest: ">=2.0.0"
+
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/openeverest/charts/plugin-bench
+          version: "0.1.0"
+
+  install:
+    helm:
+      releaseName: plugin-bench
+      namespace: everest-system
