@@ -8,18 +8,20 @@ metadata:
   displayName: "Performance Benchmark"
   icon: ./icon.png
   description: |
-    Runs pgbench benchmarks against OpenEverest PostgreSQL clusters. Each run
-    executes in a temporary Kubernetes Job; results (TPS, latency) are shown
-    in a Performance Benchmark tab on the cluster detail page.
+    Benchmark the performance of OpenEverest database clusters. Start a run
+    from the cluster detail page; each run executes in a temporary Kubernetes
+    Job and reports throughput and latency. PostgreSQL is supported today,
+    with more database engines planned.
   categories:
     - database
-    - postgresql
-    - benchmark
-  keywords:
-    - postgresql
-    - pgbench
     - benchmark
     - performance
+  keywords:
+    - benchmark
+    - performance
+    - load-testing
+    - postgresql
+    - pgbench
   homepage: https://github.com/openeverest/plugin-bench
   sourceRepo: https://github.com/openeverest/plugin-bench
   license: Apache-2.0

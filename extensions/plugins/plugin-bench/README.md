@@ -1,14 +1,15 @@
 # Performance Benchmark
 
-An OpenEverest generic plugin that runs `pgbench` benchmarks against
-PostgreSQL clusters managed by OpenEverest.
+An OpenEverest generic plugin that benchmarks the performance of database
+clusters managed by OpenEverest.
 
 **Features:**
 - Start a benchmark from the cluster detail page
-- Each run executes in a temporary Kubernetes Job with a dedicated pgbench runner image
-- View TPS, latency, and failed transactions when the run completes
+- Each run executes in a temporary Kubernetes Job with a dedicated runner image
+- View throughput, latency, and failed transactions when the run completes
 
-Supported providers: `provider-cloudnative-pg`, `provider-percona-postgresql`.
+PostgreSQL is supported today (via `pgbench`, for `provider-cloudnative-pg` and
+`provider-percona-postgresql`); more database engines are planned.
 
 ## Source
 
