@@ -45,7 +45,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/provider-altinity-clickhouse
-          version: "0.1.1"
+          version: "0.1.2"
   install:
     helm:
       releaseName: provider-altinity-clickhouse
