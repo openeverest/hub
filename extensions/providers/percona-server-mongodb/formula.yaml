@@ -33,7 +33,7 @@ spec:
       - mongodb
 
   compatibility:
-    openeverest: ">=2.0.0"
+    openeverest: ">=2.0.0-dev.4"
 
   capabilities:
     ha: true
@@ -50,7 +50,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/provider-percona-server-mongodb
-          version: "0.3.0"
+          version: "0.4.0"
 
   install:
     helm:

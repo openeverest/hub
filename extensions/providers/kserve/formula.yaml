@@ -39,7 +39,7 @@ spec:
       - modelServer
 
   compatibility:
-    openeverest: ">=2.0.0"
+    openeverest: ">=2.0.0-dev.4"
 
   capabilities:
     gpu: true
@@ -56,7 +56,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/provider-kserve
-          version: "0.2.2"
+          version: "0.2.3"
 
   install:
     prerequisites:
