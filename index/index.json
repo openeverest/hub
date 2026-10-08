@@ -460,6 +460,90 @@
       "verified": false
     },
     {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/provider-milvus",
+              "version": "0.1.0"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "capabilities": {
+        "backups": false,
+        "exposure": [
+          "ClusterIP",
+          "NodePort",
+          "LoadBalancer"
+        ],
+        "ha": true,
+        "milvus.versions": [
+          "2.6"
+        ],
+        "monitoring": false,
+        "pitr": false,
+        "restores": false,
+        "scaling.horizontal": true,
+        "scaling.vertical": true,
+        "scheduling": true,
+        "storage.expansion": true,
+        "tls": false,
+        "topologies": [
+          "standalone",
+          "cluster"
+        ]
+      },
+      "categories": [
+        "database",
+        "vector",
+        "ai"
+      ],
+      "compatibility": {
+        "kubernetes": ">=1.30 <1.35",
+        "openeverest": ">=2.0.0-dev.4"
+      },
+      "description": "Milvus vector database on Kubernetes, backed by the Milvus Operator.\nEarly-stage (pre-alpha): standalone and cluster topologies with bundled\nor external etcd, object storage and Pulsar, scaling, version upgrades\nand pod scheduling. Backups, TLS and monitoring are not yet supported.\n",
+      "displayName": "Milvus",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/provider-milvus",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/providers/milvus/milvus.png",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "provider-milvus"
+        }
+      },
+      "keywords": [
+        "milvus",
+        "vector-database",
+        "similarity-search",
+        "embeddings"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "milvus",
+      "plugin": null,
+      "provider": {
+        "providerName": "milvus",
+        "supportedEngines": [
+          "milvus"
+        ]
+      },
+      "sourceRepo": "https://github.com/openeverest/provider-milvus",
+      "type": "provider",
+      "verified": false
+    },
+    {
       "access": "gated",
       "capabilities": {
         "backups": true,
@@ -1196,8 +1280,8 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-10-08T11:07:08+03:00",
+    "generatedAt": "2026-10-08T19:07:42+03:00",
     "schemaVersion": "v1",
-    "totalExtensions": 17
+    "totalExtensions": 18
   }
 }
