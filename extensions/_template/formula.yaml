@@ -77,16 +77,18 @@ spec:
     openeverest: ">=2.0.0"
     # kubernetes: ">=1.27"   # optional
 
-  # --- Capability matrix (optional, free-form annotations) ---
-  # Advertises what this provider/plugin supports. Values may be scalar
-  # (string/bool/number) or arrays of strings. Keys are free-form;
-  # dot-namespaced keys are a convention for grouping, not enforced.
-  # See docs/CAPABILITIES.md (when published) for the recommended vocabulary.
+  # --- Capability matrix ---
+  # Providers declare the five core capabilities as booleans (false is shown
+  # to users as a missing feature), plus optional common/ad-hoc keys.
+  # See docs/CAPABILITIES.md for the vocabulary.
   # capabilities:
   #   ha: true
-  #   backups: true
-  #   restores: true
   #   monitoring: true
+  #   backups: true
+  #   pitr: false
+  #   encryption: true
+  #   topologies: ["standalone", "cluster"]
+  #   versions: ["1.0", "1.1"]
 
   # --- Artifact references ---
   artifacts:

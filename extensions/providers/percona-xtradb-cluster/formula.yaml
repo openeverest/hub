@@ -22,7 +22,7 @@ metadata:
   homepage: https://github.com/openeverest/provider-percona-xtradb-cluster
   sourceRepo: https://github.com/openeverest/provider-percona-xtradb-cluster
   license: Apache-2.0
-  maturity: alpha
+  maturity: beta
   maintainers:
     - name: "OpenEverest Team"
       email: "cncf-openeverest-maintainers@lists.cncf.io"
@@ -39,11 +39,13 @@ spec:
 
   capabilities:
     ha: true
+    monitoring: true
     backups: true
     pitr: true
-    restores: true
-    monitoring: true
-    mysql.versions: ["8.0", "8.4"]
+    encryption: true
+    topologies: ["cluster"]
+    versions: ["5.7", "8.0", "8.4"]
+    proxy: ["haproxy", "proxysql"]
 
   artifacts:
     chart:

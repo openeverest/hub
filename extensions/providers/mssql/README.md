@@ -23,7 +23,9 @@ and install instructions.
 ## Capabilities
 
 - High availability via Always On availability groups
-- Automated backups and restores
+- Automated backups and restores, with point-in-time restore
+- TLS encryption, enabled by default
+- Prometheus monitoring via `sql_exporter`
 - Standalone and clustered topologies
 
 ## Provider

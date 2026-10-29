@@ -79,7 +79,7 @@ See [`schemas/formula-v1.json`](../schemas/formula-v1.json) for the full schema.
 | `metadata.icon` | yes | Relative path to a logo file in this directory (e.g., `./logo.svg` or `./icon.png`). Must be `svg`, `png`, `jpg`, `jpeg`, `webp`, or `gif` and the file must be committed alongside `formula.yaml`. The build-index workflow expands this to a fully-qualified `raw.githubusercontent.com` URL in `index.json`. |
 | `spec.provider` / `spec.plugin` | yes | Exactly one, matching `metadata.type`. |
 | `spec.compatibility.openeverest` | yes | Semver range of compatible OpenEverest core versions, e.g., `">=2.0.0"`. |
-| `spec.capabilities` | optional | Free-form map advertising provider/plugin features. Values are scalar (string/bool/number) or arrays of strings. Dot-namespaced keys (e.g., `mongodb.versions`) are a convention for grouping, not enforced. Emitted verbatim in the index when non-empty. |
+| `spec.capabilities` | recommended | Map advertising provider/plugin features. Providers declare the core booleans `ha`, `monitoring`, `backups`, `pitr` and `encryption`, plus optional keys such as `topologies` and `versions`. See [CAPABILITIES.md](CAPABILITIES.md). Emitted verbatim in the index when non-empty. |
 | `spec.artifacts.chart` | required for providers; required for plugins unless they ship only a frontend artifact | OCI chart reference. |
 | `spec.artifacts.frontend` | optional | **Only set this if your plugin publishes a SEPARATE OCI frontend bundle.** Plugins that serve `main.js` from their own backend (the common case — see [`generic-plugin-template`](../extensions/plugins/generic-plugin-template/)) do **not** need this block. |
 | `spec.artifacts.*.channels.*.digest` | optional in Phase 1, required from Phase 2 | SHA-256 OCI manifest digest. |

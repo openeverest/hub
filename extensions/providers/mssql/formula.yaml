@@ -9,8 +9,8 @@ metadata:
   icon: ./mssql_icon.png
   description: |
     Microsoft SQL Server on Kubernetes, provided by Solanica. Runs standalone
-    instances and Always On availability groups with automated backups and
-    restores. Commercial, gated extension — contact Solanica for access.
+    instances and Always On availability groups with automated backups,
+    point-in-time restore, TLS and Prometheus monitoring. Commercial, gated extension — contact Solanica for access.
   categories:
     - database
     - mssql
@@ -22,7 +22,7 @@ metadata:
     - relational
   homepage: https://solanica.io/mssql-on-kubernetes
   license: EULA
-  maturity: alpha
+  maturity: beta
   access: gated
   maintainers:
     - name: "Solanica"
@@ -40,10 +40,12 @@ spec:
 
   capabilities:
     ha: true
-    ha.topologies: [availabilityGroup]
-    backups: true
-    restores: true
     monitoring: true
+    backups: true
+    pitr: true
+    encryption: true
+    topologies: ["standalone", "availabilityGroup"]
+    versions: ["2019", "2022", "2025"]
 
   # Gated access: this extension is listed for discovery only. Installation
   # requires contacting Solanica for a commercial license and private

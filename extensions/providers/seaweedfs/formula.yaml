@@ -37,15 +37,12 @@ spec:
     kubernetes: ">=1.30 <1.35"
   capabilities:
     ha: true
-    scaling.horizontal: true
-    scaling.vertical: false
-    storage.expansion: false
+    monitoring: true
     backups: false
-    restores: false
-    monitoring: false
-    tls: false
+    pitr: false
+    encryption: true
     topologies: ["standalone"]
-    seaweedfs.versions: ["4.47"]
+    versions: ["4.47", "4.48"]
   artifacts:
     chart:
       defaultChannel: stable

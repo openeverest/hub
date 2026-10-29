@@ -19,7 +19,7 @@ metadata:
   homepage: https://github.com/openeverest/provider-percona-postgresql
   sourceRepo: https://github.com/openeverest/provider-percona-postgresql
   license: Apache-2.0
-  maturity: alpha
+  maturity: beta
   maintainers:
     - name: "OpenEverest Team"
       email: "cncf-openeverest-maintainers@lists.cncf.io"
@@ -36,7 +36,13 @@ spec:
 
   capabilities:
     ha: true
-    postgresql.versions: ["14", "15", "16", "17", "18"]
+    monitoring: true
+    backups: true
+    pitr: true
+    encryption: true
+    topologies: ["cluster"]
+    versions: ["14", "15", "16", "17", "18"]
+    proxy: ["pgbouncer"]
 
   artifacts:
     chart:
@@ -44,7 +50,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/provider-percona-postgresql
-          version: "0.6.0"
+          version: "0.6.1"
 
   install:
     helm:

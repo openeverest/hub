@@ -20,7 +20,7 @@ metadata:
   homepage: https://github.com/openeverest/provider-valkey
   sourceRepo: https://github.com/openeverest/provider-valkey
   license: Apache-2.0
-  maturity: alpha
+  maturity: beta
   maintainers:
     - name: "OpenEverest Team"
       email: "cncf-openeverest-maintainers@lists.cncf.io"
@@ -34,9 +34,13 @@ spec:
     openeverest: ">=2.0.0-dev.4"
   capabilities:
     ha: true
-    sharding: true
+    monitoring: true
     backups: false
-    monitoring: false
+    pitr: false
+    encryption: true
+    topologies: ["replication", "cluster"]
+    versions: ["8.1", "9.0", "9.1"]
+    sharding: true
   artifacts:
     chart:
       defaultChannel: stable
