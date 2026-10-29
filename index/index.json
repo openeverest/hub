@@ -15,16 +15,21 @@
         }
       },
       "capabilities": {
-        "clickhouse.versions": [
-          "24.8",
-          "25.3",
-          "25.5"
-        ],
+        "backups": false,
+        "encryption": true,
         "ha": true,
         "monitoring": true,
+        "pitr": false,
         "topologies": [
           "standalone",
           "replicated"
+        ],
+        "versions": [
+          "24.8",
+          "25.3",
+          "25.5",
+          "26.3",
+          "26.8"
         ]
       },
       "categories": [
@@ -88,20 +93,16 @@
       },
       "capabilities": {
         "backups": true,
-        "backups.scheduled": false,
-        "cassandra.versions": [
-          "4.1",
-          "5.0"
-        ],
+        "encryption": false,
         "ha": true,
         "monitoring": false,
         "pitr": false,
-        "restores": true,
-        "scaling.horizontal": true,
-        "scaling.vertical": true,
-        "storage.expansion": true,
         "topologies": [
           "singleDatacenter"
+        ],
+        "versions": [
+          "4.1",
+          "5.0"
         ]
       },
       "categories": [
@@ -112,7 +113,7 @@
         "kubernetes": ">=1.30 <1.35",
         "openeverest": ">=2.0.0-dev.4"
       },
-      "description": "Apache Cassandra on Kubernetes, backed by the k8ssandra-operator.\nEarly-stage (pre-alpha): single-datacenter provisioning, scaling,\nversion upgrades, and on-demand backup/restore via Medusa. Scheduled\nbackups, PITR, and monitoring are not yet supported.\n",
+      "description": "Apache Cassandra on Kubernetes, backed by the k8ssandra-operator.\nEarly-stage (pre-alpha): single-datacenter provisioning, scaling,\nversion upgrades, and on-demand and scheduled backup/restore via Medusa.\nPITR, TLS and monitoring are not yet supported.\n",
       "displayName": "Apache Cassandra",
       "health": "unknown",
       "homepage": "https://github.com/openeverest/provider-cassandra",
@@ -165,23 +166,27 @@
       },
       "capabilities": {
         "backups": true,
-        "backups.scheduled": true,
+        "encryption": true,
         "ha": true,
-        "monitoring": false,
+        "monitoring": true,
         "pitr": true,
-        "postgresql.versions": [
-          "14.23",
-          "15.18",
-          "16.14",
-          "17.10",
-          "18.4"
+        "postgresExtensions": [
+          "pgvector",
+          "postgis",
+          "timescaledb"
         ],
-        "restores": true,
-        "scaling.horizontal": true,
-        "scaling.vertical": true,
-        "storage.expansion": true,
+        "proxy": [
+          "pgbouncer"
+        ],
         "topologies": [
           "replicaSet"
+        ],
+        "versions": [
+          "14",
+          "15",
+          "16",
+          "17",
+          "18"
         ]
       },
       "categories": [
@@ -223,7 +228,7 @@
           "name": "Aditya Pimpalkar"
         }
       ],
-      "maturity": "alpha",
+      "maturity": "beta",
       "name": "cloudnative-pg",
       "plugin": null,
       "provider": {
@@ -314,22 +319,24 @@
       },
       "capabilities": {
         "autoscaling": true,
+        "encryption": true,
         "gpu": true,
-        "kserve.versions": [
-          "0.20"
-        ],
+        "ha": true,
         "modelSources": [
           "hf",
           "s3",
           "gs",
           "pvc",
-          "oci"
+          "https"
         ],
         "monitoring": true,
-        "tls": true,
         "topologies": [
           "llm",
           "predictor"
+        ],
+        "versions": [
+          "0.20",
+          "0.21"
         ]
       },
       "categories": [
@@ -402,15 +409,24 @@
         }
       },
       "capabilities": {
-        "mariadb.versions": [
-          "11.4",
-          "11.8"
-        ],
+        "backups": true,
+        "encryption": true,
+        "ha": true,
         "monitoring": true,
-        "scaling.horizontal": true,
-        "scaling.vertical": true,
+        "pitr": true,
+        "proxy": [
+          "maxscale"
+        ],
         "topologies": [
-          "standalone"
+          "standalone",
+          "replication",
+          "galera"
+        ],
+        "versions": [
+          "10.11",
+          "11.4",
+          "11.8",
+          "12.3"
         ]
       },
       "categories": [
@@ -421,7 +437,7 @@
         "kubernetes": ">=1.30 <1.35",
         "openeverest": ">=2.0.0-dev.4"
       },
-      "description": "MariaDB on Kubernetes, backed by the mariadb-operator. Runs standalone\ninstances with provisioning, horizontal and vertical scaling, version\nupgrades, custom my.cnf configuration, and optional Prometheus monitoring.\n",
+      "description": "MariaDB on Kubernetes, backed by the mariadb-operator. Runs standalone,\nreplication and Galera topologies with TLS, MaxScale, scheduled backups\nwith point-in-time recovery, scaling, version upgrades, custom my.cnf\nconfiguration, and optional Prometheus monitoring.\n",
       "displayName": "MariaDB",
       "health": "unknown",
       "homepage": "https://github.com/openeverest/provider-mariadb",
@@ -446,7 +462,7 @@
           "name": "OpenEverest Team"
         }
       ],
-      "maturity": "alpha",
+      "maturity": "beta",
       "name": "mariadb",
       "plugin": null,
       "provider": {
@@ -473,27 +489,18 @@
         }
       },
       "capabilities": {
-        "backups": false,
-        "exposure": [
-          "ClusterIP",
-          "NodePort",
-          "LoadBalancer"
-        ],
+        "backups": true,
+        "encryption": false,
+        "gpu": true,
         "ha": true,
-        "milvus.versions": [
-          "2.6"
-        ],
-        "monitoring": false,
+        "monitoring": true,
         "pitr": false,
-        "restores": false,
-        "scaling.horizontal": true,
-        "scaling.vertical": true,
-        "scheduling": true,
-        "storage.expansion": true,
-        "tls": false,
         "topologies": [
           "standalone",
           "cluster"
+        ],
+        "versions": [
+          "2.6"
         ]
       },
       "categories": [
@@ -505,7 +512,7 @@
         "kubernetes": ">=1.30 <1.35",
         "openeverest": ">=2.0.0-dev.4"
       },
-      "description": "Milvus vector database on Kubernetes, backed by the Milvus Operator.\nEarly-stage (pre-alpha): standalone and cluster topologies with bundled\nor external etcd, object storage and Pulsar, scaling, version upgrades\nand pod scheduling. Backups, TLS and monitoring are not yet supported.\n",
+      "description": "Milvus vector database on Kubernetes, backed by the Milvus Operator.\nEarly-stage (pre-alpha): standalone and cluster topologies with bundled\nor external etcd, object storage and Pulsar, scaling, version upgrades\nand pod scheduling, backups via milvus-backup and Prometheus monitoring.\nTLS and PITR are not yet supported.\n",
       "displayName": "Milvus",
       "health": "unknown",
       "homepage": "https://github.com/openeverest/provider-milvus",
@@ -547,12 +554,19 @@
       "access": "gated",
       "capabilities": {
         "backups": true,
+        "encryption": true,
         "ha": true,
-        "ha.topologies": [
+        "monitoring": true,
+        "pitr": true,
+        "topologies": [
+          "standalone",
           "availabilityGroup"
         ],
-        "monitoring": true,
-        "restores": true
+        "versions": [
+          "2019",
+          "2022",
+          "2025"
+        ]
       },
       "categories": [
         "database",
@@ -561,7 +575,7 @@
       "compatibility": {
         "openeverest": ">=2.0.0-dev.4"
       },
-      "description": "Microsoft SQL Server on Kubernetes, provided by Solanica. Runs standalone\ninstances and Always On availability groups with automated backups and\nrestores. Commercial, gated extension — contact Solanica for access.\n",
+      "description": "Microsoft SQL Server on Kubernetes, provided by Solanica. Runs standalone\ninstances and Always On availability groups with automated backups,\npoint-in-time restore, TLS and Prometheus monitoring. Commercial, gated extension — contact Solanica for access.\n",
       "displayName": "Microsoft SQL Server",
       "gated": {
         "contactUrl": "https://solanica.io/contact-us?utm_source=hub-mssql",
@@ -586,7 +600,7 @@
           "name": "Solanica"
         }
       ],
-      "maturity": "alpha",
+      "maturity": "beta",
       "name": "mssql",
       "plugin": null,
       "provider": {
@@ -606,15 +620,25 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-postgresql",
-              "version": "0.6.0"
+              "version": "0.6.1"
             }
           },
           "defaultChannel": "stable"
         }
       },
       "capabilities": {
+        "backups": true,
+        "encryption": true,
         "ha": true,
-        "postgresql.versions": [
+        "monitoring": true,
+        "pitr": true,
+        "proxy": [
+          "pgbouncer"
+        ],
+        "topologies": [
+          "cluster"
+        ],
+        "versions": [
           "14",
           "15",
           "16",
@@ -654,7 +678,7 @@
           "name": "OpenEverest Team"
         }
       ],
-      "maturity": "alpha",
+      "maturity": "beta",
       "name": "percona-postgresql",
       "plugin": null,
       "provider": {
@@ -682,16 +706,20 @@
       },
       "capabilities": {
         "backups": true,
+        "encryption": true,
         "ha": true,
-        "mongodb.versions": [
-          "6",
-          "7",
-          "8"
-        ],
         "monitoring": true,
         "pitr": true,
-        "restores": true,
-        "sharding": true
+        "sharding": true,
+        "topologies": [
+          "replicaSet",
+          "sharded"
+        ],
+        "versions": [
+          "6.0",
+          "7.0",
+          "8.0"
+        ]
       },
       "categories": [
         "database",
@@ -724,7 +752,7 @@
           "name": "OpenEverest Team"
         }
       ],
-      "maturity": "alpha",
+      "maturity": "beta",
       "name": "percona-server-mongodb",
       "plugin": null,
       "provider": {
@@ -752,21 +780,21 @@
       },
       "capabilities": {
         "backups": true,
-        "backups.scheduled": true,
+        "encryption": true,
         "ha": true,
         "monitoring": true,
-        "mysql.versions": [
-          "8.0",
-          "8.4"
-        ],
         "pitr": false,
-        "restores": true,
-        "scaling.horizontal": true,
-        "scaling.vertical": true,
-        "storage.expansion": true,
+        "proxy": [
+          "haproxy",
+          "router"
+        ],
         "topologies": [
           "async",
           "groupreplication"
+        ],
+        "versions": [
+          "8.0",
+          "8.4"
         ]
       },
       "categories": [
@@ -830,14 +858,22 @@
       },
       "capabilities": {
         "backups": true,
+        "encryption": true,
         "ha": true,
         "monitoring": true,
-        "mysql.versions": [
+        "pitr": true,
+        "proxy": [
+          "haproxy",
+          "proxysql"
+        ],
+        "topologies": [
+          "cluster"
+        ],
+        "versions": [
+          "5.7",
           "8.0",
           "8.4"
-        ],
-        "pitr": true,
-        "restores": true
+        ]
       },
       "categories": [
         "database",
@@ -872,7 +908,7 @@
           "name": "OpenEverest Team"
         }
       ],
-      "maturity": "alpha",
+      "maturity": "beta",
       "name": "percona-xtradb-cluster",
       "plugin": null,
       "provider": {
@@ -1219,18 +1255,16 @@
       },
       "capabilities": {
         "backups": false,
+        "encryption": true,
         "ha": true,
-        "monitoring": false,
-        "restores": false,
-        "scaling.horizontal": true,
-        "scaling.vertical": false,
-        "seaweedfs.versions": [
-          "4.47"
-        ],
-        "storage.expansion": false,
-        "tls": false,
+        "monitoring": true,
+        "pitr": false,
         "topologies": [
           "standalone"
+        ],
+        "versions": [
+          "4.47",
+          "4.48"
         ]
       },
       "categories": [
@@ -1294,16 +1328,21 @@
         }
       },
       "capabilities": {
+        "backups": true,
+        "encryption": true,
         "ha": true,
-        "scaling.horizontal": true,
-        "scaling.vertical": true,
-        "storage": true,
-        "tidb.versions": [
-          "8.5",
-          "7.5"
+        "htap": true,
+        "monitoring": true,
+        "pitr": false,
+        "proxy": [
+          "tiproxy"
         ],
         "topologies": [
           "cluster"
+        ],
+        "versions": [
+          "7.5",
+          "8.5"
         ]
       },
       "categories": [
@@ -1368,9 +1407,20 @@
       },
       "capabilities": {
         "backups": false,
+        "encryption": true,
         "ha": true,
-        "monitoring": false,
-        "sharding": true
+        "monitoring": true,
+        "pitr": false,
+        "sharding": true,
+        "topologies": [
+          "replication",
+          "cluster"
+        ],
+        "versions": [
+          "8.1",
+          "9.0",
+          "9.1"
+        ]
       },
       "categories": [
         "database",
@@ -1404,7 +1454,7 @@
           "name": "OpenEverest Team"
         }
       ],
-      "maturity": "alpha",
+      "maturity": "beta",
       "name": "valkey",
       "plugin": null,
       "provider": {
@@ -1421,7 +1471,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-10-28T20:14:35+03:00",
+    "generatedAt": "2026-10-29T11:18:28+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 20
   }
