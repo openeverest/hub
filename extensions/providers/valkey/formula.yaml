@@ -20,7 +20,7 @@ metadata:
   homepage: https://github.com/openeverest/provider-valkey
   sourceRepo: https://github.com/openeverest/provider-valkey
   license: Apache-2.0
-  maturity: alpha
+  maturity: beta
   maintainers:
     - name: "OpenEverest Team"
       email: "cncf-openeverest-maintainers@lists.cncf.io"
