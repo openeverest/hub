@@ -20,12 +20,14 @@ backed by the [k8ssandra-operator](https://github.com/k8ssandra/k8ssandra-operat
 - Vertical scaling (CPU / memory)
 - Cassandra version upgrades (`4.1`, `5.0`)
 - Persistent storage and storage expansion
-- On-demand backups and in-place restore (via Medusa)
+- On-demand and scheduled backups, in-place restore (via Medusa, S3-compatible
+  storage)
 
 ## Not yet supported
 
-- **Scheduled backups / PITR** — on-demand backups only for now
+- **PITR**
 - **Monitoring** — optional Prometheus component; wiring is in progress
+- **TLS**
 - **Multi-datacenter topologies** — only `singleDatacenter` is available
 
 ## Install (manual)

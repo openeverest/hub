@@ -40,16 +40,13 @@ spec:
 
   capabilities:
     ha: true
-    backups: true
-    backups.scheduled: true
-    pitr: false
-    restores: true
     monitoring: true
-    scaling.horizontal: true
-    scaling.vertical: true
-    storage.expansion: true
-    mysql.versions: ["8.0", "8.4"]
+    backups: true
+    pitr: false
+    encryption: true
     topologies: ["async", "groupreplication"]
+    versions: ["8.0", "8.4"]
+    proxy: ["haproxy", "router"]
 
   artifacts:
     chart:

@@ -37,8 +37,11 @@ spec:
   capabilities:
     ha: true
     monitoring: true
+    backups: false
+    pitr: false
+    encryption: true
     topologies: ["standalone", "replicated"]
-    clickhouse.versions: ["24.8", "25.3", "25.5"]
+    versions: ["24.8", "25.3", "25.5", "26.3", "26.8"]
   artifacts:
     chart:
       defaultChannel: stable

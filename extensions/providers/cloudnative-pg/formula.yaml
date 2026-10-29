@@ -23,7 +23,7 @@ metadata:
   homepage: https://github.com/adityapimpalkar/provider-cloudnative-pg
   sourceRepo: https://github.com/adityapimpalkar/provider-cloudnative-pg
   license: Apache-2.0
-  maturity: alpha
+  maturity: beta
   maintainers:
     - name: "Aditya Pimpalkar"
       github: "adityapimpalkar"
@@ -39,16 +39,14 @@ spec:
 
   capabilities:
     ha: true
+    monitoring: true
     backups: true
-    restores: true
     pitr: true
-    backups.scheduled: true
-    scaling.horizontal: true
-    scaling.vertical: true
-    storage.expansion: true
-    monitoring: false
+    encryption: true
     topologies: ["replicaSet"]
-    postgresql.versions: ["14.23", "15.18", "16.14", "17.10", "18.4"]
+    versions: ["14", "15", "16", "17", "18"]
+    proxy: ["pgbouncer"]
+    postgresExtensions: ["pgvector", "postgis", "timescaledb"]
 
   artifacts:
     chart:

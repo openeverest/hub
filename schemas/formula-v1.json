@@ -211,7 +211,17 @@
     },
     "capabilities": {
       "type": "object",
-      "description": "Free-form map advertising provider/plugin features. Values are scalar (string/bool/number) or arrays of strings. Keys are free-form; dot-namespaced keys are a convention for grouping. See docs/CAPABILITIES.md for the recommended (non-binding) vocabulary.",
+      "description": "Map advertising provider/plugin features. Providers declare the core keys (ha, monitoring, backups, pitr, encryption) as booleans; other keys are free-form. Values are scalar (string/bool/number) or arrays of strings. See docs/CAPABILITIES.md for the vocabulary.",
+      "properties": {
+        "ha": { "type": "boolean" },
+        "monitoring": { "type": "boolean" },
+        "backups": { "type": "boolean" },
+        "pitr": { "type": "boolean" },
+        "encryption": { "type": "boolean" },
+        "encryption.atRest": { "type": "boolean" },
+        "topologies": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "versions": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      },
       "additionalProperties": {
         "oneOf": [
           { "type": "string" },

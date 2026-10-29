@@ -24,12 +24,15 @@ OpenEverest **provider** and backed by the
 - Exposure via ClusterIP, NodePort or LoadBalancer
 - Per-component pod scheduling policy
 - Generated `root` credential published to the connection Secret
+- On-demand and scheduled backups and restores via
+  [milvus-backup](https://github.com/zilliztech/milvus-backup) to
+  S3-compatible storage
+- Prometheus monitoring via a `PodMonitor`
 
 ## Not yet supported
 
-- **Backups / restores / PITR**
+- **PITR**
 - **TLS**
-- **Monitoring**
 
 ## Install (manual)
 

@@ -40,11 +40,14 @@ spec:
 
   capabilities:
     ha: true
-    scaling.horizontal: true
-    scaling.vertical: true
-    storage: true
+    monitoring: true
+    backups: true
+    pitr: false
+    encryption: true
     topologies: ["cluster"]
-    tidb.versions: ["8.5", "7.5"]
+    versions: ["7.5", "8.5"]
+    proxy: ["tiproxy"]
+    htap: true
 
   artifacts:
     chart:
