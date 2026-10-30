@@ -50,6 +50,7 @@
           "releaseName": "provider-altinity-clickhouse"
         }
       },
+      "integration": null,
       "keywords": [
         "clickhouse",
         "altinity",
@@ -124,6 +125,7 @@
           "releaseName": "provider-cassandra"
         }
       },
+      "integration": null,
       "keywords": [
         "cassandra",
         "nosql",
@@ -214,6 +216,7 @@
           }
         ]
       },
+      "integration": null,
       "keywords": [
         "postgresql",
         "postgres",
@@ -272,6 +275,7 @@
           "releaseName": "my-plugin"
         }
       },
+      "integration": null,
       "keywords": [
         "hello-world",
         "starter",
@@ -365,6 +369,7 @@
           }
         ]
       },
+      "integration": null,
       "keywords": [
         "kserve",
         "vllm",
@@ -448,6 +453,7 @@
           "releaseName": "provider-mariadb"
         }
       },
+      "integration": null,
       "keywords": [
         "mariadb",
         "mysql",
@@ -523,6 +529,7 @@
           "releaseName": "provider-milvus"
         }
       },
+      "integration": null,
       "keywords": [
         "milvus",
         "vector-database",
@@ -548,6 +555,231 @@
       },
       "sourceRepo": "https://github.com/openeverest/provider-milvus",
       "type": "provider",
+      "verified": false
+    },
+    {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/monitoring-coroot",
+              "version": "0.1.0"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "categories": [
+        "monitoring",
+        "observability"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0-dev.5"
+      },
+      "description": "Send the databases of OpenEverest instances to Coroot. Installs the\n`coroot` MonitoringClass and a controller that turns the provider's\nconnection endpoints into `coroot.com/*` pod annotations, so\ncoroot-cluster-agent discovers and connects to each database pod.\n",
+      "displayName": "Coroot",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/monitoring-coroot",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/integrations/monitoring-coroot/coroot-icon.svg",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "monitoring-coroot"
+        },
+        "prerequisites": [
+          {
+            "description": "Coroot with coroot-cluster-agent, which connects to the annotated database pods. The agent is configured with the Coroot server and API key when it is installed.",
+            "installUrl": "https://docs.coroot.com/installation/k8s-operator",
+            "name": "Coroot"
+          }
+        ]
+      },
+      "integration": {
+        "area": "monitoring",
+        "monitoring": {
+          "classes": [
+            "coroot"
+          ],
+          "executionModes": [
+            "ExtensionManaged"
+          ],
+          "requires": {
+            "connection": true
+          }
+        }
+      },
+      "keywords": [
+        "coroot",
+        "observability",
+        "apm",
+        "metrics"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "monitoring-coroot",
+      "plugin": null,
+      "provider": null,
+      "sourceRepo": "https://github.com/openeverest/monitoring-coroot",
+      "type": "integration",
+      "verified": false
+    },
+    {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/monitoring-pmm",
+              "version": "0.1.0"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "categories": [
+        "monitoring",
+        "observability"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0-dev.5"
+      },
+      "description": "Send metrics and Query Analytics of OpenEverest database instances to a\nPercona Monitoring and Management (PMM) 3 server. Installs the `pmm`\nMonitoringClass and its controller; providers with native PMM support\n(Percona XtraDB Cluster, Percona Server for MongoDB, Percona PostgreSQL)\nrun pmm-client next to the databases.\n",
+      "displayName": "PMM",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/monitoring-pmm",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/integrations/monitoring-pmm/pmm-logo.svg",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "monitoring-pmm"
+        },
+        "prerequisites": [
+          {
+            "description": "The PMM server the database instances send their metrics and Query Analytics to. It must be reachable from the cluster.",
+            "installUrl": "https://docs.percona.com/percona-monitoring-and-management/3/install-pmm/install-pmm-server/deployment-options/helm/index.html",
+            "name": "PMM 3 server"
+          }
+        ]
+      },
+      "integration": {
+        "area": "monitoring",
+        "monitoring": {
+          "classes": [
+            "pmm"
+          ],
+          "executionModes": [
+            "ProviderManaged"
+          ],
+          "nativeIntegration": "pmm"
+        }
+      },
+      "keywords": [
+        "pmm",
+        "percona",
+        "metrics",
+        "query-analytics"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "monitoring-pmm",
+      "plugin": null,
+      "provider": null,
+      "sourceRepo": "https://github.com/openeverest/monitoring-pmm",
+      "type": "integration",
+      "verified": false
+    },
+    {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/monitoring-prometheus",
+              "version": "0.1.0"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "categories": [
+        "monitoring",
+        "observability"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0-dev.5"
+      },
+      "description": "Send the metrics of OpenEverest database instances to a Prometheus run by\nthe Prometheus Operator. Installs the `prometheus` MonitoringClass and a\ncontroller that renders one PodMonitor per database component from the\nmetrics endpoints the provider publishes.\n",
+      "displayName": "Prometheus",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/monitoring-prometheus",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/integrations/monitoring-prometheus/prometheus-icon.svg",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "monitoring-prometheus"
+        },
+        "prerequisites": [
+          {
+            "description": "Renders the generated PodMonitors; a Prometheus must select them.",
+            "helm": {
+              "createNamespace": true,
+              "namespace": "monitoring",
+              "oci": "oci://ghcr.io/prometheus-community/charts/kube-prometheus-stack"
+            },
+            "installUrl": "https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack",
+            "name": "Prometheus Operator"
+          }
+        ]
+      },
+      "integration": {
+        "area": "monitoring",
+        "monitoring": {
+          "classes": [
+            "prometheus"
+          ],
+          "executionModes": [
+            "ExtensionManaged"
+          ],
+          "requires": {
+            "metrics": true
+          }
+        }
+      },
+      "keywords": [
+        "prometheus",
+        "prometheus-operator",
+        "podmonitor",
+        "metrics"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "monitoring-prometheus",
+      "plugin": null,
+      "provider": null,
+      "sourceRepo": "https://github.com/openeverest/monitoring-prometheus",
+      "type": "integration",
       "verified": false
     },
     {
@@ -585,6 +817,7 @@
       "health": "unknown",
       "homepage": "https://solanica.io/mssql-on-kubernetes",
       "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/providers/mssql/mssql_icon.png",
+      "integration": null,
       "keywords": [
         "mssql",
         "sqlserver",
@@ -664,6 +897,7 @@
           "releaseName": "provider-percona-postgresql"
         }
       },
+      "integration": null,
       "keywords": [
         "postgresql",
         "postgres",
@@ -739,6 +973,7 @@
           "releaseName": "provider-percona-server-mongodb"
         }
       },
+      "integration": null,
       "keywords": [
         "nosql",
         "document-store",
@@ -815,6 +1050,7 @@
           "releaseName": "provider-percona-server-mysql"
         }
       },
+      "integration": null,
       "keywords": [
         "mysql",
         "percona",
@@ -893,6 +1129,7 @@
           "releaseName": "provider-percona-xtradb-cluster"
         }
       },
+      "integration": null,
       "keywords": [
         "mysql",
         "percona",
@@ -953,6 +1190,7 @@
           "releaseName": "plugin-bench"
         }
       },
+      "integration": null,
       "keywords": [
         "benchmark",
         "performance",
@@ -1019,6 +1257,7 @@
           "releaseName": "plugin-hub"
         }
       },
+      "integration": null,
       "keywords": [
         "hub",
         "catalog",
@@ -1082,6 +1321,7 @@
           "releaseName": "plugin-inspector"
         }
       },
+      "integration": null,
       "keywords": [
         "pods",
         "logs",
@@ -1145,6 +1385,7 @@
           "releaseName": "plugin-metrics"
         }
       },
+      "integration": null,
       "keywords": [
         "metrics",
         "dashboards",
@@ -1208,6 +1449,7 @@
           "releaseName": "mongo-explorer"
         }
       },
+      "integration": null,
       "keywords": [
         "mongodb",
         "query",
@@ -1287,6 +1529,7 @@
           "releaseName": "provider-seaweedfs"
         }
       },
+      "integration": null,
       "keywords": [
         "seaweedfs",
         "s3",
@@ -1364,6 +1607,7 @@
           "releaseName": "provider-tidb"
         }
       },
+      "integration": null,
       "keywords": [
         "newsql",
         "htap",
@@ -1440,6 +1684,7 @@
           "releaseName": "provider-valkey"
         }
       },
+      "integration": null,
       "keywords": [
         "valkey",
         "key-value",
@@ -1471,8 +1716,8 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-10-29T11:18:28+03:00",
+    "generatedAt": "2026-10-30T22:21:33+03:00",
     "schemaVersion": "v1",
-    "totalExtensions": 20
+    "totalExtensions": 23
   }
 }
