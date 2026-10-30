@@ -1,0 +1,63 @@
+# yaml-language-server: $schema=../../../schemas/formula-v1.json
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+
+metadata:
+  name: monitoring-prometheus
+  type: integration
+  displayName: "Prometheus"
+  icon: ./prometheus-icon.svg
+  description: |
+    Send the metrics of OpenEverest database instances to a Prometheus run by
+    the Prometheus Operator. Installs the `prometheus` MonitoringClass and a
+    controller that renders one PodMonitor per database component from the
+    metrics endpoints the provider publishes.
+  categories:
+    - monitoring
+    - observability
+  keywords:
+    - prometheus
+    - prometheus-operator
+    - podmonitor
+    - metrics
+  homepage: https://github.com/openeverest/monitoring-prometheus
+  sourceRepo: https://github.com/openeverest/monitoring-prometheus
+  license: Apache-2.0
+  maturity: alpha
+  maintainers:
+    - name: "OpenEverest Team"
+      email: "cncf-openeverest-maintainers@lists.cncf.io"
+      github: "openeverest"
+
+spec:
+  integration:
+    area: monitoring
+    monitoring:
+      classes: [prometheus]
+      executionModes: [ExtensionManaged]
+      requires:
+        metrics: true
+
+  compatibility:
+    openeverest: ">=2.0.0-dev.5"
+
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/openeverest/charts/monitoring-prometheus
+          version: "0.1.0"
+
+  install:
+    helm:
+      releaseName: monitoring-prometheus
+      namespace: everest-system
+    prerequisites:
+      - name: Prometheus Operator
+        description: "Renders the generated PodMonitors; a Prometheus must select them."
+        installUrl: https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+        helm:
+          oci: oci://ghcr.io/prometheus-community/charts/kube-prometheus-stack
+          namespace: monitoring
+          createNamespace: true

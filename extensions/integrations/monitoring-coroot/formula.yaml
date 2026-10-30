@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=../../../schemas/formula-v1.json
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+
+metadata:
+  name: monitoring-coroot
+  type: integration
+  displayName: "Coroot"
+  icon: ./coroot-icon.svg
+  description: |
+    Send the databases of OpenEverest instances to Coroot. Installs the
+    `coroot` MonitoringClass and a controller that turns the provider's
+    connection endpoints into `coroot.com/*` pod annotations, so
+    coroot-cluster-agent discovers and connects to each database pod.
+  categories:
+    - monitoring
+    - observability
+  keywords:
+    - coroot
+    - observability
+    - apm
+    - metrics
+  homepage: https://github.com/openeverest/monitoring-coroot
+  sourceRepo: https://github.com/openeverest/monitoring-coroot
+  license: Apache-2.0
+  maturity: alpha
+  maintainers:
+    - name: "OpenEverest Team"
+      email: "cncf-openeverest-maintainers@lists.cncf.io"
+      github: "openeverest"
+
+spec:
+  integration:
+    area: monitoring
+    monitoring:
+      classes: [coroot]
+      executionModes: [ExtensionManaged]
+      requires:
+        connection: true
+
+  compatibility:
+    # Also needs the monitoring connection sources API
+    # (https://github.com/openeverest/openeverest/pull/3502).
+    openeverest: ">=2.0.0-dev.5"
+
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/openeverest/charts/monitoring-coroot
+          version: "0.1.0"
+
+  install:
+    helm:
+      releaseName: monitoring-coroot
+      namespace: everest-system
+    prerequisites:
+      - name: Coroot
+        description: "Coroot with coroot-cluster-agent, which connects to the annotated database pods. The agent is configured with the Coroot server and API key when it is installed."
+        installUrl: https://docs.coroot.com/installation/k8s-operator
