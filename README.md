@@ -7,6 +7,8 @@ The central, community-driven catalog of installable extensions for
   [spec 001](https://github.com/openeverest/specs/blob/main/specs/001-plugins-architecture.md)).
 - **Generic plugins** — UI / CLI / backend extensions of OpenEverest itself
   (see [spec 003](https://github.com/openeverest/specs/blob/main/specs/003-generic-plugins.md)).
+- **Integrations** — connections between OpenEverest and an external system,
+  such as a monitoring backend (PMM, Prometheus, Coroot).
 
 This repository follows the **formula / pointer** model: each entry under
 `extensions/` is a small YAML file pointing at an OCI artifact (Helm chart)
@@ -44,6 +46,11 @@ hub/
 │   │       ├── README.md
 │   │       └── logo.svg          # optional
 │   ├── plugins/
+│   │   └── <name>/
+│   │       ├── formula.yaml
+│   │       ├── README.md
+│   │       └── logo.svg          # optional
+│   ├── integrations/
 │   │   └── <name>/
 │   │       ├── formula.yaml
 │   │       ├── README.md

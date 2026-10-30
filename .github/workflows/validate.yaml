@@ -64,7 +64,7 @@ jobs:
           set -euo pipefail
           bash .github/scripts/build-index.sh - > /tmp/index.generated.json
           generated=$(jq '.extensions | length' /tmp/index.generated.json)
-          expected=$(find extensions/providers extensions/plugins \
+          expected=$(find extensions/providers extensions/plugins extensions/integrations \
             -mindepth 2 -maxdepth 2 -name formula.yaml 2>/dev/null | wc -l | tr -d ' ')
           if [[ "$generated" != "$expected" ]]; then
             echo "::error::Generator produced $generated entries but found $expected formula.yaml files."

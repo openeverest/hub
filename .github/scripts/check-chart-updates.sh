@@ -59,7 +59,7 @@ newest_stable_gt() {
 }
 
 mapfile -t formulas < <(
-  find "$EXT_DIR/providers" "$EXT_DIR/plugins" \
+  find "$EXT_DIR/providers" "$EXT_DIR/plugins" "$EXT_DIR/integrations" \
     -mindepth 2 -maxdepth 2 -name formula.yaml 2>/dev/null | sort
 )
 

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Lint extensions/ for structural rules that aren't expressible in JSON Schema:
-#   - Top-level subdirs of extensions/ are exactly: providers, plugins, _template, _deprecated
-#   - Every extensions/{providers,plugins}/<name>/ contains formula.yaml + README.md
+#   - Top-level subdirs of extensions/ are exactly: providers, plugins, integrations,
+#     _template, _deprecated
+#   - Every extensions/{providers,plugins,integrations}/<name>/ contains formula.yaml + README.md
 #   - <name> (directory) == metadata.name (formula)
 #   - <name> appears in extensions/<type>/, where <type> matches metadata.type + 's'
 #   - README.md is non-empty
@@ -24,7 +25,8 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 EXT_DIR="${ROOT_DIR}/extensions"
 
-ALLOWED_TOP_LEVEL=(providers plugins _template _deprecated)
+ALLOWED_TOP_LEVEL=(providers plugins integrations _template _deprecated)
+TYPE_DIRS=(providers plugins integrations)
 ALLOWED_FILES=(formula.yaml README.md)
 ALLOWED_IMAGE_EXTS=(svg png jpg jpeg webp gif)
 
@@ -61,8 +63,8 @@ else
   done
 fi
 
-# 2. Walk providers/ and plugins/ — _template and _deprecated are exempt.
-for type_dir in providers plugins; do
+# 2. Walk the type directories — _template and _deprecated are exempt.
+for type_dir in "${TYPE_DIRS[@]}"; do
   full_type_dir="$EXT_DIR/$type_dir"
   [[ -d "$full_type_dir" ]] || continue
 
@@ -109,7 +111,8 @@ for type_dir in providers plugins; do
       ok "$rel_dir: name matches directory"
     fi
 
-    # 2d. metadata.type matches parent directory (providers -> provider, plugins -> plugin)
+    # 2d. metadata.type matches parent directory (providers -> provider,
+    # plugins -> plugin, integrations -> integration)
     expected_type="${type_dir%s}"  # strip trailing 's'
     meta_type=$(yq -r '.metadata.type // ""' "$formula")
     if [[ "$meta_type" != "$expected_type" ]]; then
@@ -147,7 +150,7 @@ for type_dir in providers plugins; do
   done
 done
 
-# 3. Global slug uniqueness across providers/ + plugins/
+# 3. Global slug uniqueness across all type directories
 declare -A seen=()
 while IFS= read -r f; do
   n=$(yq -r '.metadata.name // ""' "$f")
@@ -157,7 +160,7 @@ while IFS= read -r f; do
   else
     seen[$n]=$f
   fi
-done < <(find "$EXT_DIR/providers" "$EXT_DIR/plugins" -mindepth 2 -maxdepth 2 -name formula.yaml 2>/dev/null)
+done < <(find "${TYPE_DIRS[@]/#/$EXT_DIR/}" -mindepth 2 -maxdepth 2 -name formula.yaml 2>/dev/null)
 
 if (( failures > 0 )); then
   printf '\n%d check(s) failed.\n' "$failures" >&2

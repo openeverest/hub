@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=../../../schemas/formula-v1.json
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+
+metadata:
+  name: monitoring-pmm
+  type: integration
+  displayName: "PMM"
+  icon: ./pmm-logo.svg
+  description: |
+    Send metrics and Query Analytics of OpenEverest database instances to a
+    Percona Monitoring and Management (PMM) 3 server. Installs the `pmm`
+    MonitoringClass and its controller; providers with native PMM support
+    (Percona XtraDB Cluster, Percona Server for MongoDB, Percona PostgreSQL)
+    run pmm-client next to the databases.
+  categories:
+    - monitoring
+    - observability
+  keywords:
+    - pmm
+    - percona
+    - metrics
+    - query-analytics
+  homepage: https://github.com/openeverest/monitoring-pmm
+  sourceRepo: https://github.com/openeverest/monitoring-pmm
+  license: Apache-2.0
+  maturity: alpha
+  maintainers:
+    - name: "OpenEverest Team"
+      email: "cncf-openeverest-maintainers@lists.cncf.io"
+      github: "openeverest"
+
+spec:
+  integration:
+    area: monitoring
+    monitoring:
+      classes: [pmm]
+      executionModes: [ProviderManaged]
+      nativeIntegration: pmm
+
+  compatibility:
+    openeverest: ">=2.0.0-dev.5"
+
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/openeverest/charts/monitoring-pmm
+          version: "0.1.0"
+
+  install:
+    helm:
+      releaseName: monitoring-pmm
+      namespace: everest-system
+    prerequisites:
+      - name: PMM 3 server
+        description: "The PMM server the database instances send their metrics and Query Analytics to. It must be reachable from the cluster."
+        installUrl: https://docs.percona.com/percona-monitoring-and-management/3/install-pmm/install-pmm-server/deployment-options/helm/index.html
