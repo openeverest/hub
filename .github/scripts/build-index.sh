@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Generate index/index.json by reading every extensions/{providers,plugins}/*/formula.yaml.
+# Generate index/index.json by reading every
+# extensions/{providers,plugins,integrations}/*/formula.yaml.
 #
 # Output shape follows spec 005 §4.4. Phase-1 entries set verified=false and
 # health=unknown (no healthcheck workflow yet).
@@ -32,10 +33,10 @@ else
   generated_at=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
 fi
 
-# Collect every formula.yaml under providers/ and plugins/, sorted by path
+# Collect every formula.yaml under providers/, plugins/ and integrations/, sorted by path
 # (which is by-slug because each lives under <type>/<slug>/formula.yaml).
 mapfile -t formulas < <(
-  find "$EXT_DIR/providers" "$EXT_DIR/plugins" \
+  find "$EXT_DIR/providers" "$EXT_DIR/plugins" "$EXT_DIR/integrations" \
     -mindepth 2 -maxdepth 2 -name formula.yaml 2>/dev/null | sort
 )
 
@@ -66,6 +67,7 @@ for f in "${formulas[@]}"; do
       "capabilities": (.spec.capabilities // {}),
       "provider":     (.spec.provider // null),
       "plugin":       (.spec.plugin // null),
+      "integration":  (.spec.integration // null),
       "access":       (.metadata.access // "public"),
       "gated":        (.spec.gated // null),
       "artifacts":    (.spec.artifacts // null),
