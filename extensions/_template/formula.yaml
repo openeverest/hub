@@ -3,7 +3,7 @@
 # OpenEverest Extension Hub — formula template.
 #
 # 1. Copy this directory:
-#       cp -R extensions/_template extensions/<providers|plugins>/<your-slug>
+#       cp -R extensions/_template extensions/<providers|plugins|integrations>/<your-slug>
 # 2. Edit the formula below.
 # 3. Replace this comment block with a one-line description of your extension.
 # 4. Add a README.md alongside this file (rendered on the future website).
@@ -24,9 +24,10 @@ metadata:
   name: your-extension-slug
 
   # `provider` for a database operator wrapper; `plugin` for a generic
-  # UI/CLI/backend extension. Pick exactly one of `spec.provider` or
-  # `spec.plugin` below to match.
-  type: provider  # or: plugin
+  # UI/CLI/backend extension; `integration` for a connection to an external
+  # system (e.g. a monitoring backend). Pick exactly one of `spec.provider`,
+  # `spec.plugin` or `spec.integration` below to match.
+  type: provider  # or: plugin, integration
 
   displayName: "Your Extension"
   description: |
@@ -54,7 +55,7 @@ metadata:
   icon: ./logo.svg
 
 spec:
-  # --- Type-specific block (exactly ONE of `provider` or `plugin`) ---
+  # --- Type-specific block (exactly ONE of `provider`, `plugin` or `integration`) ---
 
   provider:
     # Must match the Provider CR .metadata.name deployed by this chart.
@@ -71,6 +72,17 @@ spec:
   #     - route
   #     - sidebarItem
   #     - clusterDetailTab
+
+  # integration:
+  #   area: monitoring                     # only `monitoring` today
+  #   monitoring:                          # required when area == monitoring
+  #     classes: [your-class]              # MonitoringClass names the chart installs
+  #     executionModes: [ExtensionManaged] # and/or ProviderManaged
+  #     requires:                          # optional (ExtensionManaged)
+  #       metrics: true
+  #       connection: false
+  #     nativeIntegration: your-backend    # optional (ProviderManaged); matched
+  #                                        # against Provider.spec.monitoring.integrations
 
   # --- Compatibility constraints (required) ---
   compatibility:
@@ -127,3 +139,13 @@ spec:
       namespace: everest-system
       # defaultValues: {}
       # valuesSchema: oci://ghcr.io/your-org/...values-schema@sha256:...
+    # Companion charts or external systems to install first. Integrations
+    # usually declare the external system they connect to here.
+    # prerequisites:
+    #   - name: Your Backend
+    #     description: "Why it is needed."
+    #     installUrl: https://example.com/install
+    #     helm:
+    #       oci: oci://ghcr.io/your-org/charts/your-backend
+    #       namespace: your-backend
+    #       createNamespace: true

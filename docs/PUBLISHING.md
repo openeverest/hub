@@ -1,7 +1,15 @@
 # Publishing an extension to the OpenEverest Hub
 
-This guide walks through adding a new **provider** or **generic plugin** to the
-[OpenEverest Extension Hub](https://github.com/openeverest/hub).
+This guide walks through adding a new **provider**, **generic plugin** or
+**integration** to the [OpenEverest Extension Hub](https://github.com/openeverest/hub).
+
+## Extension types
+
+| `metadata.type` | Directory | What it is |
+|---|---|---|
+| `provider` | `extensions/providers/` | A database operator that OpenEverest manages. |
+| `plugin` | `extensions/plugins/` | A UI / CLI / backend extension of OpenEverest itself. |
+| `integration` | `extensions/integrations/` | A connection between OpenEverest and an external system. The first area is `monitoring`: charts that install a `MonitoringClass` and its controller (e.g. PMM, Prometheus, Coroot). More areas may be added later. |
 
 ## Prerequisites
 
@@ -25,6 +33,9 @@ This guide walks through adding a new **provider** or **generic plugin** to the
 
    # For a generic plugin:
    cp -R extensions/_template extensions/plugins/<your-slug>
+
+   # For an integration:
+   cp -R extensions/_template extensions/integrations/<your-slug>
    ```
 
    The slug must be lowercase, alphanumeric + hyphens, and globally unique
@@ -69,7 +80,7 @@ See [`schemas/formula-v1.json`](../schemas/formula-v1.json) for the full schema.
 | Field | Required | Notes |
 |---|---|---|
 | `metadata.name` | yes | Must match the directory name; globally unique; lowercase alphanumeric + hyphens. |
-| `metadata.type` | yes | `provider` or `plugin`. Determines which of `spec.provider` / `spec.plugin` must be present. |
+| `metadata.type` | yes | `provider`, `plugin` or `integration`. Determines which of `spec.provider` / `spec.plugin` / `spec.integration` must be present, and must match the parent directory (`providers/`, `plugins/`, `integrations/`). |
 | `metadata.displayName` | yes | Human-readable, max 64 chars. |
 | `metadata.description` | yes | Max 500 chars. |
 | `metadata.license` | yes | Valid [SPDX identifier](https://spdx.org/licenses/). |
@@ -77,20 +88,25 @@ See [`schemas/formula-v1.json`](../schemas/formula-v1.json) for the full schema.
 | `metadata.maintainers` | yes | At least one entry; `github` handle is required. |
 | `metadata.sourceRepo` | recommended | Public source repository URL. |
 | `metadata.icon` | yes | Relative path to a logo file in this directory (e.g., `./logo.svg` or `./icon.png`). Must be `svg`, `png`, `jpg`, `jpeg`, `webp`, or `gif` and the file must be committed alongside `formula.yaml`. The build-index workflow expands this to a fully-qualified `raw.githubusercontent.com` URL in `index.json`. |
-| `spec.provider` / `spec.plugin` | yes | Exactly one, matching `metadata.type`. |
+| `spec.provider` / `spec.plugin` / `spec.integration` | yes | Exactly one, matching `metadata.type`. |
+| `spec.integration.area` | yes (integrations) | Integration area. Only `monitoring` today; the area selects the area-specific block below. |
+| `spec.integration.monitoring.classes` | yes (area `monitoring`) | `MonitoringClass` names the chart installs (DNS-1123 labels, at least one). |
+| `spec.integration.monitoring.executionModes` | yes (area `monitoring`) | At least one of `ProviderManaged` (the database provider renders the operator's native integration) or `ExtensionManaged` (the extension's controller does the work). |
+| `spec.integration.monitoring.requires` | optional | What a provider's components must expose (ExtensionManaged): `metrics` (metrics endpoints) and/or `connection` (native-protocol connection endpoints and pod annotations), both booleans. |
+| `spec.integration.monitoring.nativeIntegration` | optional | For ProviderManaged classes: the operator-native integration the class relies on, matched against `Provider.spec.monitoring.integrations` (e.g. `pmm`). |
 | `spec.compatibility.openeverest` | yes | Semver range of compatible OpenEverest core versions, e.g., `">=2.0.0"`. |
 | `spec.capabilities` | recommended | Map advertising provider/plugin features. Providers declare the core booleans `ha`, `monitoring`, `backups`, `pitr` and `encryption`, plus optional keys such as `topologies` and `versions`. See [CAPABILITIES.md](CAPABILITIES.md). Emitted verbatim in the index when non-empty. |
-| `spec.artifacts.chart` | required for providers; required for plugins unless they ship only a frontend artifact | OCI chart reference. |
+| `spec.artifacts.chart` | required for providers and integrations; required for plugins unless they ship only a frontend artifact | OCI chart reference. |
 | `spec.artifacts.frontend` | optional | **Only set this if your plugin publishes a SEPARATE OCI frontend bundle.** Plugins that serve `main.js` from their own backend (the common case — see [`generic-plugin-template`](../extensions/plugins/generic-plugin-template/)) do **not** need this block. |
 | `spec.artifacts.*.channels.*.digest` | optional in Phase 1, required from Phase 2 | SHA-256 OCI manifest digest. |
 | `spec.install.helm.releaseName` | yes | Helm release name. Independent from `metadata.name` (chart authors often have their own conventions). |
 | `spec.install.helm.namespace` | yes | See [namespace convention](#namespace-convention) below. |
-| `spec.install.prerequisites` | optional | List of companion charts that must be installed before this extension. See [install prerequisites](#install-prerequisites). |
+| `spec.install.prerequisites` | optional | List of companion charts that must be installed before this extension. Integrations usually declare the external system they connect to here. See [install prerequisites](#install-prerequisites). |
 | `spec.verification` | optional | Reserved for cosign / SBOM / SLSA metadata (Phase 5). |
 
 ## Namespace convention
 
-Both providers and plugins should install into **`everest-system`** — this is
+Providers, plugins and integrations should install into **`everest-system`** — this is
 the namespace the live OpenEverest v2 ecosystem uses (the
 [`generic-plugin-template`](https://github.com/openeverest/generic-plugin-template)
 and the core OpenEverest docs both use it).
@@ -103,6 +119,8 @@ and the core OpenEverest docs both use it).
 ## Install prerequisites
 
 If your extension requires a companion chart to be installed before it declare it under `spec.install.prerequisites[]`.
+Integrations usually declare the external system they connect to (e.g. a PMM
+server, the Prometheus Operator or Coroot) here.
 The hub displays these to the user with install instructions before they
 proceed with the main extension install.
 
