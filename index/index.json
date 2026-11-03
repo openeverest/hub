@@ -994,7 +994,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-hub",
-              "version": "0.1.16"
+              "version": "0.1.17"
             }
           },
           "defaultChannel": "stable"
@@ -1183,6 +1183,72 @@
         "chart": {
           "channels": {
             "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/plugin-migrations",
+              "version": "0.1.0"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "categories": [
+        "database",
+        "migration",
+        "mongodb"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0-dev.4"
+      },
+      "description": "Migrates databases into OpenEverest with minimal downtime: a per-migration\nworker copies existing data (full load), keeps the target in sync with\nongoing changes (change data capture), and you trigger the cutover when\nyour application is ready to switch. The first engine moves MongoDB into\nPercona Server for MongoDB instances using Percona ClusterSync for MongoDB.\n",
+      "displayName": "Migrations",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/plugin-migrations",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/plugins/plugin-migrations/migrations-icon.svg",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "plugin-migrations"
+        }
+      },
+      "keywords": [
+        "migration",
+        "cdc",
+        "replication",
+        "cutover",
+        "mongodb",
+        "pcsm"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "plugin-migrations",
+      "plugin": {
+        "contributes": {
+          "backend": true,
+          "cli": false,
+          "ui": true
+        },
+        "extensionPoints": [
+          "route",
+          "sidebarItem"
+        ]
+      },
+      "provider": null,
+      "sourceRepo": "https://github.com/openeverest/plugin-migrations",
+      "type": "plugin",
+      "verified": false
+    },
+    {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-mongodb-explorer",
               "version": "0.1.19"
             }
@@ -1237,6 +1303,72 @@
       },
       "provider": null,
       "sourceRepo": "https://github.com/openeverest/plugin-mongodb-explorer",
+      "type": "plugin",
+      "verified": false
+    },
+    {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/plugin-user-management",
+              "version": "0.2.1"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "categories": [
+        "security",
+        "access-management",
+        "database"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0-dev.4"
+      },
+      "description": "Adds a Users tab to database instance pages to create database users and\nmanage their roles, so teams stop sharing the admin account. Users are\nInstanceUser resources reconciled into the database, with generated\ncredentials stored in a Secret applications can mount. For models on the\nEnvoy AI Gateway, the same users are per-application API keys.\n",
+      "displayName": "User Management",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/plugin-user-management",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/plugins/plugin-user-management/users-icon.svg",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "plugin-user-management"
+        }
+      },
+      "keywords": [
+        "users",
+        "roles",
+        "credentials",
+        "api-keys",
+        "mongodb",
+        "postgresql",
+        "kserve"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "plugin-user-management",
+      "plugin": {
+        "contributes": {
+          "backend": true,
+          "cli": false,
+          "ui": true
+        },
+        "extensionPoints": [
+          "clusterDetailTab"
+        ]
+      },
+      "provider": null,
+      "sourceRepo": "https://github.com/openeverest/plugin-user-management",
       "type": "plugin",
       "verified": false
     },
@@ -1471,8 +1603,8 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-11-02T13:09:13+03:00",
+    "generatedAt": "2026-11-03T19:27:58+03:00",
     "schemaVersion": "v1",
-    "totalExtensions": 20
+    "totalExtensions": 22
   }
 }
