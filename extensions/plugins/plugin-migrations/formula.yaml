@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=../../../schemas/formula-v1.json
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+
+metadata:
+  name: plugin-migrations
+  type: plugin
+  displayName: "Migrations"
+  icon: ./migrations-icon.svg
+  description: |
+    Migrates databases into OpenEverest with minimal downtime: a per-migration
+    worker copies existing data (full load), keeps the target in sync with
+    ongoing changes (change data capture), and you trigger the cutover when
+    your application is ready to switch. The first engine moves MongoDB into
+    Percona Server for MongoDB instances using Percona ClusterSync for MongoDB.
+  categories:
+    - database
+    - migration
+    - mongodb
+  keywords:
+    - migration
+    - cdc
+    - replication
+    - cutover
+    - mongodb
+    - pcsm
+  homepage: https://github.com/openeverest/plugin-migrations
+  sourceRepo: https://github.com/openeverest/plugin-migrations
+  license: Apache-2.0
+  maturity: alpha
+  maintainers:
+    - name: "OpenEverest Team"
+      email: "cncf-openeverest-maintainers@lists.cncf.io"
+      github: "openeverest"
+
+spec:
+  plugin:
+    contributes:
+      ui: true
+      backend: true
+      cli: false
+    extensionPoints:
+      - route
+      - sidebarItem
+
+  compatibility:
+    openeverest: ">=2.0.0-dev.4"
+
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/openeverest/charts/plugin-migrations
+          version: "0.1.0"
+
+  install:
+    helm:
+      releaseName: plugin-migrations
+      namespace: everest-system
