@@ -619,6 +619,79 @@
         "chart": {
           "channels": {
             "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/provider-opensearch",
+              "version": "0.1.0"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "capabilities": {
+        "backups": true,
+        "encryption": true,
+        "ha": true,
+        "monitoring": false,
+        "pitr": false,
+        "topologies": [
+          "standard"
+        ],
+        "versions": [
+          "3.7",
+          "3.8"
+        ]
+      },
+      "categories": [
+        "database",
+        "opensearch",
+        "search"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0-dev.3"
+      },
+      "description": "OpenSearch clusters powered by the OpenSearch Kubernetes Operator.\nSupports the standard topology, optional OpenSearch Dashboards, TLS\neverywhere, and S3-compatible snapshot backups and restore.\n",
+      "displayName": "OpenSearch",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/provider-opensearch",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/providers/opensearch/opensearch_icon.svg",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "provider-opensearch"
+        }
+      },
+      "keywords": [
+        "search",
+        "analytics",
+        "elasticsearch",
+        "dashboards"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "opensearch",
+      "plugin": null,
+      "provider": {
+        "providerName": "opensearch",
+        "supportedEngines": [
+          "opensearch"
+        ]
+      },
+      "sourceRepo": "https://github.com/openeverest/provider-opensearch",
+      "type": "provider",
+      "verified": false
+    },
+    {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-postgresql",
               "version": "0.6.1"
             }
@@ -1603,8 +1676,8 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-11-03T19:27:58+03:00",
+    "generatedAt": "2026-11-08T17:30:25+03:00",
     "schemaVersion": "v1",
-    "totalExtensions": 22
+    "totalExtensions": 23
   }
 }
