@@ -8,7 +8,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-altinity-clickhouse",
-              "version": "0.3.0"
+              "version": "0.3.1"
             }
           },
           "defaultChannel": "stable"
@@ -402,7 +402,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-mariadb",
-              "version": "0.2.1"
+              "version": "0.2.2"
             }
           },
           "defaultChannel": "stable"
@@ -482,7 +482,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-milvus",
-              "version": "0.3.1"
+              "version": "0.3.2"
             }
           },
           "defaultChannel": "stable"
@@ -693,7 +693,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-postgresql",
-              "version": "0.6.1"
+              "version": "0.6.2"
             }
           },
           "defaultChannel": "stable"
@@ -1257,7 +1257,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-migrations",
-              "version": "0.1.1"
+              "version": "0.1.2"
             }
           },
           "defaultChannel": "stable"
@@ -1526,7 +1526,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-tidb",
-              "version": "0.2.3"
+              "version": "0.2.4"
             }
           },
           "defaultChannel": "stable"
@@ -1676,7 +1676,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-11-14T14:36:25+03:00",
+    "generatedAt": "2026-11-14T15:00:45+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 23
   }
