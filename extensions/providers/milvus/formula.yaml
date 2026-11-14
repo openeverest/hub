@@ -52,7 +52,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/provider-milvus
-          version: "0.3.1"
+          version: "0.3.2"
   install:
     helm:
       releaseName: provider-milvus
