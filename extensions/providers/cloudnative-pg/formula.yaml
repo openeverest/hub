@@ -20,8 +20,8 @@ metadata:
     - cloudnative-pg
     - cnpg
     - ha
-  homepage: https://github.com/adityapimpalkar/provider-cloudnative-pg
-  sourceRepo: https://github.com/adityapimpalkar/provider-cloudnative-pg
+  homepage: https://github.com/openeverest/provider-cloudnative-pg
+  sourceRepo: https://github.com/openeverest/provider-cloudnative-pg
   license: Apache-2.0
   maturity: beta
   maintainers:
@@ -35,7 +35,7 @@ spec:
       - postgresql
 
   compatibility:
-    openeverest: ">=2.0.0-dev.3"
+    openeverest: "2.0.0-alpha.1"
 
   capabilities:
     ha: true
@@ -53,8 +53,8 @@ spec:
       defaultChannel: stable
       channels:
         stable:
-          ref: oci://ghcr.io/adityapimpalkar/charts/provider-cloudnative-pg
-          version: "0.3.3"
+          ref: oci://ghcr.io/openeverest/charts/provider-cloudnative-pg
+          version: "0.4.0"
 
   install:
     prerequisites:

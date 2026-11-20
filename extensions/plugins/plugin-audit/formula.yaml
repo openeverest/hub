@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=../../../schemas/formula-v1.json
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+
+metadata:
+  name: plugin-audit
+  type: plugin
+  displayName: "Audit"
+  icon: ./audit-icon.png
+  description: |
+    Captures every OpenEverest platform event and keeps a searchable audit log:
+    who did what, when, to which resource. Adds an Audit page with an events
+    chart over time, time ranges, filters by engine, kind, namespace, actor and
+    severity, free-text search, and CSV/JSON export. Events are stored in an
+    embedded SQLite database on a persistent volume.
+  categories:
+    - security
+    - compliance
+    - observability
+  keywords:
+    - audit
+    - events
+    - compliance
+    - forensics
+    - logging
+  homepage: https://github.com/solanicaio/plugin-audit
+  sourceRepo: https://github.com/solanicaio/plugin-audit
+  license: Apache-2.0
+  maturity: alpha
+  maintainers:
+    - name: "Solanica"
+      email: "sales@solanica.io"
+      github: "solanicaio"
+
+spec:
+  plugin:
+    contributes:
+      ui: true
+      backend: true
+      cli: false
+    extensionPoints:
+      - route
+      - sidebarItem
+
+  compatibility:
+    openeverest: "2.0.0-alpha.1"
+
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/solanicaio/charts/audit
+          version: "0.2.0"
+
+  install:
+    helm:
+      releaseName: audit
+      namespace: everest-system
+      defaultValues:
+        image.repository: ghcr.io/solanicaio/plugin-audit
