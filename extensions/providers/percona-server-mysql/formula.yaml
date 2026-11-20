@@ -36,7 +36,7 @@ spec:
       - mysql
 
   compatibility:
-    openeverest: ">=2.0.0-dev.4"
+    openeverest: "2.0.0-alpha.1"
 
   capabilities:
     ha: true
@@ -54,7 +54,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/provider-percona-server-mysql
-          version: "0.2.0"
+          version: "0.3.0"
 
   install:
     helm:
