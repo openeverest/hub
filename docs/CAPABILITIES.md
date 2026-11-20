@@ -43,6 +43,7 @@ across providers.
 | `encryption.atRest` | bool     | Data-at-rest encryption (TDE, keyring, KMS) is configurable through OpenEverest. Declare only when `true`. |
 | `sharding`          | bool     | Data can be partitioned across shards. Declare only when `true`. |
 | `proxy`             | string[] | Proxies or connection poolers the provider can deploy (e.g. `["haproxy", "proxysql"]`, `["pgbouncer"]`). |
+| `suspend`           | bool     | Instances can be suspended and resumed (`spec.suspend`): compute stops, data is kept. Matches `spec.suspend` on the published `Provider`. Declare only when `true`. |
 
 ## Ad-hoc keys
 
