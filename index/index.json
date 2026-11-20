@@ -8,7 +8,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-altinity-clickhouse",
-              "version": "0.3.1"
+              "version": "0.4.0"
             }
           },
           "defaultChannel": "stable"
@@ -37,7 +37,7 @@
         "clickhouse"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "ClickHouse clusters powered by the Altinity Kubernetes Operator for\nClickHouse. Supports standalone and replicated topologies with a bundled\nClickHouse Keeper quorum.\n",
       "displayName": "ClickHouse",
@@ -159,8 +159,8 @@
         "chart": {
           "channels": {
             "stable": {
-              "ref": "oci://ghcr.io/adityapimpalkar/charts/provider-cloudnative-pg",
-              "version": "0.3.3"
+              "ref": "oci://ghcr.io/openeverest/charts/provider-cloudnative-pg",
+              "version": "0.4.0"
             }
           },
           "defaultChannel": "stable"
@@ -196,12 +196,12 @@
         "postgresql"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0-dev.3"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "Highly available PostgreSQL clusters powered by the CloudNativePG\noperator. Supports replica-set topologies with bootstrap, managed roles,\nand PostgreSQL tuning.\n",
       "displayName": "PostgreSQL (CNPG)",
       "health": "unknown",
-      "homepage": "https://github.com/adityapimpalkar/provider-cloudnative-pg",
+      "homepage": "https://github.com/openeverest/provider-cloudnative-pg",
       "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/providers/cloudnative-pg/cnpg_icon.svg",
       "install": {
         "helm": {
@@ -240,7 +240,7 @@
           "postgresql"
         ]
       },
-      "sourceRepo": "https://github.com/adityapimpalkar/provider-cloudnative-pg",
+      "sourceRepo": "https://github.com/openeverest/provider-cloudnative-pg",
       "type": "provider",
       "verified": false
     },
@@ -251,7 +251,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/my-plugin",
-              "version": "0.1.2"
+              "version": "0.1.3"
             }
           },
           "defaultChannel": "stable"
@@ -262,7 +262,7 @@
         "template"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "A working \"hello world\" OpenEverest plugin: registers a sidebar entry,\na dedicated route, a cluster-detail tab, and a backend API endpoint.\nUse it as a starting point when building your own generic plugin.\n",
       "displayName": "Generic Plugin Template",
@@ -407,7 +407,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-mariadb",
-              "version": "0.2.2"
+              "version": "0.3.0"
             }
           },
           "defaultChannel": "stable"
@@ -440,7 +440,7 @@
       ],
       "compatibility": {
         "kubernetes": ">=1.30 <1.35",
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "MariaDB on Kubernetes, backed by the mariadb-operator. Runs standalone,\nreplication and Galera topologies with TLS, MaxScale, scheduled backups\nwith point-in-time recovery, scaling, version upgrades, custom my.cnf\nconfiguration, and optional Prometheus monitoring.\n",
       "displayName": "MariaDB",
@@ -879,7 +879,7 @@
         "mssql"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "Microsoft SQL Server on Kubernetes, provided by Solanica. Runs standalone\ninstances and Always On availability groups with automated backups,\npoint-in-time restore, TLS and Prometheus monitoring. Commercial, gated extension — contact Solanica for access.\n",
       "displayName": "Microsoft SQL Server",
@@ -1312,6 +1312,75 @@
         "chart": {
           "channels": {
             "stable": {
+              "ref": "oci://ghcr.io/solanicaio/charts/audit",
+              "version": "0.2.0"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "categories": [
+        "security",
+        "compliance",
+        "observability"
+      ],
+      "compatibility": {
+        "openeverest": "2.0.0-alpha.1"
+      },
+      "description": "Captures every OpenEverest platform event and keeps a searchable audit log:\nwho did what, when, to which resource. Adds an Audit page with an events\nchart over time, time ranges, filters by engine, kind, namespace, actor and\nseverity, free-text search, and CSV/JSON export. Events are stored in an\nembedded SQLite database on a persistent volume.\n",
+      "displayName": "Audit",
+      "health": "unknown",
+      "homepage": "https://github.com/solanicaio/plugin-audit",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/plugins/plugin-audit/audit-icon.png",
+      "install": {
+        "helm": {
+          "defaultValues": {
+            "image.repository": "ghcr.io/solanicaio/plugin-audit"
+          },
+          "namespace": "everest-system",
+          "releaseName": "audit"
+        }
+      },
+      "integration": null,
+      "keywords": [
+        "audit",
+        "events",
+        "compliance",
+        "forensics",
+        "logging"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "sales@solanica.io",
+          "github": "solanicaio",
+          "name": "Solanica"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "plugin-audit",
+      "plugin": {
+        "contributes": {
+          "backend": true,
+          "cli": false,
+          "ui": true
+        },
+        "extensionPoints": [
+          "route",
+          "sidebarItem"
+        ]
+      },
+      "provider": null,
+      "sourceRepo": "https://github.com/solanicaio/plugin-audit",
+      "type": "plugin",
+      "verified": false
+    },
+    {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-bench",
               "version": "0.3.0"
             }
@@ -1447,7 +1516,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-hub",
-              "version": "0.1.17"
+              "version": "0.1.18"
             }
           },
           "defaultChannel": "stable"
@@ -1576,7 +1645,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-metrics",
-              "version": "0.2.2"
+              "version": "0.3.0"
             }
           },
           "defaultChannel": "stable"
@@ -1587,7 +1656,7 @@
         "monitoring"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "Adds a Metrics tab to database cluster detail pages with CPU, memory and\nengine-specific charts for the last hour or day, plus a search to chart any\nother metric the instance exposes. Reads from Prometheus, PMM and other sources, scoped to\ninstances the user can read. Built-in dashboards for various database engines.\n",
       "displayName": "Metrics",
@@ -1640,7 +1709,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-migrations",
-              "version": "0.1.2"
+              "version": "0.1.3"
             }
           },
           "defaultChannel": "stable"
@@ -1652,7 +1721,7 @@
         "mongodb"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "Migrates databases into OpenEverest with minimal downtime: a per-migration\nworker copies existing data (full load), keeps the target in sync with\nongoing changes (change data capture), and you trigger the cutover when\nyour application is ready to switch. The first engine moves MongoDB into\nPercona Server for MongoDB instances using Percona ClusterSync for MongoDB.\n",
       "displayName": "Migrations",
@@ -1992,7 +2061,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-valkey",
-              "version": "0.1.11"
+              "version": "0.2.0"
             }
           },
           "defaultChannel": "stable"
@@ -2020,7 +2089,7 @@
         "valkey"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "Valkey clusters powered by the Valkey Kubernetes Operator.\nSupports replication and sharded cluster topologies. Very early stage.\n",
       "displayName": "Valkey",
@@ -2065,8 +2134,8 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-11-20T15:11:01Z",
+    "generatedAt": "2026-11-20T19:39:48+03:00",
     "schemaVersion": "v1",
-    "totalExtensions": 28
+    "totalExtensions": 29
   }
 }
