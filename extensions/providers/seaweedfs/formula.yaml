@@ -33,7 +33,7 @@ spec:
     supportedEngines:
       - seaweedfs
   compatibility:
-    openeverest: ">=2.0.0-dev.4"
+    openeverest: "2.0.0-alpha.1"
     kubernetes: ">=1.30 <1.35"
   capabilities:
     ha: true
@@ -49,7 +49,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/provider-seaweedfs
-          version: "0.2.0"
+          version: "0.3.0"
   install:
     helm:
       releaseName: provider-seaweedfs

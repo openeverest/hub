@@ -44,7 +44,7 @@ spec:
       - clusterDetailTab
 
   compatibility:
-    openeverest: ">=2.0.0-dev.4"
+    openeverest: "2.0.0-alpha.1"
 
   artifacts:
     chart:
@@ -52,7 +52,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/plugin-user-management
-          version: "0.2.6"
+          version: "0.2.7"
 
   install:
     helm:
