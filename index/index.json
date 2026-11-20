@@ -160,7 +160,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-cloudnative-pg",
-              "version": "0.4.0"
+              "version": "0.4.1"
             }
           },
           "defaultChannel": "stable"
@@ -315,7 +315,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-kserve",
-              "version": "0.5.0"
+              "version": "0.6.0"
             }
           },
           "defaultChannel": "stable"
@@ -349,7 +349,7 @@
         "model-serving"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "Serve machine-learning and LLM models on Kubernetes with KServe. Supports\ngenerative LLM serving (vLLM) and predictive model serving, with GPU\nscheduling, autoscaling, and a curated model catalog.\n",
       "displayName": "KServe",
@@ -488,7 +488,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-milvus",
-              "version": "0.3.2"
+              "version": "0.5.0"
             }
           },
           "defaultChannel": "stable"
@@ -516,7 +516,7 @@
       ],
       "compatibility": {
         "kubernetes": ">=1.30 <1.35",
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "Milvus vector database on Kubernetes, backed by the Milvus Operator.\nEarly-stage (pre-alpha): standalone and cluster topologies with bundled\nor external etcd, object storage and Pulsar, scaling, version upgrades\nand pod scheduling, backups via milvus-backup and Prometheus monitoring.\nTLS and PITR are not yet supported.\n",
       "displayName": "Milvus",
@@ -927,7 +927,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-opensearch",
-              "version": "0.2.0"
+              "version": "0.3.0"
             }
           },
           "defaultChannel": "stable"
@@ -953,7 +953,7 @@
         "search"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0-dev.3"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "OpenSearch clusters powered by the OpenSearch Kubernetes Operator.\nSupports the standard topology, optional OpenSearch Dashboards, TLS\neverywhere, and S3-compatible snapshot backups and restore.\n",
       "displayName": "OpenSearch",
@@ -1840,7 +1840,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-user-management",
-              "version": "0.2.6"
+              "version": "0.2.7"
             }
           },
           "defaultChannel": "stable"
@@ -1852,7 +1852,7 @@
         "database"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "Adds a Users tab to database instance pages to create database users and\nmanage their roles, so teams stop sharing the admin account. Users are\nInstanceUser resources reconciled into the database, with generated\ncredentials stored in a Secret applications can mount. For models on the\nEnvoy AI Gateway, the same users are per-application API keys.\n",
       "displayName": "User Management",
@@ -1907,7 +1907,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-seaweedfs",
-              "version": "0.2.0"
+              "version": "0.3.0"
             }
           },
           "defaultChannel": "stable"
@@ -1934,7 +1934,7 @@
       ],
       "compatibility": {
         "kubernetes": ">=1.30 <1.35",
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "Distributed object storage with an S3-compatible gateway on Kubernetes,\nbacked by the seaweedfs-operator. Provisions master, volume, filer, and\nS3 components. Early-stage (MVP): not for production use.\n",
       "displayName": "SeaweedFS",
@@ -1982,7 +1982,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-tidb",
-              "version": "0.2.5"
+              "version": "0.3.0"
             }
           },
           "defaultChannel": "stable"
@@ -2012,7 +2012,7 @@
       ],
       "compatibility": {
         "kubernetes": ">=1.30",
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "Distributed, MySQL-compatible NewSQL database with HTAP capabilities,\npowered by TiDB Operator v2. Provisions a PD + TiKV + TiDB cluster.\n",
       "displayName": "TiDB",
@@ -2134,7 +2134,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-11-20T19:39:48+03:00",
+    "generatedAt": "2026-11-20T23:53:16+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 29
   }
