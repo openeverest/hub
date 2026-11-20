@@ -31,7 +31,7 @@ spec:
     supportedEngines:
       - valkey
   compatibility:
-    openeverest: ">=2.0.0-dev.4"
+    openeverest: "2.0.0-alpha.1"
   capabilities:
     ha: true
     monitoring: true
@@ -47,7 +47,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/provider-valkey
-          version: "0.1.11"
+          version: "0.2.0"
   install:
     helm:
       releaseName: provider-valkey

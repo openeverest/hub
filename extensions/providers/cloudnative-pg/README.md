@@ -12,8 +12,8 @@ subchart and is installed automatically with the provider.
 
 ## Source
 
-- **Provider repo:** https://github.com/adityapimpalkar/provider-cloudnative-pg
-- **Chart:** `oci://ghcr.io/adityapimpalkar/charts/provider-cloudnative-pg`
+- **Provider repo:** https://github.com/openeverest/provider-cloudnative-pg
+- **Chart:** `oci://ghcr.io/openeverest/charts/provider-cloudnative-pg`
 
 ## Install (manual)
 
@@ -22,8 +22,8 @@ subchart and is installed automatically with the provider.
 
 ```bash
 helm install provider-cloudnative-pg \
-  oci://ghcr.io/adityapimpalkar/charts/provider-cloudnative-pg \
-  --version 0.3.0 \
+  oci://ghcr.io/openeverest/charts/provider-cloudnative-pg \
+  --version 0.4.0 \
   --namespace everest-system \
   --create-namespace
 ```
