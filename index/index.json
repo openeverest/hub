@@ -1001,7 +1001,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-postgresql",
-              "version": "0.6.2"
+              "version": "0.7.0"
             }
           },
           "defaultChannel": "stable"
@@ -1032,7 +1032,7 @@
         "postgresql"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "Production-ready PostgreSQL clusters powered by the Percona Operator for PostgreSQL.",
       "displayName": "PostgreSQL",
@@ -1080,7 +1080,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-server-mongodb",
-              "version": "0.5.0"
+              "version": "0.6.0"
             }
           },
           "defaultChannel": "stable"
@@ -1108,7 +1108,7 @@
         "mongodb"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "Production-ready MongoDB clusters powered by the Percona Operator.\nSupports replica sets and sharded topologies.\n",
       "displayName": "MongoDB",
@@ -1155,7 +1155,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-server-mysql",
-              "version": "0.2.0"
+              "version": "0.3.0"
             }
           },
           "defaultChannel": "stable"
@@ -1185,7 +1185,7 @@
         "mysql"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "Highly available MySQL clusters powered by the Percona Operator for MySQL\nbased on Percona Server for MySQL, with async replication and MySQL\nGroup Replication topologies.\n",
       "displayName": "MySQL (PS)",
@@ -1234,7 +1234,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-xtradb-cluster",
-              "version": "0.4.0"
+              "version": "0.5.0"
             }
           },
           "defaultChannel": "stable"
@@ -1264,7 +1264,7 @@
         "mysql"
       ],
       "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
+        "openeverest": "2.0.0-alpha.1"
       },
       "description": "Highly available MySQL clusters powered by the Percona Operator for MySQL\nbased on Percona XtraDB Cluster (PXC).\n",
       "displayName": "MySQL (PXC)",
@@ -2065,7 +2065,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-11-18T17:54:41+03:00",
+    "generatedAt": "2026-11-20T15:11:01Z",
     "schemaVersion": "v1",
     "totalExtensions": 28
   }
