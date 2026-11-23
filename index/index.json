@@ -926,6 +926,83 @@
         "chart": {
           "channels": {
             "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/provider-neo4j",
+              "version": "0.1.0"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "capabilities": {
+        "backups": true,
+        "encryption": true,
+        "ha": true,
+        "monitoring": true,
+        "pitr": false,
+        "topologies": [
+          "standalone",
+          "cluster"
+        ],
+        "versions": [
+          "5.26",
+          "2026.05",
+          "2026.06",
+          "2026.07"
+        ]
+      },
+      "categories": [
+        "database",
+        "graph"
+      ],
+      "compatibility": {
+        "kubernetes": ">=1.34",
+        "openeverest": "2.0.0-alpha.1"
+      },
+      "description": "The Neo4j graph database on Kubernetes, backed by the Neo4j Kubernetes\nOperator. Community standalone servers, and Enterprise clusters with\nanalytics and read pools, TLS by default, online backups to S3-compatible\nstorage, restores, and Prometheus metrics. Enterprise features need you\nto accept the Neo4j Enterprise license.\n",
+      "displayName": "Neo4j",
+      "health": "unknown",
+      "homepage": "https://openeverest.io/for/neo4j/",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/providers/neo4j/neo4j-icon.svg",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "provider-neo4j"
+        }
+      },
+      "integration": null,
+      "keywords": [
+        "neo4j",
+        "graph",
+        "cypher",
+        "nosql"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "neo4j",
+      "plugin": null,
+      "provider": {
+        "providerName": "neo4j",
+        "supportedEngines": [
+          "neo4j"
+        ]
+      },
+      "sourceRepo": "https://github.com/openeverest/provider-neo4j",
+      "type": "provider",
+      "verified": false
+    },
+    {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-opensearch",
               "version": "0.3.0"
             }
@@ -2134,8 +2211,8 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-11-20T23:53:16+03:00",
+    "generatedAt": "2026-11-23T18:40:36+03:00",
     "schemaVersion": "v1",
-    "totalExtensions": 29
+    "totalExtensions": 30
   }
 }
