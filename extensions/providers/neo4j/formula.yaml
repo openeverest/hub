@@ -36,10 +36,6 @@ spec:
     supportedEngines:
       - neo4j
 
-  compatibility:
-    openeverest: "2.0.0-alpha.1"
-    kubernetes: ">=1.34"
-
   capabilities:
     ha: true
     monitoring: true

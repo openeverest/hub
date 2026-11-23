@@ -84,10 +84,11 @@ spec:
   #     nativeIntegration: your-backend    # optional (ProviderManaged); matched
   #                                        # against Provider.spec.monitoring.integrations
 
-  # --- Compatibility constraints (required) ---
-  compatibility:
-    openeverest: ">=2.0.0"
-    # kubernetes: ">=1.27"   # optional
+  # --- Compatibility ---
+  # Not declared here. The hub reads, for every release of your chart, the
+  # `openeverest.io/contract-version` annotation that the OpenEverest provider
+  # SDK writes into Chart.yaml, and the chart's `kubeVersion`. See
+  # docs/PUBLISHING.md.
 
   # --- Capability matrix ---
   # Providers declare the five core capabilities as booleans (false is shown

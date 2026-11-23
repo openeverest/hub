@@ -38,9 +38,6 @@ spec:
       executionModes: [ProviderManaged]
       nativeIntegration: pmm
 
-  compatibility:
-    openeverest: ">=2.0.0-dev.5"
-
   artifacts:
     chart:
       defaultChannel: stable

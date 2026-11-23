@@ -1,0 +1,34 @@
+{
+  "apiVersion": "hub.openeverest.io/v1",
+  "kind": "ExtensionIndex",
+  "metadata": {"catalogId": "openeverest-official", "schemaVersion": "v1", "totalExtensions": 3},
+  "extensions": [
+    {
+      "name": "alpha",
+      "artifacts": {"chart": {"defaultChannel": "stable", "channels": {
+        "stable": {"ref": "oci://registry.test/charts/alpha", "version": "0.3.0", "head": "0.3.0", "releases": [
+          {"version": "0.3.0", "digest": "sha256:alpha-0.3.0-old", "contractVersion": "2.0.0-alpha.1"},
+          {"version": "0.2.0", "digest": "sha256:alpha-0.2.0"}
+        ]}
+      }}}
+    },
+    {
+      "name": "bravo",
+      "artifacts": {"chart": {"defaultChannel": "stable", "channels": {
+        "stable": {"ref": "oci://registry.test/charts/bravo", "version": "1.1.0", "head": "1.1.0", "releases": [
+          {"version": "1.1.0", "digest": "sha256:bravo-1.1.0", "contractVersion": "2.0.0-alpha.2", "kubeVersion": ">=1.32.0-0"},
+          {"version": "1.0.0", "digest": "sha256:bravo-1.0.0", "contractVersion": "2.0.0-alpha.1", "kubeVersion": ">=1.32.0-0"},
+          {"version": "0.9.0", "digest": "sha256:bravo-0.9.0"}
+        ]}
+      }}}
+    },
+    {
+      "name": "charlie",
+      "artifacts": {"chart": {"defaultChannel": "stable", "channels": {
+        "edge": {"ref": "oci://registry.test/charts/charlie", "version": "0.1.0-beta.1", "head": "0.1.0-beta.1", "releases": [
+          {"version": "0.1.0-beta.1", "digest": "sha256:charlie-0.1.0-beta.1", "kubeVersion": ">=1.30.0-0"}
+        ]}
+      }}}
+    }
+  ]
+}

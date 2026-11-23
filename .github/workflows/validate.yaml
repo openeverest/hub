@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: read
+  packages: read
 
 jobs:
   validate:
@@ -54,15 +55,41 @@ jobs:
       - name: Install jq
         run: sudo apt-get update -qq && sudo apt-get install -y -qq jq
 
-      - name: Dry-run the index generator
+      - name: Install crane
+        env:
+          CRANE_VERSION: v0.22.1
+          CRANE_SHA256: 0ab7a1d6932a213aed964ce97666c3077fe691c8606413674a8b3e0b9ec4cda0
+        run: |
+          curl -fsSLo crane.tar.gz \
+            "https://github.com/google/go-containerregistry/releases/download/${CRANE_VERSION}/go-containerregistry_Linux_x86_64.tar.gz"
+          echo "${CRANE_SHA256}  crane.tar.gz" | sha256sum -c -
+          sudo tar -xzf crane.tar.gz -C /usr/local/bin crane
+          rm crane.tar.gz
+          crane version
+
+      - name: Authenticate crane to ghcr.io
+        # Anonymous pulls of public packages work, but logging in with the
+        # workflow token avoids unauthenticated rate limits.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTOR: ${{ github.actor }}
+        run: echo "$GITHUB_TOKEN" | crane auth login ghcr.io -u "$ACTOR" --password-stdin
+
+      - name: Test the index generator
+        run: bash .github/scripts/tests/build-index.test.sh
+
+      - name: Build the index (strict)
         # PRs don't need to ship a regenerated index/index.json — the
         # build-index workflow regenerates and commits it on push to main.
-        # This step just confirms the generator runs end-to-end against the
-        # PR's formulas and produces a well-formed document with the
-        # expected entry count.
+        # This step runs the generator end-to-end against the PR's formulas
+        # and the charts' registries, and checks it produces a well-formed
+        # document with the expected entry count. --strict fails the PR when
+        # a channel's version is not SemVer or points at a chart built
+        # against an unreleased OpenEverest. An unreachable registry only
+        # warns: the committed index's releases are kept.
         run: |
           set -euo pipefail
-          bash .github/scripts/build-index.sh - > /tmp/index.generated.json
+          bash .github/scripts/build-index.sh --strict - > /tmp/index.generated.json
           generated=$(jq '.extensions | length' /tmp/index.generated.json)
           expected=$(find extensions/providers extensions/plugins extensions/integrations \
             -mindepth 2 -maxdepth 2 -name formula.yaml 2>/dev/null | wc -l | tr -d ' ')

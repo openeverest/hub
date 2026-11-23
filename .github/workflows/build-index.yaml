@@ -7,13 +7,21 @@ on:
       - 'extensions/**'
       - 'schemas/**'
       - '.github/scripts/build-index.sh'
+      - '.github/scripts/lib/**'
       - '.github/workflows/build-index.yaml'
+
+  # Each channel's releases[] come from the chart registries. A daily run
+  # picks up re-pushed tags and restores releases that a registry outage
+  # during an earlier run left at their previous values.
+  schedule:
+    - cron: '41 5 * * *'
 
   # Allow manual runs (useful for forcing a regeneration).
   workflow_dispatch:
 
 permissions:
   contents: write
+  packages: read
 
 concurrency:
   group: build-index-${{ github.ref }}
@@ -39,6 +47,26 @@ jobs:
 
       - name: Install jq
         run: sudo apt-get update -qq && sudo apt-get install -y -qq jq
+
+      - name: Install crane
+        env:
+          CRANE_VERSION: v0.22.1
+          CRANE_SHA256: 0ab7a1d6932a213aed964ce97666c3077fe691c8606413674a8b3e0b9ec4cda0
+        run: |
+          curl -fsSLo crane.tar.gz \
+            "https://github.com/google/go-containerregistry/releases/download/${CRANE_VERSION}/go-containerregistry_Linux_x86_64.tar.gz"
+          echo "${CRANE_SHA256}  crane.tar.gz" | sha256sum -c -
+          sudo tar -xzf crane.tar.gz -C /usr/local/bin crane
+          rm crane.tar.gz
+          crane version
+
+      - name: Authenticate crane to ghcr.io
+        # Anonymous pulls of public packages work, but logging in with the
+        # workflow token avoids unauthenticated rate limits.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTOR: ${{ github.actor }}
+        run: echo "$GITHUB_TOKEN" | crane auth login ghcr.io -u "$ACTOR" --password-stdin
 
       - name: Generate index/index.json
         run: bash .github/scripts/build-index.sh

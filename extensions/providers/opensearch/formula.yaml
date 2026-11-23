@@ -32,8 +32,6 @@ spec:
     providerName: opensearch
     supportedEngines:
       - opensearch
-  compatibility:
-    openeverest: "2.0.0-alpha.1"
   capabilities:
     ha: true
     monitoring: false

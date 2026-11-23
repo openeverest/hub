@@ -41,9 +41,6 @@ spec:
     extensionPoints:
       - clusterDetailTab
 
-  compatibility:
-    openeverest: ">=2.0.0-dev.4"
-
   capabilities:
     databaseBranching: true
     cloneBranches: true

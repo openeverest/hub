@@ -15,6 +15,9 @@ This guide walks through adding a new **provider**, **generic plugin** or
 
 - Your extension is published to an OCI-compatible registry (GHCR, Docker Hub,
   Quay, etc.) as a Helm chart.
+- Your chart declares what it is compatible with in its own `Chart.yaml`, not
+  in the formula: the OpenEverest stamp written by the provider SDK and a
+  `kubeVersion`. See [Compatibility](#compatibility).
 - You have a public source repository (any Git host).
 - You're prepared to keep the formula's `version` field in sync with new
   releases (a [GitHub Action template](#automating-version-bumps) is provided
@@ -60,7 +63,10 @@ This guide walks through adding a new **provider**, **generic plugin** or
    - JSON Schema validation of every `formula.yaml`.
    - Directory-name ↔ `metadata.name` consistency check.
    - Required-files check (`formula.yaml`, `README.md`).
-   - Dry-run of the index generator to catch generation regressions.
+   - A run of the index generator against your chart's registry. It fails
+     when a channel's `version` is not a SemVer version, or when that chart
+     release was built against an unreleased OpenEverest (see
+     [Compatibility](#compatibility)).
 
 7. A hub maintainer reviews for metadata accuracy and naming. There is **no
    code review** — the formula is a pointer, not code. On merge, the
@@ -94,7 +100,6 @@ See [`schemas/formula-v1.json`](../schemas/formula-v1.json) for the full schema.
 | `spec.integration.monitoring.executionModes` | yes (area `monitoring`) | At least one of `ProviderManaged` (the database provider renders the operator's native integration) or `ExtensionManaged` (the extension's controller does the work). |
 | `spec.integration.monitoring.requires` | optional | What a provider's components must expose (ExtensionManaged): `metrics` (metrics endpoints) and/or `connection` (native-protocol connection endpoints and pod annotations), both booleans. |
 | `spec.integration.monitoring.nativeIntegration` | optional | For ProviderManaged classes: the operator-native integration the class relies on, matched against `Provider.spec.monitoring.integrations` (e.g. `pmm`). |
-| `spec.compatibility.openeverest` | yes | Semver range of compatible OpenEverest core versions, e.g., `">=2.0.0"`. |
 | `spec.capabilities` | recommended | Map advertising provider/plugin features. Providers declare the core booleans `ha`, `monitoring`, `backups`, `pitr` and `encryption`, plus optional keys such as `topologies` and `versions`. See [CAPABILITIES.md](CAPABILITIES.md). Emitted verbatim in the index when non-empty. |
 | `spec.artifacts.chart` | required for providers and integrations; required for plugins unless they ship only a frontend artifact | OCI chart reference. |
 | `spec.artifacts.frontend` | optional | **Only set this if your plugin publishes a SEPARATE OCI frontend bundle.** Plugins that serve `main.js` from their own backend (the common case — see [`generic-plugin-template`](../extensions/plugins/generic-plugin-template/)) do **not** need this block. |
@@ -145,6 +150,86 @@ Each artifact must declare a `defaultChannel` and at least one channel under
 
 `defaultChannel` is what the CLI/UI installs unless the user explicitly
 overrides with `--channel`.
+
+A channel's `version` is its **head**, the newest release it offers. The
+generated index also lists, under the channel's `releases[]` (newest first),
+every published release of the chart that belongs to the channel, so an
+installer can fall back to an older release when the head is not compatible
+with the user's cluster. A release belongs to a channel when its tag in the
+chart's OCI repository:
+
+- is a valid [SemVer 2.0.0](https://semver.org) version,
+- is not above the head, and
+- is a pre-release exactly when the head is one.
+
+A stable head such as `0.6.0` collects `0.5.0`, `0.4.1`, … but never
+`0.6.0-rc.1`; an edge head such as `0.7.0-rc.2` collects `0.7.0-rc.1`,
+`0.6.0-beta.1`, … but never `0.6.0`. Tags that are not SemVer (`latest`,
+`sha-…`) are ignored, and tags above the head stay unlisted until a formula
+change moves the head.
+
+## Compatibility
+
+Formulas do not declare which OpenEverest or Kubernetes versions an extension
+works with. The hub reads both from the chart, release by release, so a new
+OpenEverest release never leaves a formula stale and nobody maintains version
+ranges by hand.
+
+### OpenEverest: the contract stamp
+
+OpenEverest core and its extensions share a contract: the CRDs, the HTTP API
+and the conventions extensions rely on. Its version is the OpenEverest release
+that last changed it, and each OpenEverest release accepts extensions built
+against a window of contract versions, from a minimum up to its own.
+
+The [provider SDK](https://github.com/openeverest/provider-sdk) records the
+contract version of the OpenEverest a provider is built against in the chart's
+`Chart.yaml` when you run `provider-sdk generate`:
+
+```yaml
+annotations:
+  openeverest.io/contract-version: 2.0.0-alpha.1
+```
+
+Do not edit it, and do not write version ranges: the stamp is a single
+version, and every installer compares it with the window of the cluster it
+installs into. To support a newer OpenEverest, update the OpenEverest
+dependency, regenerate and release a new chart.
+
+The build-index workflow reads the stamp of every release in every channel
+from the registry (from the chart's OCI config blob, so nothing is downloaded)
+and publishes it as `releases[].contractVersion` in `index.json`. Installers
+offer the newest release that is compatible with the cluster, and tell users
+which OpenEverest version an incompatible release needs.
+
+- A chart without the annotation is listed without `contractVersion`.
+  Installers show it as "compatibility not declared" and let users install it
+  with a notice. Plugins and integrations, which are not built with the
+  provider SDK, are in this situation until their tooling writes the stamp.
+- A stamp ending in `dev`, such as `2.0.0-alpha.1.dev` or `2.0.1-dev`, means
+  the chart was built against an OpenEverest that is not released yet. Such
+  releases are left out of the index, and the validate workflow fails when a
+  channel's `version` points at one: rebuild against a released OpenEverest
+  first. A stamp that is not a SemVer version is treated the same way.
+
+### Kubernetes: `kubeVersion`
+
+Declare the Kubernetes versions your chart supports with `kubeVersion` in
+`Chart.yaml`. Helm enforces it at install time, and the hub copies it into
+each release as `releases[].kubeVersion` (the index build warns when a channel
+head has none). Use a lower bound only, with the `-0` suffix:
+
+```yaml
+kubeVersion: ">=1.32.0-0"
+```
+
+- **No upper bound.** A bound such as `<1.35` refuses every cluster released
+  after your chart, even when nothing broke, and Helm offers no way to skip
+  the check.
+- **Keep `-0`.** Managed Kubernetes reports versions such as
+  `v1.33.1-gke.100` or `v1.32.3-eks-bc803b4`, which SemVer treats as
+  pre-releases. A range without a pre-release part, such as `>=1.32.0`, never
+  matches them, so Helm would refuse to install on GKE or EKS.
 
 ## Plugin slug vs chart name
 

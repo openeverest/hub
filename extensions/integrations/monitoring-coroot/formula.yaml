@@ -38,11 +38,6 @@ spec:
       requires:
         connection: true
 
-  compatibility:
-    # Also needs the monitoring connection sources API
-    # (https://github.com/openeverest/openeverest/pull/3502).
-    openeverest: ">=2.0.0-dev.5"
-
   artifacts:
     chart:
       defaultChannel: stable

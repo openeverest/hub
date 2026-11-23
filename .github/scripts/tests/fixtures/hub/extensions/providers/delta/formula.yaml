@@ -1,0 +1,17 @@
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+metadata:
+  name: delta
+  type: provider
+  displayName: "delta"
+  description: Test fixture.
+  license: Apache-2.0
+  maintainers:
+    - github: openeverest
+  access: gated
+spec:
+  provider:
+    providerName: delta
+    supportedEngines: [mssql]
+  gated:
+    contactUrl: https://example.com/contact
