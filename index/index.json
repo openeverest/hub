@@ -927,7 +927,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/provider-neo4j",
-              "version": "0.1.0"
+              "version": "0.1.1"
             }
           },
           "defaultChannel": "stable"
@@ -2211,7 +2211,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-11-23T22:37:36+03:00",
+    "generatedAt": "2026-11-23T22:41:47+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 30
   }
