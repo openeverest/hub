@@ -86,7 +86,7 @@ release() {
 
 echo "== SemVer"
 
-ORDER='["2.0.0-alpha.1", "2.0.0-alpha.1.1", "2.0.0-alpha.1.dev", "2.0.0-alpha.2", "2.0.0-beta.1", "2.0.0-dev.4", "2.0.0-rc.1", "2.0.0", "2.0.1-dev", "2.0.1", "2.1.0-alpha.1"]'
+ORDER='["2.0.0-alpha.1", "2.0.0-alpha.1.1", "2.0.0-alpha.1.next", "2.0.0-alpha.2", "2.0.0-beta.1", "2.0.0-dev.4", "2.0.0-rc.1", "2.0.0", "2.0.1", "2.1.0-alpha.0", "2.1.0-alpha.1"]'
 expect "order vectors sort ascending" "true" \
   "$(lib "$ORDER as \$o | (\$o | reverse | sort_by(semver_key)) == \$o")"
 expect "order vectors compare pairwise" "[-1]" \
@@ -97,8 +97,8 @@ expect "invalid versions are rejected" "[]" \
   "$(lib '["", "v2.0.0", "2.0", "2", "2.0.0-", "02.0.0", "2.0.0-alpha..1", "2.0.0-01", "latest", ">=2.0.0", null, 2] | map(select(semver_valid))')"
 expect "valid versions are accepted" "[]" \
   "$(lib '["0.0.0", "1.0.0-0", "1.0.0-0a", "1.0.0-x-y.z", "1.0.0+build.1", "1.0.0-rc.1+build.01"] | map(select(semver_valid | not))')"
-expect "development values end in dev" '[true,true,false,false,false,false]' \
-  "$(lib '["2.0.0-alpha.1.dev", "2.0.1-dev", "2.0.0-dev.4", "2.0.0", "2.0.0-alpha.1.dev.1", "latest"] | map(is_dev_version)')"
+expect "development values end in next or are exactly alpha.0" '["2.0.0-alpha.1.next","2.0.0-alpha.1.1.next","2.0.0-next","2.1.0-alpha.0","3.0.0-alpha.0"]' \
+  "$(lib '["2.0.0-alpha.1.next", "2.0.0-alpha.1.1.next", "2.0.0-next", "2.1.0-alpha.0", "3.0.0-alpha.0", "2.0.0-alpha.1", "2.0.0-dev.4", "2.0.0-alpha.1.dev", "2.0.1-dev", "2.0.0-alpha.1.next.1", "2.1.0-alpha.0.1", "2.1.0-alpha.1", "2.0.0", "latest", "v2.1.0-alpha.0", "2.1.0-alpha.00", ""] | map(select(is_development))')"
 
 echo "== Channel membership"
 
@@ -148,7 +148,7 @@ expect_no_line "an unchanged digest is served from the previous index" "$WORK/fi
 expect_no_line "tags above the head are not read" "$WORK/first.calls" "registry.test/charts/alpha:0.4.0"
 expect_no_line "pre-release tags are not read for a stable head" "$WORK/first.calls" "registry.test/charts/alpha:0.3.0-rc.1"
 expect_line "a development stamp is left out" "$WORK/first.log" \
-  "warning: alpha [stable]: 0.1.0 was built against an unreleased OpenEverest (2.0.0-alpha.1.dev); left out of the index"
+  "warning: alpha [stable]: 0.1.0 was built against an unreleased OpenEverest (2.0.0-alpha.1.next); left out of the index"
 
 expect "unreachable registry keeps the previous releases up to the head" '["1.0.0","0.9.0"]' "$(releases first bravo stable)"
 expect "kept releases keep their data" \
@@ -173,9 +173,11 @@ expect_no_line "a head with kubeVersion does not warn" "$WORK/first.log" "charli
 expect "gated entry has no artifacts" "false" \
   "$(jq '.extensions[] | select(.name == "delta") | has("artifacts")' "$WORK/first.json")"
 
-expect "dev-stamped head and invalid stamps are left out" '["0.8.0"]' "$(releases first echo stable)"
-expect_line "dev-stamped head warns" "$WORK/first.log" \
-  "warning: echo [stable]: 1.0.0 was built against an unreleased OpenEverest (2.0.1-dev)"
+expect "development-stamped head and invalid stamps are left out" '["0.8.0"]' "$(releases first echo stable)"
+expect "an older core release name such as 2.0.0-dev.4 is not a development value" '"2.0.0-dev.4"' \
+  "$(release first echo stable 0.8.0 | jq -c .contractVersion)"
+expect_line "development-stamped head warns" "$WORK/first.log" \
+  "warning: echo [stable]: 1.0.0 was built against an unreleased OpenEverest (2.1.0-alpha.0)"
 expect_line "invalid stamp warns" "$WORK/first.log" \
   'warning: echo [stable]: 0.9.0 carries an invalid openeverest.io/contract-version ">=2.0.0"'
 expect "non-SemVer head lists no releases" '[]' "$(releases first foxtrot stable)"
@@ -215,8 +217,8 @@ expect "rebuild only reads metadata it could not cache" \
 echo "== Strict mode"
 
 expect "strict build fails" "1" "$(build strict --strict)"
-expect_line "strict: dev-stamped head is an error" "$WORK/strict.log" \
-  "error: echo [stable]: 1.0.0 was built against an unreleased OpenEverest (2.0.1-dev)"
+expect_line "strict: development-stamped head is an error" "$WORK/strict.log" \
+  "error: echo [stable]: 1.0.0 was built against an unreleased OpenEverest (2.1.0-alpha.0)"
 expect_line "strict: non-SemVer head is an error" "$WORK/strict.log" \
   'error: foxtrot [stable]: version "latest" is not a SemVer 2.0.0 version'
 expect_line "strict: older releases only warn" "$WORK/strict.log" \

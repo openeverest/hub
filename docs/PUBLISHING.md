@@ -206,11 +206,20 @@ which OpenEverest version an incompatible release needs.
   Installers show it as "compatibility not declared" and let users install it
   with a notice. Plugins and integrations, which are not built with the
   provider SDK, are in this situation until their tooling writes the stamp.
-- A stamp ending in `dev`, such as `2.0.0-alpha.1.dev` or `2.0.1-dev`, means
-  the chart was built against an OpenEverest that is not released yet. Such
-  releases are left out of the index, and the validate workflow fails when a
-  channel's `version` points at one: rebuild against a released OpenEverest
-  first. A stamp that is not a SemVer version is treated the same way.
+- A stamp whose last pre-release identifier is `next`, such as
+  `2.0.0-alpha.1.next`, or whose pre-release is exactly `alpha.0`, such as
+  `2.1.0-alpha.0`, is a development value: the chart was built against an
+  OpenEverest that is not released yet. OpenEverest's `main` branch carries
+  one between releases, sorting after the last release and before any release
+  that can follow it: `2.0.0-alpha.1.next` after the pre-release
+  `2.0.0-alpha.1` (SemVer fits nothing else between two pre-releases), and
+  `2.1.0-alpha.0` after the release `2.0.0`, because `main` builds the next
+  minor. No OpenEverest release is ever named `X.Y.Z-alpha.0`. Releases
+  stamped with a development value are left out of the index, and the validate
+  workflow fails when a channel's `version` points at one: rebuild against a
+  released OpenEverest first. A stamp that is not a SemVer version is treated
+  the same way. Older OpenEverest release names such as `2.0.0-dev.4` are
+  ordinary releases, not development values.
 
 ### Kubernetes: `kubeVersion`
 

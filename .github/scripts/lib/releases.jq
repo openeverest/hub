@@ -51,10 +51,20 @@ def semver_cmp($a; $b):
 
 def is_prerelease: (semver_parse.pre // []) | length > 0;
 
-# The value core uses between releases: the pre-release ends with the
-# identifier "dev" (2.0.0-alpha.1.dev after 2.0.0-alpha.1, 2.0.1-dev after
-# 2.0.0). A chart stamped with one was built against an unreleased core.
-def is_dev_version: ((semver_parse.pre // []) | last) == "dev";
+# A development value: what core's main branch carries between releases. It
+# sorts after the last release R and before any release that can follow R:
+# - after a pre-release, R.next (2.0.0-alpha.1.next): SemVer fits only
+#   R.<more> between two pre-releases, which is also how Go pseudo-versions
+#   and Kubernetes CI builds write a build after a pre-release. The marker is
+#   "next", not "dev": "dev" means "before" to PEP 440 and Maven, and
+#   2.0.0-dev.N are real releases, so they are not development values;
+# - after a release, the next minor's alpha.0 (2.1.0-alpha.0): main builds
+#   the next minor, and Kubernetes tags master the same way at each
+#   release-branch cut. No release is ever named alpha.0.
+# A chart stamped with one was built against an unreleased core.
+def is_development:
+  semver_parse as $v
+  | $v != null and (($v.pre | last) == "next" or $v.pre == ["alpha", "0"]);
 
 # OCI tags cannot contain "+", so Helm pushes chart 1.0.0+build as tag
 # 1.0.0_build.
@@ -172,7 +182,7 @@ def resolve_channel($ctx):
           | if $r.contractVersion == null then {release: $r}
             elif ($r.contractVersion | semver_valid | not) then
               {message: msg($level; "\($r.version) carries an invalid \(contract_annotation) \"\($r.contractVersion)\" (not SemVer 2.0.0); left out of the index")}
-            elif ($r.contractVersion | is_dev_version) then
+            elif ($r.contractVersion | is_development) then
               {message: msg($level; "\($r.version) was built against an unreleased OpenEverest (\($r.contractVersion)); left out of the index. Publish a chart built against a released OpenEverest")}
             else {release: $r}
             end ] as $checked
