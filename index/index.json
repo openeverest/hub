@@ -1917,7 +1917,7 @@
           "channels": {
             "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/plugin-user-management",
-              "version": "0.2.7"
+              "version": "0.2.8"
             }
           },
           "defaultChannel": "stable"
@@ -2211,7 +2211,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-11-23T22:41:47+03:00",
+    "generatedAt": "2026-11-24T13:11:59+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 30
   }
