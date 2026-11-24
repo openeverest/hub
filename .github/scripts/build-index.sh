@@ -31,6 +31,13 @@
 # read again, and when a chart's registry cannot be reached its previous
 # releases are kept, with a warning, instead of dropped.
 #
+# Every entry also records who publishes it (see lib/publisher.jq and
+# docs/PUBLISHING.md): `publisher` is the GitHub account that owns the
+# formula's sourceRepo, or else the ghcr.io namespace of its charts, and is
+# omitted when neither is on GitHub; `thirdParty` is false only when the
+# publisher is openeverest and every artifact is under ghcr.io/openeverest.
+# Sources that disagree are reported with a warning.
+#
 # Output is deterministic for a given registry state: extensions are sorted by
 # name, releases by SemVer precedence, and jq is invoked with --sort-keys.
 #
@@ -269,8 +276,12 @@ for f in "${formulas[@]}"; do
   files+=("$(jq -c --arg file "$rel_path" '{(.name): $file}' <<< "$entry")")
 done
 
-printf '%s\n' "${entries[@]}" | jq -s '.' > "$WORK_DIR/entries.json"
 printf '%s\n' "${files[@]}" | jq -s 'add // {}' > "$WORK_DIR/files.json"
+# Record who publishes each entry; see lib/publisher.jq.
+printf '%s\n' "${entries[@]}" \
+  | jq -s -L "$LIB_DIR" --slurpfile files "$WORK_DIR/files.json" \
+      'include "publisher"; attribute_entries($files[0])' > "$WORK_DIR/publishers.json"
+jq '.extensions' "$WORK_DIR/publishers.json" > "$WORK_DIR/entries.json"
 
 # ---------------------------------------------------------------------------
 # 2. Previous index -> release cache
@@ -326,10 +337,12 @@ while IFS=$'\t' read -r level file text; do
   [[ -z "$level" ]] && continue
   annotate "$level" "$file" "$text"
   [[ "$level" == "error" ]] && errors=$((errors + 1))
-done < <(jq -r '.messages[] | [.level, .file, .text] | @tsv' "$WORK_DIR/assembled.json")
+done < <(jq -r '.messages[] | [.level, .file, .text] | @tsv' "$WORK_DIR/publishers.json" "$WORK_DIR/assembled.json")
 
 jq -r '.stats | "Listed releases for \(.channels) chart channel(s); \(.stampedHeads) channel head(s) carry an OpenEverest contract stamp."' \
   "$WORK_DIR/assembled.json" >&2
+jq -r '.extensions | "\(map(select(.thirdParty | not)) | length) extension(s) published by OpenEverest, \(map(select(.thirdParty)) | length) third-party."' \
+  "$WORK_DIR/publishers.json" >&2
 
 # Stitch them together into the index document.
 index_json=$(jq -n --sort-keys \

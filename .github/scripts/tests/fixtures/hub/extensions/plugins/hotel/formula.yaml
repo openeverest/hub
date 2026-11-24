@@ -1,0 +1,26 @@
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+metadata:
+  name: hotel
+  type: plugin
+  displayName: "hotel"
+  description: Test fixture published outside the openeverest organisation.
+  sourceRepo: https://github.com/ExampleOrg/plugin-hotel
+  license: Apache-2.0
+  maintainers:
+    - github: exampleorg
+spec:
+  plugin:
+    contributes:
+      ui: true
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/exampleorg/charts/hotel
+          version: "1.0.0"
+  install:
+    helm:
+      releaseName: hotel
+      namespace: everest-system

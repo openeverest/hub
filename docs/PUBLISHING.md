@@ -92,7 +92,7 @@ See [`schemas/formula-v1.json`](../schemas/formula-v1.json) for the full schema.
 | `metadata.license` | yes | Valid [SPDX identifier](https://spdx.org/licenses/). |
 | `metadata.maturity` | optional | Author-declared lifecycle stage: `alpha` \| `beta` \| `stable` \| `deprecated`. Defaults to `alpha` when omitted. Independent of channels (release cadence) and of operational health. |
 | `metadata.maintainers` | yes | At least one entry; `github` handle is required. |
-| `metadata.sourceRepo` | recommended | Public source repository URL. |
+| `metadata.sourceRepo` | recommended | Public source repository URL. On `github.com`, its owner becomes the entry's publisher; see [Publisher](#publisher). |
 | `metadata.icon` | yes | Relative path to a logo file in this directory (e.g., `./logo.svg` or `./icon.png`). Must be `svg`, `png`, `jpg`, `jpeg`, `webp`, or `gif` and the file must be committed alongside `formula.yaml`. The build-index workflow expands this to a fully-qualified `raw.githubusercontent.com` URL in `index.json`. |
 | `spec.provider` / `spec.plugin` / `spec.integration` | yes | Exactly one, matching `metadata.type`. |
 | `spec.integration.area` | yes (integrations) | Integration area. Only `monitoring` today; the area selects the area-specific block below. |
@@ -230,6 +230,37 @@ kubeVersion: ">=1.32.0-0"
   `v1.33.1-gke.100` or `v1.32.3-eks-bc803b4`, which SemVer treats as
   pre-releases. A range without a pre-release part, such as `>=1.32.0`, never
   matches them, so Helm would refuse to install on GKE or EKS.
+
+## Publisher
+
+Every entry in `index.json` records who publishes it, so installers and
+admins can tell the extensions that follow OpenEverest's release process from
+third-party ones, which release on their own schedule. A third-party
+extension must not be able to hold back an OpenEverest upgrade.
+
+Formulas do not declare it. The build-index workflow derives it from the
+formula:
+
+- `publisher` is the GitHub account that owns `metadata.sourceRepo`. When the
+  source is not on `github.com`, it is the namespace of the extension's charts
+  on `ghcr.io` (`oci://ghcr.io/<account>/…`), since GHCR namespaces are
+  GitHub accounts too. It is omitted when neither is on GitHub.
+- `thirdParty` is `false` only when `publisher` is `openeverest` **and** every
+  artifact is published under `oci://ghcr.io/openeverest/`, where OpenEverest
+  releases its charts. Every other entry, including one without a
+  `publisher`, is third-party.
+
+```json
+{"name": "plugin-audit", "publisher": "solanicaio", "thirdParty": true, …}
+```
+
+Both values come from fields the author writes, so the build warns when they
+disagree: a `sourceRepo` owned by one account with a chart under another
+account's `ghcr.io` namespace, or an `openeverest` `sourceRepo` with a chart
+outside `ghcr.io/openeverest`. Such an entry keeps the `sourceRepo` owner as
+its publisher but is always listed as third-party, so pointing `sourceRepo` at
+an OpenEverest repository does not make an extension OpenEverest's own.
+Reviewers should resolve the warning before merging.
 
 ## Plugin slug vs chart name
 

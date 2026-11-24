@@ -8,6 +8,7 @@ metadata:
   license: Apache-2.0
   maintainers:
     - github: openeverest
+  sourceRepo: https://github.com/openeverest/provider-alpha
 spec:
   provider:
     providerName: alpha

@@ -77,5 +77,37 @@
         "config": {"apiVersion": "v2", "name": "foxtrot", "version": "0.1.0"}
       }
     }
+  },
+  "ghcr.io/openeverest/charts/golf": {
+    "tags": {
+      "1.0.0": {
+        "digest": "sha256:golf-1.0.0",
+        "config": {"apiVersion": "v2", "name": "golf", "version": "1.0.0", "kubeVersion": ">=1.32.0-0", "annotations": {"openeverest.io/contract-version": "2.0.0-alpha.1"}}
+      }
+    }
+  },
+  "ghcr.io/exampleorg/charts/hotel": {
+    "tags": {
+      "1.0.0": {
+        "digest": "sha256:hotel-1.0.0",
+        "config": {"apiVersion": "v2", "name": "hotel", "version": "1.0.0", "kubeVersion": ">=1.32.0-0", "annotations": {"openeverest.io/contract-version": "2.0.0-alpha.1"}}
+      }
+    }
+  },
+  "ghcr.io/exampleorg/charts/india": {
+    "tags": {
+      "1.0.0": {
+        "digest": "sha256:india-1.0.0",
+        "config": {"apiVersion": "v2", "name": "india", "version": "1.0.0", "kubeVersion": ">=1.32.0-0", "annotations": {"openeverest.io/contract-version": "2.0.0-alpha.1"}}
+      }
+    }
+  },
+  "ghcr.io/openeverest/charts/juliet": {
+    "tags": {
+      "1.0.0": {
+        "digest": "sha256:juliet-1.0.0",
+        "config": {"apiVersion": "v2", "name": "juliet", "version": "1.0.0", "kubeVersion": ">=1.32.0-0", "annotations": {"openeverest.io/contract-version": "2.0.0-alpha.1"}}
+      }
+    }
   }
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Tests for build-index.sh and lib/releases.jq. Runs offline: a fake crane
+# Tests for build-index.sh, lib/releases.jq and lib/publisher.jq. Runs offline: a fake crane
 # (fixtures/fake-crane) serves the charts described in fixtures/registry.json,
 # and fixtures/hub is a miniature hub whose index/index.json plays the
 # previous index.
@@ -43,8 +43,10 @@ expect_no_line() {
   if grep -qF -- "$3" "$2"; then fail "$1"; printf '      unexpected: %s\n' "$3"; else pass "$1"; fi
 }
 
-# lib EXPR: evaluate a jq expression with the releases library loaded.
+# lib EXPR / publib EXPR: evaluate a jq expression with the releases or the
+# publisher library loaded.
 lib() { jq -nc -L "${SCRIPTS_DIR}/lib" "include \"releases\"; $1"; }
+publib() { jq -ncS -L "${SCRIPTS_DIR}/lib" "include \"publisher\"; $1"; }
 
 # build NAME [ARGS...]: run the builder against the fixtures, writing
 # $WORK/NAME.json, its stderr to $WORK/NAME.log and the crane calls to
@@ -68,6 +70,11 @@ releases() {
   jq -c --arg ext "$2" --arg ch "$3" \
     '.extensions[] | select(.name == $ext) | .artifacts.chart.channels[$ch].releases | map(.version)' \
     "$WORK/$1.json"
+}
+
+# attribution NAME EXTENSION: an entry's publisher and thirdParty.
+attribution() {
+  jq -c --arg ext "$2" '.extensions[] | select(.name == $ext) | {publisher, thirdParty}' "$WORK/$1.json"
 }
 
 # release NAME EXTENSION CHANNEL VERSION: one release object.
@@ -101,10 +108,28 @@ expect "pre-release head collects pre-release tags up to the head" '["0.7.0-rc.2
   "$(lib '["0.6.0", "0.7.0-rc.1", "0.7.0-rc.2", "0.7.0-rc.10", "0.7.0", "0.6.0-beta.1"] | channel_versions("0.7.0-rc.2")')"
 expect "non-SemVer head collects nothing" '[]' "$(lib '["0.1.0"] | channel_versions("latest")')"
 
+echo "== Publisher"
+
+expect "sourceRepo owners are read from github.com only, lowercased" \
+  '["openeverest","exampleorg","exampleorg",null,null,null,null,null]' \
+  "$(publib '["https://github.com/openeverest/provider-x", "https://GitHub.com/ExampleOrg/x", "https://github.com/exampleorg", "https://gitlab.com/openeverest/x", "https://github.com.example.com/openeverest/x", "https://notgithub.com/openeverest/x", "", null] | map(github_owner)')"
+expect "chart namespaces are read from ghcr.io only, lowercased" \
+  '["openeverest","exampleorg",null,null,null]' \
+  "$(publib '["oci://ghcr.io/openeverest/charts/x", "oci://GHCR.io/ExampleOrg/x", "oci://ghcr.io.example.com/openeverest/x", "oci://docker.io/openeverest/x", null] | map(ghcr_owner)')"
+expect "frontend artifacts count too" \
+  '{"messages":["publisher \"openeverest\" from metadata.sourceRepo (github.com/openeverest) disagrees with oci://ghcr.io/exampleorg/ui, published under ghcr.io/exampleorg; listed as third-party"],"publisher":"openeverest","thirdParty":true}' \
+  "$(publib '{sourceRepo: "https://github.com/openeverest/x", artifacts: {chart: {channels: {stable: {ref: "oci://ghcr.io/openeverest/charts/x"}}}, frontend: {channels: {stable: {ref: "oci://ghcr.io/exampleorg/ui"}}}}} | attribute')"
+expect "without sourceRepo, chart namespaces that disagree are reported" \
+  '{"messages":["publisher \"exampleorg\" from oci://ghcr.io/exampleorg/charts/x disagrees with oci://ghcr.io/openeverest/charts/x, published under ghcr.io/openeverest; listed as third-party"],"publisher":"exampleorg","thirdParty":true}' \
+  "$(publib '{sourceRepo: "", artifacts: {chart: {channels: {stable: {ref: "oci://ghcr.io/openeverest/charts/x"}, edge: {ref: "oci://ghcr.io/exampleorg/charts/x"}}}}} | attribute')"
+expect "a third party's own namespace on another registry is not reported" \
+  '{"messages":[],"publisher":"exampleorg","thirdParty":true}' \
+  "$(publib '{sourceRepo: "https://github.com/exampleorg/x", artifacts: {chart: {channels: {stable: {ref: "oci://quay.io/example/x"}}}}} | attribute')"
+
 echo "== Build"
 
 expect "build exits 0" "0" "$(build first)"
-expect "every formula is indexed" "6" "$(jq '.extensions | length' "$WORK/first.json")"
+expect "every formula is indexed" "11" "$(jq '.extensions | length' "$WORK/first.json")"
 expect "no hand-written compatibility is emitted" "0" \
   "$(jq '[.extensions[] | select(has("compatibility"))] | length' "$WORK/first.json")"
 expect "channel keeps ref and version, gains head" \
@@ -157,6 +182,27 @@ expect "non-SemVer head lists no releases" '[]' "$(releases first foxtrot stable
 expect_line "non-SemVer head warns" "$WORK/first.log" \
   'warning: foxtrot [stable]: version "latest" is not a SemVer 2.0.0 version'
 
+expect "openeverest sourceRepo and chart: published by OpenEverest" '{"publisher":"openeverest","thirdParty":false}' \
+  "$(attribution first golf)"
+expect "outside the organisation: third-party" '{"publisher":"exampleorg","thirdParty":true}' "$(attribution first hotel)"
+expect_no_line "an entry whose sources agree is not reported" "$WORK/first.log" "hotel: publisher"
+expect "sourceRepo and chart disagree: sourceRepo names the publisher, third-party" \
+  '{"publisher":"openeverest","thirdParty":true}' "$(attribution first india)"
+expect_line "sourceRepo and chart disagree: warns" "$WORK/first.log" \
+  'warning: india: publisher "openeverest" from metadata.sourceRepo (github.com/openeverest) disagrees with oci://ghcr.io/exampleorg/charts/india, published under ghcr.io/exampleorg; listed as third-party'
+expect "no sourceRepo: the chart namespace names the publisher" '{"publisher":"openeverest","thirdParty":false}' \
+  "$(attribution first juliet)"
+expect "openeverest sourceRepo with a chart outside ghcr.io/openeverest: third-party" \
+  '{"publisher":"openeverest","thirdParty":true}' "$(attribution first alpha)"
+expect_line "openeverest sourceRepo with a chart outside ghcr.io/openeverest: warns" "$WORK/first.log" \
+  'warning: alpha: oci://registry.test/charts/alpha is not published under ghcr.io/openeverest, where OpenEverest publishes its charts; listed as third-party'
+expect "nothing on GitHub: no publisher, third-party" '{"publisher":null,"thirdParty":true}' "$(attribution first kilo)"
+expect "an unknown publisher is omitted from the entry" "false" \
+  "$(jq '.extensions[] | select(.name == "kilo") | has("publisher")' "$WORK/first.json")"
+expect "no sourceRepo and no GitHub chart: no publisher, third-party" '{"publisher":null,"thirdParty":true}' \
+  "$(attribution first bravo)"
+expect "only disagreements are reported" "2" "$(grep -c ': publisher "\|is not published under ghcr.io' "$WORK/first.log")"
+
 echo "== Rebuild from the new index"
 
 cp "$WORK/first.json" "$WORK/previous.json"
@@ -175,7 +221,7 @@ expect_line "strict: non-SemVer head is an error" "$WORK/strict.log" \
   'error: foxtrot [stable]: version "latest" is not a SemVer 2.0.0 version'
 expect_line "strict: older releases only warn" "$WORK/strict.log" \
   "warning: echo [stable]: 0.9.0 carries an invalid"
-expect "strict: the index is still written" "6" "$(jq '.extensions | length' "$WORK/strict.json")"
+expect "strict: the index is still written" "11" "$(jq '.extensions | length' "$WORK/strict.json")"
 
 echo "== Offline"
 
@@ -183,6 +229,7 @@ expect "offline build exits 0" "0" "$(HUB_OFFLINE=1 build offline)"
 expect "offline build makes no registry calls" "0" "$(wc -l < "$WORK/offline.calls" | tr -d ' ')"
 expect "offline build keeps the previous releases" '["0.3.0","0.2.0"]' "$(releases offline alpha stable)"
 expect_no_line "offline build does not warn per channel" "$WORK/offline.log" "could not list the tags"
+expect "offline build still records publishers" '{"publisher":"exampleorg","thirdParty":true}' "$(attribution offline hotel)"
 
 echo
 if (( failures > 0 )); then

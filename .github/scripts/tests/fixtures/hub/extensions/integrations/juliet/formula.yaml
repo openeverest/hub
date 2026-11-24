@@ -1,0 +1,27 @@
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+metadata:
+  name: juliet
+  type: integration
+  displayName: "juliet"
+  description: Test fixture without a sourceRepo.
+  license: Apache-2.0
+  maintainers:
+    - github: openeverest
+spec:
+  integration:
+    area: monitoring
+    monitoring:
+      classes: [juliet]
+      executionModes: [ExtensionManaged]
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/openeverest/charts/juliet
+          version: "1.0.0"
+  install:
+    helm:
+      releaseName: juliet
+      namespace: everest-system

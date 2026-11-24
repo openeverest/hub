@@ -52,6 +52,12 @@ does not declare it. Installers should offer the newest release whose
 `contractVersion` the cluster's OpenEverest accepts, rather than only the
 head. See [docs/PUBLISHING.md](docs/PUBLISHING.md#compatibility).
 
+Every entry also records its `publisher`, the GitHub account that owns its
+`sourceRepo` (or else the `ghcr.io` namespace of its charts), and
+`thirdParty`, which is `false` only for extensions published by the
+openeverest organisation. Both are derived from the formula, not declared in
+it. See [docs/PUBLISHING.md](docs/PUBLISHING.md#publisher).
+
 ## Repository layout
 
 ```
@@ -88,6 +94,7 @@ hub/
         ├── validate-extensions.sh
         ├── build-index.sh
         ├── lib/releases.jq       # SemVer + channel rules used by build-index.sh
+        ├── lib/publisher.jq      # publisher / thirdParty rules used by build-index.sh
         └── tests/                # offline tests for build-index.sh
 ```
 
