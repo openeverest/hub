@@ -1,0 +1,18 @@
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+metadata:
+  name: kilo
+  type: provider
+  displayName: "kilo"
+  description: Test fixture whose source is not on GitHub and that publishes no artifact.
+  sourceRepo: https://gitlab.com/openeverest/provider-kilo
+  license: Apache-2.0
+  maintainers:
+    - github: openeverest
+  access: gated
+spec:
+  provider:
+    providerName: kilo
+    supportedEngines: [mssql]
+  gated:
+    contactUrl: https://example.com/contact

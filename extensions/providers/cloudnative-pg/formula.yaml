@@ -34,9 +34,6 @@ spec:
     supportedEngines:
       - postgresql
 
-  compatibility:
-    openeverest: "2.0.0-alpha.1"
-
   capabilities:
     ha: true
     monitoring: true

@@ -1,0 +1,25 @@
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+metadata:
+  name: echo
+  type: provider
+  displayName: "echo"
+  description: Test fixture.
+  license: Apache-2.0
+  maintainers:
+    - github: openeverest
+spec:
+  provider:
+    providerName: echo
+    supportedEngines: [mysql]
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://registry.test/charts/echo
+          version: "1.0.0"
+  install:
+    helm:
+      releaseName: echo
+      namespace: everest-system

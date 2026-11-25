@@ -35,6 +35,29 @@ https://raw.githubusercontent.com/openeverest/hub/main/index/index.json
 
 It is committed to the repo, so you can also `curl` any branch/commit directly.
 
+Every chart channel lists, next to its `ref` and `version` (also repeated as
+`head`), the chart releases that belong to it, newest first:
+
+```json
+"releases": [
+  {"version": "0.6.0", "digest": "sha256:…", "contractVersion": "2.0.0-alpha.1", "kubeVersion": ">=1.32.0-0"},
+  {"version": "0.5.0", "digest": "sha256:…"}
+]
+```
+
+`contractVersion` is the OpenEverest contract version the release was built
+against (the chart's `openeverest.io/contract-version` annotation) and
+`kubeVersion` the chart's Kubernetes range; each is omitted when the chart
+does not declare it. Installers should offer the newest release whose
+`contractVersion` the cluster's OpenEverest accepts, rather than only the
+head. See [docs/PUBLISHING.md](docs/PUBLISHING.md#compatibility).
+
+Every entry also records its `publisher`, the GitHub account that owns its
+`sourceRepo` (or else the `ghcr.io` namespace of its charts), and
+`thirdParty`, which is `false` only for extensions published by the
+openeverest organisation. Both are derived from the formula, not declared in
+it. See [docs/PUBLISHING.md](docs/PUBLISHING.md#publisher).
+
 ## Repository layout
 
 ```
@@ -65,11 +88,14 @@ hub/
 │   └── PUBLISHING.md             # how to add an extension
 └── .github/
     ├── workflows/
-    │   ├── validate.yaml         # PR: schema + lint + index dry-run
+    │   ├── validate.yaml         # PR: schema + lint + index build (strict)
     │   └── build-index.yaml      # main: regenerate and commit index.json
     └── scripts/
         ├── validate-extensions.sh
-        └── build-index.sh
+        ├── build-index.sh
+        ├── lib/releases.jq       # SemVer + channel rules used by build-index.sh
+        ├── lib/publisher.jq      # publisher / thirdParty rules used by build-index.sh
+        └── tests/                # offline tests for build-index.sh
 ```
 
 ## Adding an extension

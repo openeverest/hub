@@ -42,9 +42,6 @@ spec:
       - sidebarItem
       - clusterDetailTab
 
-  compatibility:
-    openeverest: ">=2.0.0-dev.4"
-
   artifacts:
     chart:
       defaultChannel: stable

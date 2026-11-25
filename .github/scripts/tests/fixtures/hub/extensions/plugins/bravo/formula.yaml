@@ -1,0 +1,25 @@
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+metadata:
+  name: bravo
+  type: plugin
+  displayName: "bravo"
+  description: Test fixture.
+  license: Apache-2.0
+  maintainers:
+    - github: openeverest
+spec:
+  plugin:
+    contributes:
+      backend: true
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://registry.test/charts/bravo
+          version: "1.0.0"
+  install:
+    helm:
+      releaseName: bravo
+      namespace: everest-system

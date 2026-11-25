@@ -40,9 +40,6 @@ spec:
       requires:
         connection: true
 
-  compatibility:
-    openeverest: ">=2.0.0-alpha.1"
-
   artifacts:
     chart:
       defaultChannel: stable

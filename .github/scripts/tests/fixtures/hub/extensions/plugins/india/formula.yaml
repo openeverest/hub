@@ -1,0 +1,26 @@
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+metadata:
+  name: india
+  type: plugin
+  displayName: "india"
+  description: Test fixture whose sourceRepo and chart name different publishers.
+  sourceRepo: https://github.com/openeverest/plugin-india
+  license: Apache-2.0
+  maintainers:
+    - github: exampleorg
+spec:
+  plugin:
+    contributes:
+      ui: true
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/exampleorg/charts/india
+          version: "1.0.0"
+  install:
+    helm:
+      releaseName: india
+      namespace: everest-system

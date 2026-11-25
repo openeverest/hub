@@ -1,0 +1,113 @@
+{
+  "registry.test/charts/alpha": {
+    "tags": {
+      "0.1.0": {
+        "digest": "sha256:alpha-0.1.0",
+        "config": {"apiVersion": "v2", "name": "alpha", "version": "0.1.0", "annotations": {"openeverest.io/contract-version": "2.0.0-alpha.1.next"}}
+      },
+      "0.2.0": {
+        "digest": "sha256:alpha-0.2.0",
+        "config": {"apiVersion": "v2", "name": "alpha", "version": "0.2.0"}
+      },
+      "0.2.1_build.7": {
+        "digest": "sha256:alpha-0.2.1",
+        "config": {"apiVersion": "v2", "name": "alpha", "version": "0.2.1+build.7", "kubeVersion": ">=1.30.0-0", "annotations": {"openeverest.io/contract-version": "2.0.0-alpha.1"}}
+      },
+      "0.3.0-rc.1": {
+        "digest": "sha256:alpha-0.3.0-rc.1",
+        "config": {"apiVersion": "v2", "name": "alpha", "version": "0.3.0-rc.1"}
+      },
+      "0.3.0": {
+        "digest": "sha256:alpha-0.3.0",
+        "config": {"apiVersion": "v2", "name": "alpha", "version": "0.3.0", "kubeVersion": ">=1.32.0-0", "annotations": {"example.com/other": "kept out", "openeverest.io/contract-version": "2.0.0-alpha.2"}}
+      },
+      "0.4.0": {
+        "digest": "sha256:alpha-0.4.0",
+        "config": {"apiVersion": "v2", "name": "alpha", "version": "0.4.0"}
+      },
+      "latest": {
+        "digest": "sha256:alpha-0.4.0",
+        "config": {"apiVersion": "v2", "name": "alpha", "version": "0.4.0"}
+      }
+    }
+  },
+  "registry.test/charts/bravo": null,
+  "registry.test/charts/charlie": {
+    "tags": {
+      "0.1.0-beta.1": {"error": "GET https://registry.test/v2/charts/charlie/manifests/0.1.0-beta.1: 503 Service Unavailable"},
+      "0.1.0": {
+        "digest": "sha256:charlie-0.1.0",
+        "config": {"apiVersion": "v2", "name": "charlie", "version": "0.1.0", "annotations": {"openeverest.io/contract-version": "2.0.0-alpha.1"}}
+      },
+      "0.2.0-rc.1": {"error": "GET https://registry.test/v2/charts/charlie/manifests/0.2.0-rc.1: 503 Service Unavailable"},
+      "0.2.0-rc.2": {
+        "digest": "sha256:charlie-0.2.0-rc.2",
+        "config": {"apiVersion": "v2", "name": "charlie", "version": "0.2.0-rc.2", "kubeVersion": ">=1.32.0-0", "annotations": {"openeverest.io/contract-version": "2.0.0-alpha.2"}}
+      },
+      "0.2.0-rc.10": {
+        "digest": "sha256:charlie-0.2.0-rc.10",
+        "config": {"apiVersion": "v2", "name": "charlie", "version": "0.2.0-rc.10"}
+      },
+      "0.2.0": {
+        "digest": "sha256:charlie-0.2.0",
+        "config": {"apiVersion": "v2", "name": "charlie", "version": "0.2.0"}
+      }
+    }
+  },
+  "registry.test/charts/echo": {
+    "tags": {
+      "0.8.0": {
+        "digest": "sha256:echo-0.8.0",
+        "config": {"apiVersion": "v2", "name": "echo", "version": "0.8.0", "kubeVersion": ">=1.32.0-0", "annotations": {"openeverest.io/contract-version": "2.0.0-dev.4"}}
+      },
+      "0.9.0": {
+        "digest": "sha256:echo-0.9.0",
+        "config": {"apiVersion": "v2", "name": "echo", "version": "0.9.0", "kubeVersion": ">=1.32.0-0", "annotations": {"openeverest.io/contract-version": ">=2.0.0"}}
+      },
+      "1.0.0": {
+        "digest": "sha256:echo-1.0.0",
+        "config": {"apiVersion": "v2", "name": "echo", "version": "1.0.0", "kubeVersion": ">=1.32.0-0", "annotations": {"openeverest.io/contract-version": "2.1.0-alpha.0"}}
+      }
+    }
+  },
+  "registry.test/charts/foxtrot": {
+    "tags": {
+      "latest": {
+        "digest": "sha256:foxtrot-latest",
+        "config": {"apiVersion": "v2", "name": "foxtrot", "version": "0.1.0"}
+      }
+    }
+  },
+  "ghcr.io/openeverest/charts/golf": {
+    "tags": {
+      "1.0.0": {
+        "digest": "sha256:golf-1.0.0",
+        "config": {"apiVersion": "v2", "name": "golf", "version": "1.0.0", "kubeVersion": ">=1.32.0-0", "annotations": {"openeverest.io/contract-version": "2.0.0-alpha.1"}}
+      }
+    }
+  },
+  "ghcr.io/exampleorg/charts/hotel": {
+    "tags": {
+      "1.0.0": {
+        "digest": "sha256:hotel-1.0.0",
+        "config": {"apiVersion": "v2", "name": "hotel", "version": "1.0.0", "kubeVersion": ">=1.32.0-0", "annotations": {"openeverest.io/contract-version": "2.0.0-alpha.1"}}
+      }
+    }
+  },
+  "ghcr.io/exampleorg/charts/india": {
+    "tags": {
+      "1.0.0": {
+        "digest": "sha256:india-1.0.0",
+        "config": {"apiVersion": "v2", "name": "india", "version": "1.0.0", "kubeVersion": ">=1.32.0-0", "annotations": {"openeverest.io/contract-version": "2.0.0-alpha.1"}}
+      }
+    }
+  },
+  "ghcr.io/openeverest/charts/juliet": {
+    "tags": {
+      "1.0.0": {
+        "digest": "sha256:juliet-1.0.0",
+        "config": {"apiVersion": "v2", "name": "juliet", "version": "1.0.0", "kubeVersion": ">=1.32.0-0", "annotations": {"openeverest.io/contract-version": "2.0.0-alpha.1"}}
+      }
+    }
+  }
+}

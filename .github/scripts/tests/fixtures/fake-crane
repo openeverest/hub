@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Stand-in for crane serving the registry described by $FAKE_REGISTRY (see
+# registry.json). Appends every call to $FAKE_CRANE_LOG when set. Supports
+# the commands build-index.sh uses:
+#   ls REPO, digest REPO:TAG, config REPO@DIGEST
+# A repository mapped to null is unreachable; a tag with "error" fails.
+
+set -euo pipefail
+
+if [[ -n "${FAKE_CRANE_LOG:-}" ]]; then
+  printf '%s\n' "$*" >> "$FAKE_CRANE_LOG"
+fi
+
+cmd=$1 arg=$2
+case "$cmd" in
+  ls)
+    jq -r --arg repo "$arg" '
+      .[$repo] // ("Error: GET https://\($repo)/tags/list: connection refused\n" | halt_error(1))
+      | .tags | keys_unsorted[]' "$FAKE_REGISTRY"
+    ;;
+  digest)
+    jq -r --arg repo "${arg%:*}" --arg tag "${arg##*:}" '
+      .[$repo].tags[$tag] // ("Error: MANIFEST_UNKNOWN: \($tag)\n" | halt_error(1))
+      | if .error then ("Error: \(.error)\n" | halt_error(1)) else .digest end' "$FAKE_REGISTRY"
+    ;;
+  config)
+    jq -c --arg repo "${arg%@*}" --arg digest "${arg#*@}" '
+      [.[$repo].tags[] | select(.digest == $digest)][0].config
+      // ("Error: MANIFEST_UNKNOWN: \($digest)\n" | halt_error(1))' "$FAKE_REGISTRY"
+    ;;
+  *)
+    echo "fake-crane: unsupported command $cmd" >&2
+    exit 2
+    ;;
+esac

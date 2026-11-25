@@ -1,0 +1,26 @@
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+metadata:
+  name: golf
+  type: provider
+  displayName: "golf"
+  description: Test fixture published by OpenEverest.
+  sourceRepo: https://github.com/openeverest/provider-golf
+  license: Apache-2.0
+  maintainers:
+    - github: openeverest
+spec:
+  provider:
+    providerName: golf
+    supportedEngines: [postgresql]
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/openeverest/charts/golf
+          version: "1.0.0"
+  install:
+    helm:
+      releaseName: golf
+      namespace: everest-system

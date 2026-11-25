@@ -32,9 +32,6 @@ spec:
     supportedEngines:
       - mongodb
 
-  compatibility:
-    openeverest: "2.0.0-alpha.1"
-
   capabilities:
     ha: true
     monitoring: true

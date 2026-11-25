@@ -1,0 +1,30 @@
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+metadata:
+  name: charlie
+  type: integration
+  displayName: "charlie"
+  description: Test fixture.
+  license: Apache-2.0
+  maintainers:
+    - github: openeverest
+spec:
+  integration:
+    area: monitoring
+    monitoring:
+      classes: [charlie]
+      executionModes: [ExtensionManaged]
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://registry.test/charts/charlie
+          version: "0.1.0"
+        edge:
+          ref: oci://registry.test/charts/charlie
+          version: "0.2.0-rc.2"
+  install:
+    helm:
+      releaseName: charlie
+      namespace: everest-system

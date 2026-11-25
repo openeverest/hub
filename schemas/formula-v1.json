@@ -207,12 +207,10 @@
     "spec": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["compatibility"],
       "properties": {
         "provider": { "$ref": "#/$defs/specProvider" },
         "plugin": { "$ref": "#/$defs/specPlugin" },
         "integration": { "$ref": "#/$defs/specIntegration" },
-        "compatibility": { "$ref": "#/$defs/compatibility" },
         "capabilities": { "$ref": "#/$defs/capabilities" },
         "artifacts": { "$ref": "#/$defs/artifacts" },
         "verification": { "$ref": "#/$defs/verification" },
@@ -376,22 +374,6 @@
         "nativeIntegration": {
           "$ref": "#/$defs/dns1123Label",
           "description": "Operator-native integration the classes rely on (ProviderManaged). Matched against Provider.spec.monitoring.integrations."
-        }
-      }
-    },
-    "compatibility": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["openeverest"],
-      "properties": {
-        "openeverest": {
-          "type": "string",
-          "minLength": 1,
-          "description": "Semver range of compatible OpenEverest core versions."
-        },
-        "kubernetes": {
-          "type": "string",
-          "minLength": 1
         }
       }
     },
