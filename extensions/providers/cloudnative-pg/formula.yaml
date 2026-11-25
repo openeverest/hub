@@ -54,7 +54,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/provider-cloudnative-pg
-          version: "0.4.1"
+          version: "0.4.2"
 
   install:
     prerequisites:
