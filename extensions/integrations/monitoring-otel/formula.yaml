@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=../../../schemas/formula-v1.json
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+
+metadata:
+  name: monitoring-otel
+  type: integration
+  displayName: "OpenTelemetry"
+  icon: ./opentelemetry-icon.svg
+  description: |
+    Send the metrics of OpenEverest database instances to any OTLP receiver
+    (Grafana Cloud, Datadog, Elastic, an OpenTelemetry Collector, or Prometheus
+    and VictoriaMetrics over OTLP). Installs the `opentelemetry` MonitoringClass
+    and a controller that runs an OpenTelemetry Collector per destination,
+    scraping the metrics endpoints the provider publishes.
+  categories:
+    - monitoring
+    - observability
+  keywords:
+    - opentelemetry
+    - otel
+    - otlp
+    - opentelemetry-collector
+    - metrics
+  homepage: https://github.com/openeverest/monitoring-otel
+  sourceRepo: https://github.com/openeverest/monitoring-otel
+  license: Apache-2.0
+  maturity: alpha
+  maintainers:
+    - name: "OpenEverest Team"
+      email: "cncf-openeverest-maintainers@lists.cncf.io"
+      github: "openeverest"
+
+spec:
+  integration:
+    area: monitoring
+    monitoring:
+      classes: [opentelemetry]
+      executionModes: [ExtensionManaged]
+      requires:
+        metrics: true
+
+  compatibility:
+    openeverest: ">=2.0.0-alpha.1"
+
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/openeverest/charts/monitoring-otel
+          version: "0.1.1"
+
+  install:
+    helm:
+      releaseName: monitoring-otel
+      namespace: everest-system
+    prerequisites:
+      - name: cert-manager
+        description: "Required by the OpenTelemetry Operator webhook and for mTLS between each collector and its Target Allocator."
+        installUrl: https://cert-manager.io/docs/installation/helm/
+        helm:
+          oci: oci://quay.io/jetstack/charts/cert-manager
+          namespace: cert-manager
+          createNamespace: true
+          defaultValues:
+            crds.enabled: "true"
+      - name: Prometheus Operator CRDs
+        description: "Only the CRDs: the collectors' Target Allocators discover targets through the PodMonitors the controller renders. No Prometheus is needed."
+        installUrl: https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-operator-crds
+        helm:
+          oci: oci://ghcr.io/prometheus-community/charts/prometheus-operator-crds
+          namespace: kube-system
+      - name: OpenTelemetry Operator
+        description: "Runs the collector of each destination. Use a collector image with the prometheus receiver, the otlp and otlphttp exporters and the basicauth and bearertokenauth extensions, such as otel/opentelemetry-collector-k8s."
+        installUrl: https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator
+        helm:
+          oci: oci://ghcr.io/open-telemetry/opentelemetry-helm-charts/opentelemetry-operator
+          namespace: opentelemetry-operator-system
+          createNamespace: true
+          defaultValues:
+            manager.collectorImage.repository: otel/opentelemetry-collector-k8s
+            admissionWebhooks.certManager.enabled: "true"

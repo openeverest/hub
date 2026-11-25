@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=../../../schemas/formula-v1.json
+apiVersion: hub.openeverest.io/v1
+kind: Extension
+
+metadata:
+  name: monitoring-releem
+  type: integration
+  displayName: "Releem"
+  icon: ./releem-icon.png
+  description: |
+    Send the metrics and query statistics of OpenEverest MySQL, MariaDB and
+    PostgreSQL instances to Releem for configuration and query recommendations.
+    Installs the `releem` MonitoringClass and a controller that runs one
+    releem-agent per database server, logging in with the read-only monitoring
+    user the provider publishes.
+  categories:
+    - monitoring
+    - observability
+  keywords:
+    - releem
+    - mysql
+    - postgresql
+    - tuning
+    - query-optimization
+  homepage: https://github.com/openeverest/monitoring-releem
+  sourceRepo: https://github.com/openeverest/monitoring-releem
+  license: Apache-2.0
+  maturity: alpha
+  maintainers:
+    - name: "OpenEverest Team"
+      email: "cncf-openeverest-maintainers@lists.cncf.io"
+      github: "openeverest"
+
+spec:
+  integration:
+    area: monitoring
+    monitoring:
+      classes: [releem]
+      executionModes: [ExtensionManaged]
+      requires:
+        connection: true
+
+  compatibility:
+    openeverest: ">=2.0.0-alpha.1"
+
+  artifacts:
+    chart:
+      defaultChannel: stable
+      channels:
+        stable:
+          ref: oci://ghcr.io/openeverest/charts/monitoring-releem
+          version: "0.1.1"
+
+  install:
+    helm:
+      releaseName: monitoring-releem
+      namespace: everest-system
+    prerequisites:
+      - name: Releem account
+        description: "A Releem account and its API key, stored in the credentials Secret of the MonitoringDestination. Query analytics needs a paid plan."
+        installUrl: https://releem.com
