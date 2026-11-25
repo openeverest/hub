@@ -7,7 +7,38 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.4.0",
               "ref": "oci://ghcr.io/openeverest/charts/provider-altinity-clickhouse",
+              "releases": [
+                {
+                  "digest": "sha256:f1cd5da19f39bc4b07f006bf8bbc13b01ed11d1adbb06bb8ae0087fd474fc698",
+                  "version": "0.4.0"
+                },
+                {
+                  "digest": "sha256:76cb0b63ad05e7f58ac1e31aca363fa67ff5e84a0fd9855afef7d3f35cbb27bd",
+                  "version": "0.3.1"
+                },
+                {
+                  "digest": "sha256:558727aee07003bfe9348fc93a9f2e2e6e2b3bf6d2cf564c07c71f161784caeb",
+                  "version": "0.3.0"
+                },
+                {
+                  "digest": "sha256:c4b8f3b31be36676a8d87a0d46eea806a80778c785fdcc8075161a40adbda3da",
+                  "version": "0.2.0"
+                },
+                {
+                  "digest": "sha256:cd3a3255b92a7233e2e2cb3b4fc28b19c52acce43d923a99c24cad7d5fa2aa15",
+                  "version": "0.1.2"
+                },
+                {
+                  "digest": "sha256:8b3028979cdce06a987d1221733878d6926b29daae2d059e649129f6157a191f",
+                  "version": "0.1.1"
+                },
+                {
+                  "digest": "sha256:9bf1f968a67c1b6405d202d792cb0aec35a8ae1ca05addcc1c141dd47fcd2a44",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.4.0"
             }
           },
@@ -36,9 +67,6 @@
         "database",
         "clickhouse"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "ClickHouse clusters powered by the Altinity Kubernetes Operator for\nClickHouse. Supports standalone and replicated topologies with a bundled\nClickHouse Keeper quorum.\n",
       "displayName": "ClickHouse",
       "health": "unknown",
@@ -75,7 +103,9 @@
           "clickhouse"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-altinity-clickhouse",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     },
@@ -85,7 +115,30 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.2.0",
               "ref": "oci://ghcr.io/openeverest/charts/provider-cassandra",
+              "releases": [
+                {
+                  "digest": "sha256:a29899ede3aab620d343c65c33e4d5c598932455b342537039a139823a4a601c",
+                  "version": "0.2.0"
+                },
+                {
+                  "digest": "sha256:dca29643345f7ed16a8f360e142082ee0aaa89678a59c8d6e5d071cd283730b2",
+                  "version": "0.1.3"
+                },
+                {
+                  "digest": "sha256:bde8ab370566f4dacaf722666fc9ae2e11017e7f7e6ce51eb8a262659a334ae9",
+                  "version": "0.1.2"
+                },
+                {
+                  "digest": "sha256:97bf0705b46bcfec69bb03918e45161d4e60a41f966c92b8c3b02ebcb437f0d2",
+                  "version": "0.1.1"
+                },
+                {
+                  "digest": "sha256:4a1d1dc941a132344920aee60ea13bd0bd8c426cb59ffa49a36acd2466aeae9b",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.2.0"
             }
           },
@@ -110,10 +163,6 @@
         "database",
         "cassandra"
       ],
-      "compatibility": {
-        "kubernetes": ">=1.30 <1.35",
-        "openeverest": ">=2.0.0-dev.4"
-      },
       "description": "Apache Cassandra on Kubernetes, backed by the k8ssandra-operator.\nEarly-stage (pre-alpha): single-datacenter provisioning, scaling,\nversion upgrades, and on-demand and scheduled backup/restore via Medusa.\nPITR, TLS and monitoring are not yet supported.\n",
       "displayName": "Apache Cassandra",
       "health": "unknown",
@@ -149,7 +198,9 @@
           "cassandra"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-cassandra",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     },
@@ -159,7 +210,26 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.4.1",
               "ref": "oci://ghcr.io/openeverest/charts/provider-cloudnative-pg",
+              "releases": [
+                {
+                  "digest": "sha256:58f9a6a3b7e14de444027dbd717eccebdb1f06b7b696a2c70a7347e5ce384a96",
+                  "version": "0.4.1"
+                },
+                {
+                  "digest": "sha256:27f6197a34600539177a78c5646c10152976421da4c5a07235868cb351cba84a",
+                  "version": "0.4.0"
+                },
+                {
+                  "digest": "sha256:a5a90ba060eedf98b82541de34e38d429c8eb861251fa67dec3e0882883cc612",
+                  "version": "0.3.5"
+                },
+                {
+                  "digest": "sha256:7b86bbffa67c7c933472db0700fd48a8312553cf9cf807bdbc9010d5553f2546",
+                  "version": "0.3.4"
+                }
+              ],
               "version": "0.4.1"
             }
           },
@@ -195,9 +265,6 @@
         "database",
         "postgresql"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Highly available PostgreSQL clusters powered by the CloudNativePG\noperator. Supports replica-set topologies with bootstrap, managed roles,\nand PostgreSQL tuning.\n",
       "displayName": "PostgreSQL (CNPG)",
       "health": "unknown",
@@ -240,7 +307,9 @@
           "postgresql"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-cloudnative-pg",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     },
@@ -250,7 +319,26 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.1.3",
               "ref": "oci://ghcr.io/openeverest/charts/my-plugin",
+              "releases": [
+                {
+                  "digest": "sha256:a027d01bc73599ddcacd4f5aa73c2b997365cd814cf9a7c71c4f60185283cf1a",
+                  "version": "0.1.3"
+                },
+                {
+                  "digest": "sha256:475d5e0ee0ff5d3131ca4562bd47971e339b07f3ceca292fd7bb74b2cf24268e",
+                  "version": "0.1.2"
+                },
+                {
+                  "digest": "sha256:785cbb84be39cf8ea6d6f022aee266733d4806e4952713375068b20380a76f12",
+                  "version": "0.1.1"
+                },
+                {
+                  "digest": "sha256:e29842d477f3ce822451e56814893ee1a650780c3e8d81de576bf2caded6589f",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.1.3"
             }
           },
@@ -261,9 +349,6 @@
         "example",
         "template"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "A working \"hello world\" OpenEverest plugin: registers a sidebar entry,\na dedicated route, a cluster-detail tab, and a backend API endpoint.\nUse it as a starting point when building your own generic plugin.\n",
       "displayName": "Generic Plugin Template",
       "health": "unknown",
@@ -304,7 +389,9 @@
         ]
       },
       "provider": null,
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/generic-plugin-template",
+      "thirdParty": false,
       "type": "plugin",
       "verified": false
     },
@@ -314,7 +401,78 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.6.0",
               "ref": "oci://ghcr.io/openeverest/charts/provider-kserve",
+              "releases": [
+                {
+                  "digest": "sha256:467d44ba2c736ae2096c5d8aa789b6ba28160685da66efec950024d99a247ac1",
+                  "version": "0.6.0"
+                },
+                {
+                  "digest": "sha256:74d1059dfcb1f632e0ee0f730a410856f43b7bd22875cc6a1e2ddb72743031fa",
+                  "version": "0.5.0"
+                },
+                {
+                  "digest": "sha256:e5bb5335d68307a7ebf4103444162ea7a048c10e49819daf3cb5742bbea42101",
+                  "version": "0.4.4"
+                },
+                {
+                  "digest": "sha256:f81ec14dd4c7a14a1625b87f6ba06f7b1c41704c24281a5e16569ed41796d6cc",
+                  "version": "0.4.3"
+                },
+                {
+                  "digest": "sha256:b7a0f1fd770ba06451a723464a236a8b7407111b5089cb1e6baacaec549c6831",
+                  "version": "0.4.2"
+                },
+                {
+                  "digest": "sha256:730a2ff793fd74cf1fa200638c59c32cade3e637afe873c6b2f2d840337695fa",
+                  "version": "0.4.1"
+                },
+                {
+                  "digest": "sha256:b936f5735388e86aee8d95701de7a499dd49425345a293ad913e6131f4549d7e",
+                  "version": "0.4.0"
+                },
+                {
+                  "digest": "sha256:9296f2c7066e4e3828d102e997e5700c261481abe21ea67f1d279f152743b753",
+                  "version": "0.3.0"
+                },
+                {
+                  "digest": "sha256:6f0e954b193a7f9d54309e3c95b0cc05c6dca5a309082e17a35784294f28aba1",
+                  "version": "0.2.4"
+                },
+                {
+                  "digest": "sha256:044ebaa89c6b7ffcae6551812f9e5b4f05e24c168da9a0dc4a424563ce940865",
+                  "version": "0.2.3"
+                },
+                {
+                  "digest": "sha256:2719bf56faa2d26048c3bea07e86c8b0c688f4898671e9509f48e48cea78e2c2",
+                  "version": "0.2.2"
+                },
+                {
+                  "digest": "sha256:62001d9a76d512d929705c17db050f7954a7333f807ab43ab8849d10b5189071",
+                  "version": "0.2.1"
+                },
+                {
+                  "digest": "sha256:d7d5eaadccdac2169247818569824413046a5376915cf05ea073ca2680d82241",
+                  "version": "0.2.0"
+                },
+                {
+                  "digest": "sha256:d1a4fe1cb8bbed8ba1f9d5ec2a2641741a3f4b94b0a3c2bafdcbab172b4dd215",
+                  "version": "0.1.3"
+                },
+                {
+                  "digest": "sha256:6340da3dd3d294e0045ce86693646d7392a416f26087b5532e9532288737f880",
+                  "version": "0.1.2"
+                },
+                {
+                  "digest": "sha256:4d8502993b544a42d7056c56fc7c0ddf70b7bd97d42973d0cfa8c08328499481",
+                  "version": "0.1.1"
+                },
+                {
+                  "digest": "sha256:78dee55c5c1b5a1044af2b85c95be290b08afe8c233a46ecdcf3d4339d66a136",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.6.0"
             }
           },
@@ -348,9 +506,6 @@
         "machine-learning",
         "model-serving"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Serve machine-learning and LLM models on Kubernetes with KServe. Supports\ngenerative LLM serving (vLLM) and predictive model serving, with GPU\nscheduling, autoscaling, and a curated model catalog.\n",
       "displayName": "KServe",
       "health": "unknown",
@@ -396,7 +551,9 @@
           "modelServer"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-kserve",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     },
@@ -406,7 +563,66 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.3.0",
               "ref": "oci://ghcr.io/openeverest/charts/provider-mariadb",
+              "releases": [
+                {
+                  "digest": "sha256:08760134784d52df90e7f4763bd6c3a2e69f301579b77ef27f149c84e5240d83",
+                  "version": "0.3.0"
+                },
+                {
+                  "digest": "sha256:802a9ce4167533c56fa19070d7c6645047e3685d5240626fc34cb9fe2dd8c9b2",
+                  "version": "0.2.2"
+                },
+                {
+                  "digest": "sha256:78410125eed5eff8eadef4f9c8227a913d5b2444dadda3b0adb70e3881124a52",
+                  "version": "0.2.1"
+                },
+                {
+                  "digest": "sha256:32bf65886b9d4ae8458e9bba1d674de38922895e57021020394fe76f8684c72c",
+                  "version": "0.2.0"
+                },
+                {
+                  "digest": "sha256:a2f441bbbddec838fc4677585f72f18937458ff9183b4808c0e738f908a15d5a",
+                  "version": "0.1.9"
+                },
+                {
+                  "digest": "sha256:6c2c0407dab78b0c056e9da0dd86602b9a186171d73ee6680809ffe8d27f7631",
+                  "version": "0.1.8"
+                },
+                {
+                  "digest": "sha256:18248fec0548650f32e2c25c076dcd58f724608ef543f4d26b5948ef3c3c83e2",
+                  "version": "0.1.7"
+                },
+                {
+                  "digest": "sha256:36ee327b107f7b5cd43eddcbc1e1904dbf1d18d5ea20e3d7e917291308a57453",
+                  "version": "0.1.6"
+                },
+                {
+                  "digest": "sha256:24b9dcb59f3f2653aef45851934313762c51c5ce9336671be9341b01d32439d1",
+                  "version": "0.1.5"
+                },
+                {
+                  "digest": "sha256:1442bb753852475bcda3994b04e842600eb8c6544d097cfcdf20051b97c9eea2",
+                  "version": "0.1.4"
+                },
+                {
+                  "digest": "sha256:57650d3ac29630bbbf4b4b221cf6fd76dedb8f0b879eaf7931cfff989040347c",
+                  "version": "0.1.3"
+                },
+                {
+                  "digest": "sha256:1da580b4eb3a91783f334dbbfbf6321b76788729475f96d5fd834b15268edc93",
+                  "version": "0.1.2"
+                },
+                {
+                  "digest": "sha256:400bff258b86baf2c5703f93076563bdc1a5152069f25958aa75f03ce4adeae0",
+                  "version": "0.1.1"
+                },
+                {
+                  "digest": "sha256:f501cced704a5c781bb8a4d6cf3b42c3dc5e1b5c7a324aebff19a38bcc803997",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.3.0"
             }
           },
@@ -438,10 +654,6 @@
         "database",
         "mariadb"
       ],
-      "compatibility": {
-        "kubernetes": ">=1.30 <1.35",
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "MariaDB on Kubernetes, backed by the mariadb-operator. Runs standalone,\nreplication and Galera topologies with TLS, MaxScale, scheduled backups\nwith point-in-time recovery, scaling, version upgrades, custom my.cnf\nconfiguration, and optional Prometheus monitoring.\n",
       "displayName": "MariaDB",
       "health": "unknown",
@@ -477,7 +689,9 @@
           "mariadb"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-mariadb",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     },
@@ -487,7 +701,38 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.5.0",
               "ref": "oci://ghcr.io/openeverest/charts/provider-milvus",
+              "releases": [
+                {
+                  "digest": "sha256:5012e3a2d3ebc3261f738a96ebab6148af85c60a667af751be3abc2e8392dddd",
+                  "version": "0.5.0"
+                },
+                {
+                  "digest": "sha256:a5a4789896158d742cb7f68838f8e7b36c9edaac7ac0b7d35ea32efceff767f9",
+                  "version": "0.3.2"
+                },
+                {
+                  "digest": "sha256:deafff912156acb104dfcdc63488fb2fa571505caf77f8b510fad1945c400a69",
+                  "version": "0.3.1"
+                },
+                {
+                  "digest": "sha256:f6bf8645ec13dbb354678fb2db9e3bc06816dcc225b8bd596bff857db06b34a7",
+                  "version": "0.3.0"
+                },
+                {
+                  "digest": "sha256:4c71e1eb6788ec7ca9cabad145fe86a335291e496965746a1777be7b88718d8d",
+                  "version": "0.2.0"
+                },
+                {
+                  "digest": "sha256:6eb96a132481d44a61d1b7a6fd6f7aa6e5affed53d129ad17a59876b27cabd05",
+                  "version": "0.1.1"
+                },
+                {
+                  "digest": "sha256:9e04a93614826f420243280b42dae8e6769d31be034c68ef1ae0d98c78b19323",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.5.0"
             }
           },
@@ -514,10 +759,6 @@
         "vector",
         "ai"
       ],
-      "compatibility": {
-        "kubernetes": ">=1.30 <1.35",
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Milvus vector database on Kubernetes, backed by the Milvus Operator.\nEarly-stage (pre-alpha): standalone and cluster topologies with bundled\nor external etcd, object storage and Pulsar, scaling, version upgrades\nand pod scheduling, backups via milvus-backup and Prometheus monitoring.\nTLS and PITR are not yet supported.\n",
       "displayName": "Milvus",
       "health": "unknown",
@@ -553,7 +794,9 @@
           "milvus"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-milvus",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     },
@@ -563,7 +806,14 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.1.0",
               "ref": "oci://ghcr.io/openeverest/charts/monitoring-coroot",
+              "releases": [
+                {
+                  "digest": "sha256:9f07788d668be2b0c7310b5423f939fe10d86e471adb1e28e63dbb2c4bbef2a1",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.1.0"
             }
           },
@@ -574,9 +824,6 @@
         "monitoring",
         "observability"
       ],
-      "compatibility": {
-        "openeverest": ">=2.0.0-dev.5"
-      },
       "description": "Send the databases of OpenEverest instances to Coroot. Installs the\n`coroot` MonitoringClass and a controller that turns the provider's\nconnection endpoints into `coroot.com/*` pod annotations, so\ncoroot-cluster-agent discovers and connects to each database pod.\n",
       "displayName": "Coroot",
       "health": "unknown",
@@ -627,7 +874,9 @@
       "name": "monitoring-coroot",
       "plugin": null,
       "provider": null,
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/monitoring-coroot",
+      "thirdParty": false,
       "type": "integration",
       "verified": false
     },
@@ -637,7 +886,14 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.1.1",
               "ref": "oci://ghcr.io/openeverest/charts/monitoring-otel",
+              "releases": [
+                {
+                  "digest": "sha256:f2cd0d7b0a32f2d93acbe4e8b2188d88792d14712cc7b66d7ebde450a9ae1821",
+                  "version": "0.1.1"
+                }
+              ],
               "version": "0.1.1"
             }
           },
@@ -648,9 +904,6 @@
         "monitoring",
         "observability"
       ],
-      "compatibility": {
-        "openeverest": ">=2.0.0-alpha.1"
-      },
       "description": "Send the metrics of OpenEverest database instances to any OTLP receiver\n(Grafana Cloud, Datadog, Elastic, an OpenTelemetry Collector, or Prometheus\nand VictoriaMetrics over OTLP). Installs the `opentelemetry` MonitoringClass\nand a controller that runs an OpenTelemetry Collector per destination,\nscraping the metrics endpoints the provider publishes.\n",
       "displayName": "OpenTelemetry",
       "health": "unknown",
@@ -733,7 +986,9 @@
       "name": "monitoring-otel",
       "plugin": null,
       "provider": null,
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/monitoring-otel",
+      "thirdParty": false,
       "type": "integration",
       "verified": false
     },
@@ -743,7 +998,14 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.1.0",
               "ref": "oci://ghcr.io/openeverest/charts/monitoring-pmm",
+              "releases": [
+                {
+                  "digest": "sha256:2f7552e65890705d42b56aa1587d65e5d7d1d59e4e2e114dfb192b76afdccc94",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.1.0"
             }
           },
@@ -754,9 +1016,6 @@
         "monitoring",
         "observability"
       ],
-      "compatibility": {
-        "openeverest": ">=2.0.0-dev.5"
-      },
       "description": "Send metrics and Query Analytics of OpenEverest database instances to a\nPercona Monitoring and Management (PMM) 3 server. Installs the `pmm`\nMonitoringClass and its controller; providers with native PMM support\n(Percona XtraDB Cluster, Percona Server for MongoDB, Percona PostgreSQL)\nrun pmm-client next to the databases.\n",
       "displayName": "PMM",
       "health": "unknown",
@@ -805,7 +1064,9 @@
       "name": "monitoring-pmm",
       "plugin": null,
       "provider": null,
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/monitoring-pmm",
+      "thirdParty": false,
       "type": "integration",
       "verified": false
     },
@@ -815,7 +1076,14 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.1.0",
               "ref": "oci://ghcr.io/openeverest/charts/monitoring-prometheus",
+              "releases": [
+                {
+                  "digest": "sha256:c9e8f3b65a1b8f7ee6ebbdec817b2f071f5b79ff819186dcb46b2d5ccc40ffe0",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.1.0"
             }
           },
@@ -826,9 +1094,6 @@
         "monitoring",
         "observability"
       ],
-      "compatibility": {
-        "openeverest": ">=2.0.0-dev.5"
-      },
       "description": "Send the metrics of OpenEverest database instances to a Prometheus run by\nthe Prometheus Operator. Installs the `prometheus` MonitoringClass and a\ncontroller that renders one PodMonitor per database component from the\nmetrics endpoints the provider publishes.\n",
       "displayName": "Prometheus",
       "health": "unknown",
@@ -884,7 +1149,9 @@
       "name": "monitoring-prometheus",
       "plugin": null,
       "provider": null,
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/monitoring-prometheus",
+      "thirdParty": false,
       "type": "integration",
       "verified": false
     },
@@ -894,7 +1161,14 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.1.1",
               "ref": "oci://ghcr.io/openeverest/charts/monitoring-releem",
+              "releases": [
+                {
+                  "digest": "sha256:89624950692e8384f93c88e43bae9b5ca1addd6ad7137e39c92c9ab41aab912b",
+                  "version": "0.1.1"
+                }
+              ],
               "version": "0.1.1"
             }
           },
@@ -905,9 +1179,6 @@
         "monitoring",
         "observability"
       ],
-      "compatibility": {
-        "openeverest": ">=2.0.0-alpha.1"
-      },
       "description": "Send the metrics and query statistics of OpenEverest MySQL, MariaDB and\nPostgreSQL instances to Releem for configuration and query recommendations.\nInstalls the `releem` MonitoringClass and a controller that runs one\nreleem-agent per database server, logging in with the read-only monitoring\nuser the provider publishes.\n",
       "displayName": "Releem",
       "health": "unknown",
@@ -959,7 +1230,9 @@
       "name": "monitoring-releem",
       "plugin": null,
       "provider": null,
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/monitoring-releem",
+      "thirdParty": false,
       "type": "integration",
       "verified": false
     },
@@ -969,7 +1242,14 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.1.0",
               "ref": "oci://ghcr.io/openeverest/charts/monitoring-victoriametrics",
+              "releases": [
+                {
+                  "digest": "sha256:1cd5e12eacaaa08ee65898fbde913a80e0b65ac482761d7a46ce450a13a49648",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.1.0"
             }
           },
@@ -980,9 +1260,6 @@
         "monitoring",
         "observability"
       ],
-      "compatibility": {
-        "openeverest": ">=2.0.0-dev.5"
-      },
       "description": "Send the metrics of OpenEverest database instances to a VMAgent run by\nthe VictoriaMetrics Operator. Installs the `victoriametrics` MonitoringClass\nand a controller that renders one VMPodScrape per database component from\nthe metrics endpoints the provider publishes.\n",
       "displayName": "VictoriaMetrics",
       "health": "unknown",
@@ -1033,7 +1310,9 @@
       "name": "monitoring-victoriametrics",
       "plugin": null,
       "provider": null,
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/monitoring-victoriametrics",
+      "thirdParty": false,
       "type": "integration",
       "verified": false
     },
@@ -1059,9 +1338,6 @@
         "database",
         "mssql"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Microsoft SQL Server on Kubernetes, provided by Solanica. Runs standalone\ninstances and Always On availability groups with automated backups,\npoint-in-time restore, TLS and Prometheus monitoring. Commercial, gated extension — contact Solanica for access.\n",
       "displayName": "Microsoft SQL Server",
       "gated": {
@@ -1098,6 +1374,7 @@
         ]
       },
       "sourceRepo": "",
+      "thirdParty": true,
       "type": "provider",
       "verified": false
     },
@@ -1107,7 +1384,18 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.1.1",
               "ref": "oci://ghcr.io/openeverest/charts/provider-neo4j",
+              "releases": [
+                {
+                  "digest": "sha256:9ac05c6de444874775336bce90d13403075b34294fe1b551a3703a93db04841f",
+                  "version": "0.1.1"
+                },
+                {
+                  "digest": "sha256:b2ad8427526e2f9f621218cf72d0be93272c111fcc72687c1c6536d072342b52",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.1.1"
             }
           },
@@ -1135,10 +1423,6 @@
         "database",
         "graph"
       ],
-      "compatibility": {
-        "kubernetes": ">=1.34",
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "The Neo4j graph database on Kubernetes, backed by the Neo4j Kubernetes\nOperator. Community standalone servers, and Enterprise clusters with\nanalytics and read pools, TLS by default, online backups to S3-compatible\nstorage, restores, and Prometheus metrics. Enterprise features need you\nto accept the Neo4j Enterprise license.\n",
       "displayName": "Neo4j",
       "health": "unknown",
@@ -1174,7 +1458,9 @@
           "neo4j"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-neo4j",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     },
@@ -1184,7 +1470,22 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.3.0",
               "ref": "oci://ghcr.io/openeverest/charts/provider-opensearch",
+              "releases": [
+                {
+                  "digest": "sha256:23b949324a94a6b36f790fdf044784f24247af3fef81658f5d91474811cefbe0",
+                  "version": "0.3.0"
+                },
+                {
+                  "digest": "sha256:a80df54515a4ecf6251f77d3516ff9166f5690681c6df2cebaeb1c7e0b92473e",
+                  "version": "0.2.0"
+                },
+                {
+                  "digest": "sha256:04f58744838f4170e0adcd13039e55d1ab0a555c6ab36f11cf134fb1b9046199",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.3.0"
             }
           },
@@ -1210,9 +1511,6 @@
         "opensearch",
         "search"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "OpenSearch clusters powered by the OpenSearch Kubernetes Operator.\nSupports the standard topology, optional OpenSearch Dashboards, TLS\neverywhere, and S3-compatible snapshot backups and restore.\n",
       "displayName": "OpenSearch",
       "health": "unknown",
@@ -1248,7 +1546,9 @@
           "opensearch"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-opensearch",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     },
@@ -1258,7 +1558,50 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.7.0",
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-postgresql",
+              "releases": [
+                {
+                  "digest": "sha256:2ad4d551b82dcc9568622ace9c9cbebe6eb9ae9f64bcb76fa56a19b928c7984f",
+                  "version": "0.7.0"
+                },
+                {
+                  "digest": "sha256:0ae4766d6d66174c049eac0dcbe18f4896fc9322c31386bf4a1f044700e6b6aa",
+                  "version": "0.6.2"
+                },
+                {
+                  "digest": "sha256:8f2bb50e2ee8b0e36e634d61c12053aab4105d75b6b74c86fa2621e8d2c94751",
+                  "version": "0.6.1"
+                },
+                {
+                  "digest": "sha256:be0ffa7d8b13bb8bcd33e50732e275970931ba9f9cd36f105034b1103e4b969f",
+                  "version": "0.6.0"
+                },
+                {
+                  "digest": "sha256:d2463e3e45249ec8889c87fce1ef0181da096f7f1a416e00ecfc64023398baee",
+                  "version": "0.5.1"
+                },
+                {
+                  "digest": "sha256:3193dad3662bc9403e3f91799a536b810beb18e030c14142d2ad7863fdf788f5",
+                  "version": "0.5.0"
+                },
+                {
+                  "digest": "sha256:bb929a409fb0dead135260e64c768fedfd2cce92f622cf9900898da3d802b2ea",
+                  "version": "0.4.0"
+                },
+                {
+                  "digest": "sha256:64cb7d1c222bf1efa27a632a0f662d290a5888cc987b7014f8fd2eca45a123b7",
+                  "version": "0.3.0"
+                },
+                {
+                  "digest": "sha256:ea18a3a5af6dbd7f006082832d3dbe7a503d6cc8b0206eecc76ea9c7667e0eb0",
+                  "version": "0.2.0"
+                },
+                {
+                  "digest": "sha256:af8cea74750970652e51365c36d5c086ce3e7fe3149a6a3ae8663d04df67dea6",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.7.0"
             }
           },
@@ -1289,9 +1632,6 @@
         "database",
         "postgresql"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Production-ready PostgreSQL clusters powered by the Percona Operator for PostgreSQL.",
       "displayName": "PostgreSQL",
       "health": "unknown",
@@ -1327,7 +1667,9 @@
           "postgresql"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-percona-postgresql",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     },
@@ -1337,7 +1679,34 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.6.0",
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-server-mongodb",
+              "releases": [
+                {
+                  "digest": "sha256:95ae291969c460d6742f2528ac12cb2f3d6ef71071f551b11302ba409b9bbcdc",
+                  "version": "0.6.0"
+                },
+                {
+                  "digest": "sha256:15ccd3072056a37ff5772efe8db0d02dae6c12c91db5c63ed9ee5ceb0548d986",
+                  "version": "0.5.0"
+                },
+                {
+                  "digest": "sha256:8ede2921071493eaef853c7cd307415d101ef03f750e82c21ce275a1c01074a3",
+                  "version": "0.4.1"
+                },
+                {
+                  "digest": "sha256:ad5553f105d6c700eba4b15b4c9b6d3313b3dd3b0161cc27339e2acb4bae6e4d",
+                  "version": "0.4.0"
+                },
+                {
+                  "digest": "sha256:1017dacd833b3bbeec6f6cc6866c30f2e4c0130a753f2a3eee14032b3fb64a40",
+                  "version": "0.3.0"
+                },
+                {
+                  "digest": "sha256:1191bd143aaab8e102fa35b3442ab8144f9b1b1e9b2de3e9b002fe1f3ade95a0",
+                  "version": "0.2.0"
+                }
+              ],
               "version": "0.6.0"
             }
           },
@@ -1365,9 +1734,6 @@
         "database",
         "mongodb"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Production-ready MongoDB clusters powered by the Percona Operator.\nSupports replica sets and sharded topologies.\n",
       "displayName": "MongoDB",
       "health": "unknown",
@@ -1402,7 +1768,9 @@
           "mongodb"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-percona-server-mongodb",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     },
@@ -1412,7 +1780,22 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.3.0",
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-server-mysql",
+              "releases": [
+                {
+                  "digest": "sha256:87a56b695fb5a4c462dfb24917dfa3faba1ffdc0d1b3ea92b16be6d4b409ef69",
+                  "version": "0.3.0"
+                },
+                {
+                  "digest": "sha256:4f67217ec19edfc52038526e9bdfd16876d62b7e13f6e40d557c857114166f1c",
+                  "version": "0.2.0"
+                },
+                {
+                  "digest": "sha256:0c3959fbe9b162e1a4fd7007ddff4c274a3adac531b60c5a9937993d2f5cdc13",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.3.0"
             }
           },
@@ -1442,9 +1825,6 @@
         "database",
         "mysql"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Highly available MySQL clusters powered by the Percona Operator for MySQL\nbased on Percona Server for MySQL, with async replication and MySQL\nGroup Replication topologies.\n",
       "displayName": "MySQL (PS)",
       "health": "unknown",
@@ -1481,7 +1861,9 @@
           "mysql"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-percona-server-mysql",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     },
@@ -1491,7 +1873,38 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.5.0",
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-xtradb-cluster",
+              "releases": [
+                {
+                  "digest": "sha256:136092423335d1bfcb4cefb4b9b4d2a02e55fccef1c12ea9a91220fb3933ea2f",
+                  "version": "0.5.0"
+                },
+                {
+                  "digest": "sha256:cf0d2c1c7ca174090415be9606618aa015d808438f79e5f2f19705b8ade2d44d",
+                  "version": "0.4.0"
+                },
+                {
+                  "digest": "sha256:bd2e2081bfe01868aff37f77cf351a904d646d9fee2fa03d1ff609dad29d64af",
+                  "version": "0.3.2"
+                },
+                {
+                  "digest": "sha256:79cc2a5e3eb5d8d0db76b009b9761594394794931f2f8aa13f2ccbb938a836ae",
+                  "version": "0.3.1"
+                },
+                {
+                  "digest": "sha256:b8de286845fd1a6122b6bef5cd3e76a80bfec360db61ea0d99a0e8b2110ce73f",
+                  "version": "0.3.0"
+                },
+                {
+                  "digest": "sha256:c82ff2f19425bd20f0076a9465df7edc63bc1aa85728f4cddda26044fd429a28",
+                  "version": "0.2.0"
+                },
+                {
+                  "digest": "sha256:6b90fdf2f26519cbf3827a860bbf6bf1f579e2e6b4182efb31d2ae3a474d7aaf",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.5.0"
             }
           },
@@ -1521,9 +1934,6 @@
         "database",
         "mysql"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Highly available MySQL clusters powered by the Percona Operator for MySQL\nbased on Percona XtraDB Cluster (PXC).\n",
       "displayName": "MySQL (PXC)",
       "health": "unknown",
@@ -1560,7 +1970,9 @@
           "mysql"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-percona-xtradb-cluster",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     },
@@ -1570,7 +1982,14 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.2.0",
               "ref": "oci://ghcr.io/solanicaio/charts/audit",
+              "releases": [
+                {
+                  "digest": "sha256:20cc7322857c7e095ee92b9c29e0aa97c5ce905e78be6a8ffb287359da8a0145",
+                  "version": "0.2.0"
+                }
+              ],
               "version": "0.2.0"
             }
           },
@@ -1582,9 +2001,6 @@
         "compliance",
         "observability"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Captures every OpenEverest platform event and keeps a searchable audit log:\nwho did what, when, to which resource. Adds an Audit page with an events\nchart over time, time ranges, filters by engine, kind, namespace, actor and\nseverity, free-text search, and CSV/JSON export. Events are stored in an\nembedded SQLite database on a persistent volume.\n",
       "displayName": "Audit",
       "health": "unknown",
@@ -1629,7 +2045,9 @@
         ]
       },
       "provider": null,
+      "publisher": "solanicaio",
       "sourceRepo": "https://github.com/solanicaio/plugin-audit",
+      "thirdParty": true,
       "type": "plugin",
       "verified": false
     },
@@ -1639,7 +2057,18 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.3.0",
               "ref": "oci://ghcr.io/openeverest/charts/plugin-bench",
+              "releases": [
+                {
+                  "digest": "sha256:00fcd3171c1f33bdf5b1ee36ddc861ad9014a38d2f163c4844b39db063384349",
+                  "version": "0.3.0"
+                },
+                {
+                  "digest": "sha256:7591991aa8c687e7f7b127919d56e8b59746e2dcd21dc5eab2707b845289c907",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.3.0"
             }
           },
@@ -1651,9 +2080,6 @@
         "benchmark",
         "performance"
       ],
-      "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
-      },
       "description": "Benchmark the performance of OpenEverest database clusters. Start a run\nfrom the cluster detail page; each run executes in a temporary Kubernetes\nJob and reports throughput and latency. PostgreSQL is supported today,\nwith more database engines planned.\n",
       "displayName": "Performance Benchmark",
       "health": "unknown",
@@ -1696,7 +2122,9 @@
         ]
       },
       "provider": null,
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/plugin-bench",
+      "thirdParty": false,
       "type": "plugin",
       "verified": false
     },
@@ -1720,9 +2148,6 @@
         "development",
         "automation"
       ],
-      "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
-      },
       "description": "Create instant, writable branches of OpenEverest databases for development,\ntesting, migration validation and AI-agent workflows. Branch, reset, restore\nand promote database state without cloning production infrastructure.\nCommercial, gated extension provided by Solanica.\n",
       "displayName": "Database Branching",
       "gated": {
@@ -1764,6 +2189,7 @@
       },
       "provider": null,
       "sourceRepo": "",
+      "thirdParty": true,
       "type": "plugin",
       "verified": false
     },
@@ -1773,7 +2199,86 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.1.18",
               "ref": "oci://ghcr.io/openeverest/charts/plugin-hub",
+              "releases": [
+                {
+                  "digest": "sha256:a781659bb3090c703dcb46b0a235b4b69af49d0ece1a3bd60b321004485fb0a8",
+                  "version": "0.1.18"
+                },
+                {
+                  "digest": "sha256:5a06ea05a433d7df6c1266d83b13408ef39c4d26e06ce1fb815876eb78f42b0d",
+                  "version": "0.1.17"
+                },
+                {
+                  "digest": "sha256:2b0ee3d520d0aef1a87189aa733cc26b15aaeaa2f22223065399eca987f41db7",
+                  "version": "0.1.16"
+                },
+                {
+                  "digest": "sha256:7ad69ed71ab01360d2e2271de97b3ad6ac5c1ee0cd2c1b181c4acf0394f050f2",
+                  "version": "0.1.15"
+                },
+                {
+                  "digest": "sha256:933760d6a98895ca80b49ffdfdf0da7db8e506eae8f34783311fdd3c7c40d5aa",
+                  "version": "0.1.14"
+                },
+                {
+                  "digest": "sha256:598aa4098f3711e4d1dc760fd6d5e0677ff73a730cef521a6cf766e3ce0727ba",
+                  "version": "0.1.13"
+                },
+                {
+                  "digest": "sha256:db47859a861c68863195fdcaf95191ffa3bbcd5dcf2b82d02bdc698f8be911da",
+                  "version": "0.1.12"
+                },
+                {
+                  "digest": "sha256:34b5e529ecc0fdd82c4425d236420b9e1f759e173e8b69bf9a9ce4a682ab101d",
+                  "version": "0.1.11"
+                },
+                {
+                  "digest": "sha256:7796ec77e7a1d1a268bd58aef21d9dcf12720152ba7eb75e364c07c2549c71c5",
+                  "version": "0.1.10"
+                },
+                {
+                  "digest": "sha256:2bc64902469508e1e4ee616dcdbe25636d4d409a138b7c34d665ac3d8c80370c",
+                  "version": "0.1.9"
+                },
+                {
+                  "digest": "sha256:63bd37d904f3c16d9eaf5ddf80e377ea0ce40de544434bfa784d4c79ae612673",
+                  "version": "0.1.8"
+                },
+                {
+                  "digest": "sha256:a49030f64358c832141443185adf2d34d415256395e7139d79a00ac836ba0e4d",
+                  "version": "0.1.7"
+                },
+                {
+                  "digest": "sha256:22092ffcc2c31f612e88e17c7bf7109742378c23c7ad6fd4e455cd496c327f1c",
+                  "version": "0.1.6"
+                },
+                {
+                  "digest": "sha256:0590597e7f63dbc0b97a0eadff928e45fe2c81b1c958e319dd07cb77a7618936",
+                  "version": "0.1.5"
+                },
+                {
+                  "digest": "sha256:077557eb6fe260d928a0d8d994ad35f8eb3dee1118c6f0a0368b389296452d12",
+                  "version": "0.1.4"
+                },
+                {
+                  "digest": "sha256:b45de4768cb1f2fc49b8a51dfa5768f2137b59b8adf58bbe1111927a3b28d023",
+                  "version": "0.1.3"
+                },
+                {
+                  "digest": "sha256:b8b2e141000f3d61ade2df72df90af187077823b9907bcb4b319395cc330fe93",
+                  "version": "0.1.2"
+                },
+                {
+                  "digest": "sha256:e1810e9d6ec9c3c035688ed6118aa41450ae1866928bdd32af90c916f65eeff1",
+                  "version": "0.1.1"
+                },
+                {
+                  "digest": "sha256:2f9ebc2dae9b06f1d7e8f89de081f8542d324c639bbb816422d2b09e2f4c87b7",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.1.18"
             }
           },
@@ -1785,9 +2290,6 @@
         "extensions",
         "catalog"
       ],
-      "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
-      },
       "description": "Surfaces every plugin and provider published in the official OpenEverest\ncatalog and shows which ones are installed on your cluster. Searchable,\nfilterable table with install status, channel version, categories, and a\nper-entry detail drawer with a copy-pasteable helm install command.\n",
       "displayName": "Plugin Hub",
       "health": "unknown",
@@ -1828,7 +2330,9 @@
         ]
       },
       "provider": null,
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/plugin-hub",
+      "thirdParty": false,
       "type": "plugin",
       "verified": false
     },
@@ -1838,7 +2342,22 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.1.2",
               "ref": "oci://ghcr.io/openeverest/charts/plugin-inspector",
+              "releases": [
+                {
+                  "digest": "sha256:37259a4b031312df667be6e06cc6c23a6d024492555a8f5fed9c2ecf8a10656d",
+                  "version": "0.1.2"
+                },
+                {
+                  "digest": "sha256:0db353269da33b4c9e5ab95b63749d9304743e9eda76a036379157b869fe6ac6",
+                  "version": "0.1.1"
+                },
+                {
+                  "digest": "sha256:c2263f9a65a27f8dc43e7d4957c5a5976f8ed9757a27c2b39da6534b5cc80a50",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.1.2"
             }
           },
@@ -1849,9 +2368,6 @@
         "observability",
         "troubleshooting"
       ],
-      "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
-      },
       "description": "Adds an Inspector tab to database cluster detail pages. See the pods behind\nan instance as a diagram or table, stream container logs, and describe a\npod with its containers, conditions and events. Works with any provider.\n",
       "displayName": "Inspector",
       "health": "unknown",
@@ -1892,7 +2408,9 @@
         ]
       },
       "provider": null,
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/plugin-inspector",
+      "thirdParty": false,
       "type": "plugin",
       "verified": false
     },
@@ -1902,7 +2420,34 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.3.0",
               "ref": "oci://ghcr.io/openeverest/charts/plugin-metrics",
+              "releases": [
+                {
+                  "digest": "sha256:6154362476f27b3b2ff1156b1deea6d89bdfcca4fdee04f6a3a54fa5cf279cca",
+                  "version": "0.3.0"
+                },
+                {
+                  "digest": "sha256:fb0d8b972c8c4c23dd9a4f5f76115d9383987ef0ac3a20447ed4b4668ef89f01",
+                  "version": "0.2.2"
+                },
+                {
+                  "digest": "sha256:13edda00178a53b9388737b9f6a1e76ec6d9c0ac82d63a213cd659969c5cb9e6",
+                  "version": "0.2.1"
+                },
+                {
+                  "digest": "sha256:b4bbc872060876858a9441552fafa2f29be0a266a0aa0b97675469bffc2b4605",
+                  "version": "0.2.0"
+                },
+                {
+                  "digest": "sha256:314ff28d2ed3f8e5dd1216795cf06a70f675b4ad2ced27e2fefb781844ca742b",
+                  "version": "0.1.1"
+                },
+                {
+                  "digest": "sha256:be692e7787a6221d5ca7fe1682dec9e6682c59d8576acad8a45de35edb5ee658",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.3.0"
             }
           },
@@ -1913,9 +2458,6 @@
         "observability",
         "monitoring"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Adds a Metrics tab to database cluster detail pages with CPU, memory and\nengine-specific charts for the last hour or day, plus a search to chart any\nother metric the instance exposes. Reads from Prometheus, PMM and other sources, scoped to\ninstances the user can read. Built-in dashboards for various database engines.\n",
       "displayName": "Metrics",
       "health": "unknown",
@@ -1956,7 +2498,9 @@
         ]
       },
       "provider": null,
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/plugin-metrics",
+      "thirdParty": false,
       "type": "plugin",
       "verified": false
     },
@@ -1966,7 +2510,26 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.1.3",
               "ref": "oci://ghcr.io/openeverest/charts/plugin-migrations",
+              "releases": [
+                {
+                  "digest": "sha256:985fd6645ee505b5dd4101d35a5a638733a5f77349611ab5ed5d940a90873511",
+                  "version": "0.1.3"
+                },
+                {
+                  "digest": "sha256:0bb7ac3a57cbac012c6fae3fa1def664b24f4820ae651e2304e6a15856f6c54d",
+                  "version": "0.1.2"
+                },
+                {
+                  "digest": "sha256:a61e78dc2a8cb0a4efb4b734d8add1ce672f79c4722539de6bb4732d260879be",
+                  "version": "0.1.1"
+                },
+                {
+                  "digest": "sha256:d61b197307ed61fb5fdd83306837c5028ff234bdb5fd33eace201523bf0751f5",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.1.3"
             }
           },
@@ -1978,9 +2541,6 @@
         "migration",
         "mongodb"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Migrates databases into OpenEverest with minimal downtime: a per-migration\nworker copies existing data (full load), keeps the target in sync with\nongoing changes (change data capture), and you trigger the cutover when\nyour application is ready to switch. The first engine moves MongoDB into\nPercona Server for MongoDB instances using Percona ClusterSync for MongoDB.\n",
       "displayName": "Migrations",
       "health": "unknown",
@@ -2023,7 +2583,9 @@
         ]
       },
       "provider": null,
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/plugin-migrations",
+      "thirdParty": false,
       "type": "plugin",
       "verified": false
     },
@@ -2033,7 +2595,74 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.1.19",
               "ref": "oci://ghcr.io/openeverest/charts/plugin-mongodb-explorer",
+              "releases": [
+                {
+                  "digest": "sha256:7e656e141c986c7443c591f01807d0ebaf5927fb14235dbceab64788f6de012e",
+                  "version": "0.1.19"
+                },
+                {
+                  "digest": "sha256:9e3aaab3e49b3b5fb5abe14b6a0ca5054b4d186cb431c5affcb248d9e7208c21",
+                  "version": "0.1.18"
+                },
+                {
+                  "digest": "sha256:147a266da06708c1aef09ae0228053d5578d2f4bb23188343c39a4fee9cc3b68",
+                  "version": "0.1.17"
+                },
+                {
+                  "digest": "sha256:78ff15285f19194a9cff1d0f4431fa360254add46959d078bf23e9f52cb04122",
+                  "version": "0.1.16"
+                },
+                {
+                  "digest": "sha256:e465cce73c1b69f54d07d44222b2c7afc9e3ae2ca0c63919edf2afd69781dfaf",
+                  "version": "0.1.15"
+                },
+                {
+                  "digest": "sha256:0fb733e0e0505836e142f359fa4ed90e90e88a9405ba55fd2060cc6d0e34edd3",
+                  "version": "0.1.14"
+                },
+                {
+                  "digest": "sha256:95273b678bb21fa6313729f46a8f36d5922c2b1b79eef6ee0b1ff681b797a5a9",
+                  "version": "0.1.13"
+                },
+                {
+                  "digest": "sha256:197e2c47fd779b9ec18e5c11bccd15ca51b0a624b64f382f0185e0fa16b3a010",
+                  "version": "0.1.12"
+                },
+                {
+                  "digest": "sha256:6a94caaab6dd4408956acffc4f7f06a41b846eb984030b5031f44553ac783736",
+                  "version": "0.1.11"
+                },
+                {
+                  "digest": "sha256:e01ead7b20e69b508c0d261cac7e89532770ef04788869ef378deb54e2eaff3c",
+                  "version": "0.1.9"
+                },
+                {
+                  "digest": "sha256:c80558163b770ccc877b354f6f74a963746553049b967ee44b05e78b309425cc",
+                  "version": "0.1.8"
+                },
+                {
+                  "digest": "sha256:089d74cd8064b5ae310af825ad4242f89a50bda1bfa4ee48d8bb0dcfd57696f2",
+                  "version": "0.1.7"
+                },
+                {
+                  "digest": "sha256:988127f43ada77343285c7358ed2abe20f4fabae358f060d80929790643583c2",
+                  "version": "0.1.6"
+                },
+                {
+                  "digest": "sha256:59df0d6fa28732a9ceff3044370215fa493e2746e0593a7d24bf4854c7ad7e32",
+                  "version": "0.1.5"
+                },
+                {
+                  "digest": "sha256:64ef0481cf77080e0bc87bcfc22820016cb288a518e6b3f8b6a3748ecb71f8e2",
+                  "version": "0.1.4"
+                },
+                {
+                  "digest": "sha256:8e4a00de2e3a7760865a8cf2c81676668fe05ca917b0275437570ccacab9e7f1",
+                  "version": "0.1.3"
+                }
+              ],
               "version": "0.1.19"
             }
           },
@@ -2044,9 +2673,6 @@
         "database",
         "mongodb"
       ],
-      "compatibility": {
-        "openeverest": ">=2.0.0-dev.4"
-      },
       "description": "Adds a MongoDB Explorer tab to PSMDB cluster detail pages. Browse\ndatabases and collections, run find queries with filter, projection,\nlimit, and sort, and view results as a table or raw JSON.\n",
       "displayName": "MongoDB Explorer",
       "health": "unknown",
@@ -2087,7 +2713,9 @@
         ]
       },
       "provider": null,
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/plugin-mongodb-explorer",
+      "thirdParty": false,
       "type": "plugin",
       "verified": false
     },
@@ -2097,7 +2725,58 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.2.8",
               "ref": "oci://ghcr.io/openeverest/charts/plugin-user-management",
+              "releases": [
+                {
+                  "digest": "sha256:304a78fb94da32114fb8297c7382d9318c68e4ddcd227ae0f60bce1623d7c7bb",
+                  "version": "0.2.8"
+                },
+                {
+                  "digest": "sha256:5b13078c5fc8d151969412a1eb4524d34bec7e3261951215b90e5bc94afd6c1d",
+                  "version": "0.2.7"
+                },
+                {
+                  "digest": "sha256:6dd6bff010b582838a0f07d53ded184e3a0bfb9abec532af5a967bc10af99389",
+                  "version": "0.2.6"
+                },
+                {
+                  "digest": "sha256:4ad6ff7ed49525bf0b2ff50aec2057b8371f1062de06d6e2fdecaaa7157f2c31",
+                  "version": "0.2.5"
+                },
+                {
+                  "digest": "sha256:d744b7b39c3e5c546afd27d5bbcdf59173ad6a3527cbbdd9f2647bc5bdc96bc7",
+                  "version": "0.2.4"
+                },
+                {
+                  "digest": "sha256:22b0a67f3b3185eb4b93ebb3dab66b1a1e9fbb99c8c895262852476d2ecf8a3b",
+                  "version": "0.2.3"
+                },
+                {
+                  "digest": "sha256:40099bf9f582019af2c72c866365b016f02bd35e8ef8823cf44ccac01971e600",
+                  "version": "0.2.2"
+                },
+                {
+                  "digest": "sha256:90d11cfbf1a82737eabda75a699885ae1ec3e771d6213ffa0e20345efa973763",
+                  "version": "0.2.1"
+                },
+                {
+                  "digest": "sha256:dd31d8cb24172ce659613f3dc79710858d352884ca8c6790b4c4de64c11f4a5b",
+                  "version": "0.2.0"
+                },
+                {
+                  "digest": "sha256:2e7dbdffa59913d31e2efb5cb54c643abd008a0278df8ababc5dbe29b2739a19",
+                  "version": "0.1.2"
+                },
+                {
+                  "digest": "sha256:ec6da167738f8c9bc5398a3b99aabf5c9223efd3b6674bd4087c545de8cc1e85",
+                  "version": "0.1.1"
+                },
+                {
+                  "digest": "sha256:c06d5edb7f7999165f2c332aca44ea91297e1d079865e302f03b93b7e98ff615",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.2.8"
             }
           },
@@ -2109,9 +2788,6 @@
         "access-management",
         "database"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Adds a Users tab to database instance pages to create database users and\nmanage their roles, so teams stop sharing the admin account. Users are\nInstanceUser resources reconciled into the database, with generated\ncredentials stored in a Secret applications can mount. For models on the\nEnvoy AI Gateway, the same users are per-application API keys.\n",
       "displayName": "User Management",
       "health": "unknown",
@@ -2154,7 +2830,9 @@
         ]
       },
       "provider": null,
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/plugin-user-management",
+      "thirdParty": false,
       "type": "plugin",
       "verified": false
     },
@@ -2164,7 +2842,26 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.3.0",
               "ref": "oci://ghcr.io/openeverest/charts/provider-seaweedfs",
+              "releases": [
+                {
+                  "digest": "sha256:2fee25bf947f8289e926aa8aba380fb04c01f71951b3b34e5cc9054fb84d10f5",
+                  "version": "0.3.0"
+                },
+                {
+                  "digest": "sha256:9559a4f72ff6b1eef916448e289d423137ad4853956d6110393296dc3167135e",
+                  "version": "0.2.0"
+                },
+                {
+                  "digest": "sha256:47809dd9822612f486c42ee0ce7e13968062d7ea0b0273e290a784ab8db01ac0",
+                  "version": "0.1.2"
+                },
+                {
+                  "digest": "sha256:35833a0f8d2703d3a95c86a089c47bf6b8b56e4aae3128419d53f1e81fffabfe",
+                  "version": "0.1.1"
+                }
+              ],
               "version": "0.3.0"
             }
           },
@@ -2190,10 +2887,6 @@
         "object-storage",
         "seaweedfs"
       ],
-      "compatibility": {
-        "kubernetes": ">=1.30 <1.35",
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Distributed object storage with an S3-compatible gateway on Kubernetes,\nbacked by the seaweedfs-operator. Provisions master, volume, filer, and\nS3 components. Early-stage (MVP): not for production use.\n",
       "displayName": "SeaweedFS",
       "health": "unknown",
@@ -2229,7 +2922,9 @@
           "seaweedfs"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-seaweedfs",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     },
@@ -2239,7 +2934,62 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.3.0",
               "ref": "oci://ghcr.io/openeverest/charts/provider-tidb",
+              "releases": [
+                {
+                  "digest": "sha256:9385a4f873901206a972c85a9c6dea937e25d8421687e02964aa221caad8c0b9",
+                  "version": "0.3.0"
+                },
+                {
+                  "digest": "sha256:34f4eeea4f4fa61432676db8e7c9bb92192abcc65b7f367d68555385236fd64e",
+                  "version": "0.2.5"
+                },
+                {
+                  "digest": "sha256:e3570c9875ab8daab69d06441d8c348da55f83604d8a705e626d49f346587ea3",
+                  "version": "0.2.4"
+                },
+                {
+                  "digest": "sha256:916caf63f9b2463743384166b915df22c5f7e709d891af311f3cdc07b19cf5d8",
+                  "version": "0.2.3"
+                },
+                {
+                  "digest": "sha256:812aad9909eb331da4f2b418345446b40a6add4ef08af246b6a7a1ee9885bc32",
+                  "version": "0.2.2"
+                },
+                {
+                  "digest": "sha256:97e3989b9389645471b40257078bd60e0dfa990f826fdc076a7527063a3fef82",
+                  "version": "0.2.1"
+                },
+                {
+                  "digest": "sha256:4559a5421d8d271a1836bc7b3b0fce1a68a94307d9b5ca80247ecddd4a641969",
+                  "version": "0.2.0"
+                },
+                {
+                  "digest": "sha256:5f3f77edc8458a53d8ff50d4eae1398279b7c4aea69c933672dc5295a5df379a",
+                  "version": "0.1.5"
+                },
+                {
+                  "digest": "sha256:fc37317f71eb3da1e8b993a2701ad72a1dafc68055ad16a9a468fd8501f1ad8a",
+                  "version": "0.1.4"
+                },
+                {
+                  "digest": "sha256:cff503559de2d5e8708449d13110253775462c4afba02b6bd242e7bfdd425328",
+                  "version": "0.1.3"
+                },
+                {
+                  "digest": "sha256:3a560c9c9a85b9a54ca79c2714b5cd77a25010158cb8a82e2414d872143c0447",
+                  "version": "0.1.2"
+                },
+                {
+                  "digest": "sha256:839e1c084e59dcf345fef4ee2e1ca8884cc574fbbcadc3a2a865efca1963e932",
+                  "version": "0.1.1"
+                },
+                {
+                  "digest": "sha256:c0a007c09ad6dba93c34bf4c85977763785556ff22f08fb6d6620eb84d5a03d9",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.3.0"
             }
           },
@@ -2268,10 +3018,6 @@
         "database",
         "mysql"
       ],
-      "compatibility": {
-        "kubernetes": ">=1.30",
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Distributed, MySQL-compatible NewSQL database with HTAP capabilities,\npowered by TiDB Operator v2. Provisions a PD + TiKV + TiDB cluster.\n",
       "displayName": "TiDB",
       "health": "unknown",
@@ -2308,7 +3054,9 @@
           "tidb"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-tidb",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     },
@@ -2318,7 +3066,62 @@
         "chart": {
           "channels": {
             "stable": {
+              "head": "0.2.0",
               "ref": "oci://ghcr.io/openeverest/charts/provider-valkey",
+              "releases": [
+                {
+                  "digest": "sha256:a202fca36110c765d692b5e19ccad56b957a73b775a63a31a79dff3f14eaaebb",
+                  "version": "0.2.0"
+                },
+                {
+                  "digest": "sha256:59a396ebac504ab020e51a1e2bf6e211f0e12468ccbe1cdcf70a80143afd276a",
+                  "version": "0.1.11"
+                },
+                {
+                  "digest": "sha256:5f144f612f149082b5c6f9b3fb003192db7434edd3030d3fabbe28fba44164f1",
+                  "version": "0.1.10"
+                },
+                {
+                  "digest": "sha256:57e2b922106f04c4adb9cac09ca22ac043fb4bf24529a2a17e35752600e0298b",
+                  "version": "0.1.9"
+                },
+                {
+                  "digest": "sha256:a49c7a3e66e7fc905020ba99bb2a16ff91875902296fac5ce5d7eb33ca63c356",
+                  "version": "0.1.8"
+                },
+                {
+                  "digest": "sha256:464c08f1b59db24daa549881c04e77ad40ff866485e5338910b55d9ee322f71a",
+                  "version": "0.1.7"
+                },
+                {
+                  "digest": "sha256:169efb0b27f497b99c216d7029ba3320b2aef0ba1c17862a89210f6e2f52ef8c",
+                  "version": "0.1.6"
+                },
+                {
+                  "digest": "sha256:81b0c05071f4837b62900731ebd4e543bfcdcf8387e464f53930c81b9cf992b6",
+                  "version": "0.1.5"
+                },
+                {
+                  "digest": "sha256:4250f30630a76dd7e9db4f4b65f07ea22a4ce2198f45e35f9d29163b724a23b6",
+                  "version": "0.1.4"
+                },
+                {
+                  "digest": "sha256:1bea19f4707363bd7ab6330b3bdeeb79821c296fadf8554e8ade4115f11467d6",
+                  "version": "0.1.3"
+                },
+                {
+                  "digest": "sha256:8ad3ed6cb0fd0f79eae2c58f2bdc22b04628b79cbebd331adb96a00a10cd224c",
+                  "version": "0.1.2"
+                },
+                {
+                  "digest": "sha256:5a3f6e267ba3163c67e5511f7ea04e53977a73833738a41d3ef4e2fff8c07988",
+                  "version": "0.1.1"
+                },
+                {
+                  "digest": "sha256:c01e370e8ea23b2aac39332c86e34bba4bd3c06cf8aed365dc3a98ed66e98084",
+                  "version": "0.1.0"
+                }
+              ],
               "version": "0.2.0"
             }
           },
@@ -2346,9 +3149,6 @@
         "database",
         "valkey"
       ],
-      "compatibility": {
-        "openeverest": "2.0.0-alpha.1"
-      },
       "description": "Valkey clusters powered by the Valkey Kubernetes Operator.\nSupports replication and sharded cluster topologies. Very early stage.\n",
       "displayName": "Valkey",
       "health": "unknown",
@@ -2384,7 +3184,9 @@
           "valkey"
         ]
       },
+      "publisher": "openeverest",
       "sourceRepo": "https://github.com/openeverest/provider-valkey",
+      "thirdParty": false,
       "type": "provider",
       "verified": false
     }
@@ -2392,7 +3194,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-11-25T21:58:57+03:00",
+    "generatedAt": "2026-11-25T20:34:02Z",
     "schemaVersion": "v1",
     "totalExtensions": 32
   }
