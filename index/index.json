@@ -637,6 +637,112 @@
         "chart": {
           "channels": {
             "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/monitoring-otel",
+              "version": "0.1.1"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "categories": [
+        "monitoring",
+        "observability"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0-alpha.1"
+      },
+      "description": "Send the metrics of OpenEverest database instances to any OTLP receiver\n(Grafana Cloud, Datadog, Elastic, an OpenTelemetry Collector, or Prometheus\nand VictoriaMetrics over OTLP). Installs the `opentelemetry` MonitoringClass\nand a controller that runs an OpenTelemetry Collector per destination,\nscraping the metrics endpoints the provider publishes.\n",
+      "displayName": "OpenTelemetry",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/monitoring-otel",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/integrations/monitoring-otel/opentelemetry-icon.svg",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "monitoring-otel"
+        },
+        "prerequisites": [
+          {
+            "description": "Required by the OpenTelemetry Operator webhook and for mTLS between each collector and its Target Allocator.",
+            "helm": {
+              "createNamespace": true,
+              "defaultValues": {
+                "crds.enabled": "true"
+              },
+              "namespace": "cert-manager",
+              "oci": "oci://quay.io/jetstack/charts/cert-manager"
+            },
+            "installUrl": "https://cert-manager.io/docs/installation/helm/",
+            "name": "cert-manager"
+          },
+          {
+            "description": "Only the CRDs: the collectors' Target Allocators discover targets through the PodMonitors the controller renders. No Prometheus is needed.",
+            "helm": {
+              "namespace": "kube-system",
+              "oci": "oci://ghcr.io/prometheus-community/charts/prometheus-operator-crds"
+            },
+            "installUrl": "https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-operator-crds",
+            "name": "Prometheus Operator CRDs"
+          },
+          {
+            "description": "Runs the collector of each destination. Use a collector image with the prometheus receiver, the otlp and otlphttp exporters and the basicauth and bearertokenauth extensions, such as otel/opentelemetry-collector-k8s.",
+            "helm": {
+              "createNamespace": true,
+              "defaultValues": {
+                "admissionWebhooks.certManager.enabled": "true",
+                "manager.collectorImage.repository": "otel/opentelemetry-collector-k8s"
+              },
+              "namespace": "opentelemetry-operator-system",
+              "oci": "oci://ghcr.io/open-telemetry/opentelemetry-helm-charts/opentelemetry-operator"
+            },
+            "installUrl": "https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator",
+            "name": "OpenTelemetry Operator"
+          }
+        ]
+      },
+      "integration": {
+        "area": "monitoring",
+        "monitoring": {
+          "classes": [
+            "opentelemetry"
+          ],
+          "executionModes": [
+            "ExtensionManaged"
+          ],
+          "requires": {
+            "metrics": true
+          }
+        }
+      },
+      "keywords": [
+        "opentelemetry",
+        "otel",
+        "otlp",
+        "opentelemetry-collector",
+        "metrics"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "monitoring-otel",
+      "plugin": null,
+      "provider": null,
+      "sourceRepo": "https://github.com/openeverest/monitoring-otel",
+      "type": "integration",
+      "verified": false
+    },
+    {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
               "ref": "oci://ghcr.io/openeverest/charts/monitoring-pmm",
               "version": "0.1.0"
             }
@@ -779,6 +885,81 @@
       "plugin": null,
       "provider": null,
       "sourceRepo": "https://github.com/openeverest/monitoring-prometheus",
+      "type": "integration",
+      "verified": false
+    },
+    {
+      "access": "public",
+      "artifacts": {
+        "chart": {
+          "channels": {
+            "stable": {
+              "ref": "oci://ghcr.io/openeverest/charts/monitoring-releem",
+              "version": "0.1.1"
+            }
+          },
+          "defaultChannel": "stable"
+        }
+      },
+      "categories": [
+        "monitoring",
+        "observability"
+      ],
+      "compatibility": {
+        "openeverest": ">=2.0.0-alpha.1"
+      },
+      "description": "Send the metrics and query statistics of OpenEverest MySQL, MariaDB and\nPostgreSQL instances to Releem for configuration and query recommendations.\nInstalls the `releem` MonitoringClass and a controller that runs one\nreleem-agent per database server, logging in with the read-only monitoring\nuser the provider publishes.\n",
+      "displayName": "Releem",
+      "health": "unknown",
+      "homepage": "https://github.com/openeverest/monitoring-releem",
+      "icon": "https://raw.githubusercontent.com/openeverest/hub/main/extensions/integrations/monitoring-releem/releem-icon.png",
+      "install": {
+        "helm": {
+          "namespace": "everest-system",
+          "releaseName": "monitoring-releem"
+        },
+        "prerequisites": [
+          {
+            "description": "A Releem account and its API key, stored in the credentials Secret of the MonitoringDestination. Query analytics needs a paid plan.",
+            "installUrl": "https://releem.com",
+            "name": "Releem account"
+          }
+        ]
+      },
+      "integration": {
+        "area": "monitoring",
+        "monitoring": {
+          "classes": [
+            "releem"
+          ],
+          "executionModes": [
+            "ExtensionManaged"
+          ],
+          "requires": {
+            "connection": true
+          }
+        }
+      },
+      "keywords": [
+        "releem",
+        "mysql",
+        "postgresql",
+        "tuning",
+        "query-optimization"
+      ],
+      "license": "Apache-2.0",
+      "maintainers": [
+        {
+          "email": "cncf-openeverest-maintainers@lists.cncf.io",
+          "github": "openeverest",
+          "name": "OpenEverest Team"
+        }
+      ],
+      "maturity": "alpha",
+      "name": "monitoring-releem",
+      "plugin": null,
+      "provider": null,
+      "sourceRepo": "https://github.com/openeverest/monitoring-releem",
       "type": "integration",
       "verified": false
     },
@@ -2211,8 +2392,8 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-11-24T13:11:59+03:00",
+    "generatedAt": "2026-11-25T21:58:57+03:00",
     "schemaVersion": "v1",
-    "totalExtensions": 30
+    "totalExtensions": 32
   }
 }
