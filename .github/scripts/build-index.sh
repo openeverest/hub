@@ -2,7 +2,7 @@
 # Generate index/index.json by reading every
 # extensions/{providers,plugins,integrations}/*/formula.yaml.
 #
-# Output shape follows spec 005 §4.4. Phase-1 entries set verified=false and
+# Output shape follows spec 007 §4.4. Phase-1 entries set verified=false and
 # health=unknown (no healthcheck workflow yet).
 #
 # Output is deterministic: extensions are sorted by name, and jq is invoked

@@ -74,7 +74,7 @@ This guide walks through adding a new **provider**, **generic plugin** or
 
 ## Field reference
 
-Adapted from [spec 005 §4.3](https://github.com/openeverest/specs/blob/main/specs/005-extension-hub.md).
+Adapted from [spec 007 §4.3](https://github.com/openeverest/specs/blob/main/specs/007-extension-hub.md).
 See [`schemas/formula-v1.json`](../schemas/formula-v1.json) for the full schema.
 
 | Field | Required | Notes |
@@ -111,7 +111,7 @@ the namespace the live OpenEverest v2 ecosystem uses (the
 [`generic-plugin-template`](https://github.com/openeverest/generic-plugin-template)
 and the core OpenEverest docs both use it).
 
-> Spec 005 §4.3 mentions `openeverest-system` as the pinned namespace for
+> Spec 007 §4.3 mentions `openeverest-system` as the pinned namespace for
 > providers. The live ecosystem standardised on `everest-system` instead.
 > Both seed formulas in this repo use `everest-system`; the schema is
 > intentionally unopinionated and accepts any valid DNS-1123 label.

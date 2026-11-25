@@ -17,4 +17,4 @@ npm-debug.log*
 *.tmp
 *.log
 
-# Note: index/index.json IS committed (see spec 005 §4.2). Do NOT ignore it.
+# Note: index/index.json IS committed (see spec 007 §4.2). Do NOT ignore it.

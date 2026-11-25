@@ -13,7 +13,7 @@
 #    schemas/formula-v1.json and the build-index workflow will pick it up on merge.
 #
 # Full schema:  schemas/formula-v1.json
-# Spec:         https://github.com/openeverest/specs/blob/main/specs/005-extension-hub.md
+# Spec:         https://github.com/openeverest/specs/blob/main/specs/007-extension-hub.md
 
 apiVersion: hub.openeverest.io/v1
 kind: Extension
