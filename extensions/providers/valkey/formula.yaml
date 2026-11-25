@@ -47,7 +47,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/provider-valkey
-          version: "0.2.0"
+          version: "0.2.1"
   install:
     helm:
       releaseName: provider-valkey
