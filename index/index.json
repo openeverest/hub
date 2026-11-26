@@ -7,9 +7,13 @@
         "chart": {
           "channels": {
             "stable": {
-              "head": "0.4.0",
+              "head": "0.4.1",
               "ref": "oci://ghcr.io/openeverest/charts/provider-altinity-clickhouse",
               "releases": [
+                {
+                  "digest": "sha256:d6712bc892e36dbb3be7e874476f2601c2874379dfc5149ea120891230e923e4",
+                  "version": "0.4.1"
+                },
                 {
                   "digest": "sha256:f1cd5da19f39bc4b07f006bf8bbc13b01ed11d1adbb06bb8ae0087fd474fc698",
                   "version": "0.4.0"
@@ -39,7 +43,7 @@
                   "version": "0.1.0"
                 }
               ],
-              "version": "0.4.0"
+              "version": "0.4.1"
             }
           },
           "defaultChannel": "stable"
@@ -115,9 +119,13 @@
         "chart": {
           "channels": {
             "stable": {
-              "head": "0.2.0",
+              "head": "0.2.1",
               "ref": "oci://ghcr.io/openeverest/charts/provider-cassandra",
               "releases": [
+                {
+                  "digest": "sha256:459745bdf658faf27dccfc7f5691ac94f4fb26a18cf929c67345e261577e57a1",
+                  "version": "0.2.1"
+                },
                 {
                   "digest": "sha256:a29899ede3aab620d343c65c33e4d5c598932455b342537039a139823a4a601c",
                   "version": "0.2.0"
@@ -139,7 +147,7 @@
                   "version": "0.1.0"
                 }
               ],
-              "version": "0.2.0"
+              "version": "0.2.1"
             }
           },
           "defaultChannel": "stable"
@@ -210,9 +218,17 @@
         "chart": {
           "channels": {
             "stable": {
-              "head": "0.4.1",
+              "head": "0.4.3",
               "ref": "oci://ghcr.io/openeverest/charts/provider-cloudnative-pg",
               "releases": [
+                {
+                  "digest": "sha256:91deb185662764a2d0b7f918dcce8cb2cb7e3506d3f5500e1e6455fbad3728ce",
+                  "version": "0.4.3"
+                },
+                {
+                  "digest": "sha256:29145b286772541367dc4ebbadd378205d0ad8260f2bf3dbbd8dc0b023d095e2",
+                  "version": "0.4.2"
+                },
                 {
                   "digest": "sha256:58f9a6a3b7e14de444027dbd717eccebdb1f06b7b696a2c70a7347e5ce384a96",
                   "version": "0.4.1"
@@ -230,7 +246,7 @@
                   "version": "0.3.4"
                 }
               ],
-              "version": "0.4.1"
+              "version": "0.4.3"
             }
           },
           "defaultChannel": "stable"
@@ -563,9 +579,13 @@
         "chart": {
           "channels": {
             "stable": {
-              "head": "0.3.0",
+              "head": "0.3.1",
               "ref": "oci://ghcr.io/openeverest/charts/provider-mariadb",
               "releases": [
+                {
+                  "digest": "sha256:8166e05d0e136b7059516190382b04be69fbd939b01510747df1f36c8a27e604",
+                  "version": "0.3.1"
+                },
                 {
                   "digest": "sha256:08760134784d52df90e7f4763bd6c3a2e69f301579b77ef27f149c84e5240d83",
                   "version": "0.3.0"
@@ -623,7 +643,7 @@
                   "version": "0.1.0"
                 }
               ],
-              "version": "0.3.0"
+              "version": "0.3.1"
             }
           },
           "defaultChannel": "stable"
@@ -701,9 +721,13 @@
         "chart": {
           "channels": {
             "stable": {
-              "head": "0.5.0",
+              "head": "0.5.1",
               "ref": "oci://ghcr.io/openeverest/charts/provider-milvus",
               "releases": [
+                {
+                  "digest": "sha256:18d5e7aefa4f2329f8cbd517de3b75648ab58123d4cfd1cf2fcb2227f3c490b0",
+                  "version": "0.5.1"
+                },
                 {
                   "digest": "sha256:5012e3a2d3ebc3261f738a96ebab6148af85c60a667af751be3abc2e8392dddd",
                   "version": "0.5.0"
@@ -733,7 +757,7 @@
                   "version": "0.1.0"
                 }
               ],
-              "version": "0.5.0"
+              "version": "0.5.1"
             }
           },
           "defaultChannel": "stable"
@@ -1384,9 +1408,13 @@
         "chart": {
           "channels": {
             "stable": {
-              "head": "0.1.1",
+              "head": "0.1.2",
               "ref": "oci://ghcr.io/openeverest/charts/provider-neo4j",
               "releases": [
+                {
+                  "digest": "sha256:d90d9decdcb8449e306429be9a5496a50e16694ab6a11d31ee692b0323fbc5c4",
+                  "version": "0.1.2"
+                },
                 {
                   "digest": "sha256:9ac05c6de444874775336bce90d13403075b34294fe1b551a3703a93db04841f",
                   "version": "0.1.1"
@@ -1396,7 +1424,7 @@
                   "version": "0.1.0"
                 }
               ],
-              "version": "0.1.1"
+              "version": "0.1.2"
             }
           },
           "defaultChannel": "stable"
@@ -1470,9 +1498,13 @@
         "chart": {
           "channels": {
             "stable": {
-              "head": "0.3.0",
+              "head": "0.3.1",
               "ref": "oci://ghcr.io/openeverest/charts/provider-opensearch",
               "releases": [
+                {
+                  "digest": "sha256:cbd2ae0430cb7e23caba799073aaa3369ea265b29af7828e4b593b78fb4be41f",
+                  "version": "0.3.1"
+                },
                 {
                   "digest": "sha256:23b949324a94a6b36f790fdf044784f24247af3fef81658f5d91474811cefbe0",
                   "version": "0.3.0"
@@ -1486,7 +1518,7 @@
                   "version": "0.1.0"
                 }
               ],
-              "version": "0.3.0"
+              "version": "0.3.1"
             }
           },
           "defaultChannel": "stable"
@@ -1679,9 +1711,13 @@
         "chart": {
           "channels": {
             "stable": {
-              "head": "0.6.0",
+              "head": "0.6.1",
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-server-mongodb",
               "releases": [
+                {
+                  "digest": "sha256:633e6333b4a78b603461642f913075ca858474eea5abb9270f8869fcddb488eb",
+                  "version": "0.6.1"
+                },
                 {
                   "digest": "sha256:95ae291969c460d6742f2528ac12cb2f3d6ef71071f551b11302ba409b9bbcdc",
                   "version": "0.6.0"
@@ -1707,7 +1743,7 @@
                   "version": "0.2.0"
                 }
               ],
-              "version": "0.6.0"
+              "version": "0.6.1"
             }
           },
           "defaultChannel": "stable"
@@ -1873,9 +1909,13 @@
         "chart": {
           "channels": {
             "stable": {
-              "head": "0.5.0",
+              "head": "0.5.1",
               "ref": "oci://ghcr.io/openeverest/charts/provider-percona-xtradb-cluster",
               "releases": [
+                {
+                  "digest": "sha256:982c5b87c4e4d79e2f52c88790ac1c60c618c3a87037f65c1b3c37d8bed7cb6b",
+                  "version": "0.5.1"
+                },
                 {
                   "digest": "sha256:136092423335d1bfcb4cefb4b9b4d2a02e55fccef1c12ea9a91220fb3933ea2f",
                   "version": "0.5.0"
@@ -1905,7 +1945,7 @@
                   "version": "0.1.0"
                 }
               ],
-              "version": "0.5.0"
+              "version": "0.5.1"
             }
           },
           "defaultChannel": "stable"
@@ -2842,9 +2882,13 @@
         "chart": {
           "channels": {
             "stable": {
-              "head": "0.3.0",
+              "head": "0.3.1",
               "ref": "oci://ghcr.io/openeverest/charts/provider-seaweedfs",
               "releases": [
+                {
+                  "digest": "sha256:73e475f1697b4f562c391a04e82e56e4d08ee308fe9e290eb2162fb3db814762",
+                  "version": "0.3.1"
+                },
                 {
                   "digest": "sha256:2fee25bf947f8289e926aa8aba380fb04c01f71951b3b34e5cc9054fb84d10f5",
                   "version": "0.3.0"
@@ -2862,7 +2906,7 @@
                   "version": "0.1.1"
                 }
               ],
-              "version": "0.3.0"
+              "version": "0.3.1"
             }
           },
           "defaultChannel": "stable"
@@ -2934,9 +2978,13 @@
         "chart": {
           "channels": {
             "stable": {
-              "head": "0.3.0",
+              "head": "0.3.1",
               "ref": "oci://ghcr.io/openeverest/charts/provider-tidb",
               "releases": [
+                {
+                  "digest": "sha256:2d27fad7d2f04f40c5b172a8d1135de5830ec6432ff3ada839f1b5a34469002e",
+                  "version": "0.3.1"
+                },
                 {
                   "digest": "sha256:9385a4f873901206a972c85a9c6dea937e25d8421687e02964aa221caad8c0b9",
                   "version": "0.3.0"
@@ -2990,7 +3038,7 @@
                   "version": "0.1.0"
                 }
               ],
-              "version": "0.3.0"
+              "version": "0.3.1"
             }
           },
           "defaultChannel": "stable"
@@ -3066,9 +3114,13 @@
         "chart": {
           "channels": {
             "stable": {
-              "head": "0.2.0",
+              "head": "0.2.1",
               "ref": "oci://ghcr.io/openeverest/charts/provider-valkey",
               "releases": [
+                {
+                  "digest": "sha256:f8b68e52fa846dbb61bb7da52a2255eb65963854263bad965e7d09c35dfb8b38",
+                  "version": "0.2.1"
+                },
                 {
                   "digest": "sha256:a202fca36110c765d692b5e19ccad56b957a73b775a63a31a79dff3f14eaaebb",
                   "version": "0.2.0"
@@ -3122,7 +3174,7 @@
                   "version": "0.1.0"
                 }
               ],
-              "version": "0.2.0"
+              "version": "0.2.1"
             }
           },
           "defaultChannel": "stable"
@@ -3194,7 +3246,7 @@
   "kind": "ExtensionIndex",
   "metadata": {
     "catalogId": "openeverest-official",
-    "generatedAt": "2026-11-25T20:34:39Z",
+    "generatedAt": "2026-11-26T15:19:21+03:00",
     "schemaVersion": "v1",
     "totalExtensions": 32
   }
