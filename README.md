@@ -15,7 +15,7 @@ This repository follows the **formula / pointer** model: each entry under
 hosted in the author's own registry. A CI workflow regenerates the aggregated
 `index/index.json` on every merge to `main`.
 
-See [spec 005 — Extension Hub](https://github.com/openeverest/specs/blob/main/specs/005-extension-hub.md)
+See [spec 007 — Extension Hub](https://github.com/openeverest/specs/blob/main/specs/007-extension-hub.md)
 for the full design.
 
 ## Status

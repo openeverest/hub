@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/openeverest/hub/main/schemas/formula-v1.json",
   "title": "OpenEverest Extension Hub Formula (v1)",
-  "description": "Schema for a single extensions/<type>/<name>/formula.yaml file. Phase-2+ fields (channels.*.digest, verification, artifacts.frontend, install.helm.valuesSchema) are declared but optional so Phase-1 formulas validate. See https://github.com/openeverest/specs/blob/main/specs/005-extension-hub.md",
+  "description": "Schema for a single extensions/<type>/<name>/formula.yaml file. Phase-2+ fields (channels.*.digest, verification, artifacts.frontend, install.helm.valuesSchema) are declared but optional so Phase-1 formulas validate. See https://github.com/openeverest/specs/blob/main/specs/007-extension-hub.md",
   "type": "object",
   "additionalProperties": false,
   "required": ["apiVersion", "kind", "metadata", "spec"],

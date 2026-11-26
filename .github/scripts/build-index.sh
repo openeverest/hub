@@ -3,7 +3,7 @@
 # extensions/{providers,plugins,integrations}/*/formula.yaml and the OCI
 # repository of every chart they point at.
 #
-# Output shape follows spec 005 §4.4. Phase-1 entries set verified=false and
+# Output shape follows spec 007 §4.4. Phase-1 entries set verified=false and
 # health=unknown (no healthcheck workflow yet).
 #
 # Every chart channel gains `head` (the formula's version) and `releases[]`:
