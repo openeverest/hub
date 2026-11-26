@@ -48,7 +48,7 @@ spec:
       channels:
         stable:
           ref: oci://ghcr.io/openeverest/charts/provider-percona-server-mongodb
-          version: "0.6.0"
+          version: "0.6.1"
 
   install:
     helm:
